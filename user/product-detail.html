@@ -1,0 +1,902 @@
+<DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Produk - Panénia</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-success" href="index.html">
+                <img src="../assets/images/logo2.png" alt="Panénia Logo" class="logo me-2">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="catalog.html">Katalog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="articles.html">Artikel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Tentang Kami</a>
+                    </li>
+                </ul>
+                <div class="d-flex ms-lg-3">
+                    <a href="cart.html" class="btn btn-outline-success me-2 position-relative">
+                        <i class="fas fa-shopping-cart"></i> Keranjang
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            0
+                        </span>
+                    </a>
+                    <a href="login.html" class="btn btn-success">Masuk</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="bg-light py-2">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Beranda</a></li>
+                    <li class="breadcrumb-item"><a href="catalog.html" class="text-decoration-none">Katalog</a></li>
+                    <li class="breadcrumb-item"><a href="catalog.html?category=sayuran" class="text-decoration-none">Sayuran</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Bayam Organik</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Product Detail -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Product Images -->
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="product-images">
+                        <div class="main-image mb-3">
+                            <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2024/02/805193.jpg?resize=600%2C600&ssl=1" alt="Bayam Organik" class="img-fluid rounded shadow-sm" id="main-product-image">
+                        </div>
+                        <div class="thumbnails d-flex">
+                            <div class="thumbnail me-2 active" data-img="img/products/product-1-large.jpg">
+                                <img src="../assets/images/bayam1.jpg" alt="Bayam Organik Thumbnail 1" class="img-fluid rounded shadow-sm">
+                            </div>
+                            <div class="thumbnail me-2" data-img="img/products/product-1-large-2.jpg">
+                                <img src="../assets/images/bayam2.jpg" alt="Bayam Organik Thumbnail 2" class="img-fluid rounded shadow-sm">
+                            </div>
+                            <div class="thumbnail me-2" data-img="img/products/product-1-large-3.jpg">
+                                <img src="../assets/images/bayam4.jpg" alt="Bayam Organik Thumbnail 3" class="img-fluid rounded shadow-sm">
+                            </div>
+                            <div class="thumbnail" data-img="img/products/product-1-large-4.jpg">
+                                <img src="../assets/images/bayam4.jpg" alt="Bayam Organik Thumbnail 4" class="img-fluid rounded shadow-sm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Info -->
+                <div class="col-lg-6">
+                    <div class="product-info">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge bg-success">Baru</span>
+                            <div class="rating text-warning">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span class="ms-2 text-dark">(120 ulasan)</span>
+                            </div>
+                        </div>
+                        <h1 class="fw-bold mb-2">Bayam Organik</h1>
+                        <p class="text-muted mb-3">Kategori: <a href="catalog.html?category=sayuran" class="text-decoration-none">Sayuran</a></p>
+                        <div class="mb-3">
+                            <span class="fs-4 fw-bold text-success">Rp 8.000</span>
+                            <span class="text-decoration-line-through text-muted ms-2">Rp 10.000</span>
+                            <span class="badge bg-danger ms-2">-20%</span>
+                        </div>
+                        <p class="mb-4">Bayam organik segar yang ditanam tanpa pestisida dan bahan kimia berbahaya. Kaya akan zat besi, vitamin A, vitamin C, dan antioksidan. Cocok untuk berbagai masakan dan salad.</p>
+                        
+                        <div class="product-meta mb-4">
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-weight-hanging text-success me-2"></i>
+                                        <div>
+                                            <small class="text-muted d-block">Berat</small>
+                                            <span>± 250 gram/ikat</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-box text-success me-2"></i>
+                                        <div>
+                                            <small class="text-muted d-block">Stok</small>
+                                            <span>Tersedia (50 ikat)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-truck text-success me-2"></i>
+                                        <div>
+                                            <small class="text-muted d-block">Pengiriman</small>
+                                            <span>1-2 hari</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-user-friends text-success me-2"></i>
+                                        <div>
+                                            <small class="text-muted d-block">Petani</small>
+                                            <span>Kelompok Tani Makmur</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-actions mb-4">
+                            <div class="row g-2">
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <button class="btn btn-outline-secondary" type="button" id="decrease-quantity">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <input type="number" class="form-control text-center" value="1" min="1" max="50" id="product-quantity">
+                                        <button class="btn btn-outline-secondary" type="button" id="increase-quantity">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <button class="btn btn-success w-100" id="add-to-cart">
+                                        <i class="fas fa-shopping-cart me-2"></i> Tambahkan ke Keranjang
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-share">
+                            <p class="mb-2">Bagikan:</p>
+                            <div class="social-share">
+                                <a href="#" class="btn btn-sm btn-outline-secondary me-2">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="btn btn-sm btn-outline-secondary me-2">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="btn btn-sm btn-outline-secondary me-2">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                                <a href="#" class="btn btn-sm btn-outline-secondary">
+                                    <i class="fab fa-telegram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Details Tabs -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <ul class="nav nav-tabs mb-4" id="productTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Deskripsi</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="nutrition-tab" data-bs-toggle="tab" data-bs-target="#nutrition" type="button" role="tab" aria-controls="nutrition" aria-selected="false">Informasi Nutrisi</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">Ulasan (120)</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="shipping-tab" data-bs-toggle="tab" data-bs-target="#shipping" type="button" role="tab" aria-controls="shipping" aria-selected="false">Pengiriman & Pengembalian</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="productTabsContent">
+                <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body">
+                            <h4 class="mb-3">Tentang Bayam Organik</h4>
+                            <p>Bayam organik kami ditanam dengan metode pertanian organik yang ramah lingkungan, tanpa menggunakan pestisida kimia, pupuk sintetis, atau bahan kimia berbahaya lainnya. Bayam ini dipanen langsung dari kebun petani mitra kami di dataran tinggi Jawa Barat yang memiliki kondisi tanah dan iklim ideal untuk pertumbuhan sayuran berkualitas.</p>
+                            
+                            <h5 class="mt-4 mb-3">Keunggulan Produk:</h5>
+                            <ul>
+                                <li>100% organik, bebas pestisida dan bahan kimia berbahaya</li>
+                                <li>Dipanen segar setiap pagi untuk menjaga kesegaran dan nutrisi</li>
+                                <li>Kaya akan zat besi, vitamin A, vitamin C, dan antioksidan</li>
+                                <li>Ditanam oleh petani lokal bersertifikat organik</li>
+                                <li>Dikemas dengan hati-hati untuk menjaga kesegaran hingga tiba di tangan Anda</li>
+                            </ul>
+                            
+                            <h5 class="mt-4 mb-3">Cara Penyimpanan:</h5>
+                            <p>Untuk menjaga kesegaran bayam organik, simpan dalam wadah tertutup di dalam lemari pendingin. Cuci hanya saat akan dikonsumsi. Bayam organik dapat bertahan 3-5 hari dalam kondisi optimal di lemari pendingin.</p>
+                            
+                            <h5 class="mt-4 mb-3">Saran Penyajian:</h5>
+                            <p>Bayam organik sangat cocok untuk berbagai hidangan seperti:</p>
+                            <ul>
+                                <li>Tumis bayam dengan bawang putih</li>
+                                <li>Sayur bening bayam</li>
+                                <li>Salad segar</li>
+                                <li>Smoothie hijau</li>
+                                <li>Pelengkap hidangan utama</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="nutrition" role="tabpanel" aria-labelledby="nutrition-tab">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body">
+                            <h4 class="mb-4">Informasi Nutrisi</h4>
+                            <p>Nilai nutrisi per 100 gram bayam segar:</p>
+                            
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Nutrisi</th>
+                                            <th>Jumlah</th>
+                                            <th>% Nilai Harian*</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Kalori</td>
+                                            <td>23 kkal</td>
+                                            <td>1%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Karbohidrat</td>
+                                            <td>3.6 g</td>
+                                            <td>1%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Protein</td>
+                                            <td>2.9 g</td>
+                                            <td>6%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Lemak</td>
+                                            <td>0.4 g</td>
+                                            <td>1%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Serat</td>
+                                            <td>2.2 g</td>
+                                            <td>9%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Vitamin A</td>
+                                            <td>9377 IU</td>
+                                            <td>188%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Vitamin C</td>
+                                            <td>28.1 mg</td>
+                                            <td>47%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Vitamin K</td>
+                                            <td>482.9 mcg</td>
+                                            <td>603%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Folat</td>
+                                            <td>194 mcg</td>
+                                            <td>49%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Zat Besi</td>
+                                            <td>2.7 mg</td>
+                                            <td>15%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Kalsium</td>
+                                            <td>99 mg</td>
+                                            <td>10%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Magnesium</td>
+                                            <td>79 mg</td>
+                                            <td>20%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Kalium</td>
+                                            <td>558 mg</td>
+                                            <td>16%</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p class="small text-muted mt-3">* Persen Nilai Harian berdasarkan diet 2000 kalori. Nilai harian Anda mungkin lebih tinggi atau lebih rendah tergantung kebutuhan kalori Anda.</p>
+                            
+                            <h5 class="mt-4 mb-3">Manfaat Kesehatan:</h5>
+                            <ul>
+                                <li>Menjaga kesehatan mata berkat kandungan vitamin A yang tinggi</li>
+                                <li>Meningkatkan sistem kekebalan tubuh dengan vitamin C</li>
+                                <li>Mendukung kesehatan tulang dengan vitamin K dan kalsium</li>
+                                <li>Mencegah anemia dengan kandungan zat besi</li>
+                                <li>Membantu pencernaan dengan serat yang cukup</li>
+                                <li>Menurunkan risiko penyakit kronis dengan antioksidan</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h4 class="mb-0">Ulasan Pelanggan</h4>
+                                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#reviewModal">
+                                    <i class="fas fa-pen me-2"></i> Tulis Ulasan
+                                </button>
+                            </div>
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-4 mb-4 mb-md-0">
+                                    <div class="text-center">
+                                        <h1 class="display-4 fw-bold">4.5</h1>
+                                        <div class="rating text-warning mb-2">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                        <p class="text-muted">Berdasarkan 120 ulasan</p>
+                                    </div>
+                                    
+                                    <div class="rating-bars mt-4">
+                                        <div class="d-flex align-items-center mb-2">
+                                            <div class="text-warning me-2">5 <i class="fas fa-star"></i></div>
+                                            <div class="progress flex-grow-1" style="height: 8px;">
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: 75%"></div>
+                                            </div>
+                                            <div class="ms-2">75%</div>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-2">
+                                            <div class="text-warning me-2">4 <i class="fas fa-star"></i></div>
+                                            <div class="progress flex-grow-1" style="height: 8px;">
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: 18%"></div>
+                                            </div>
+                                            <div class="ms-2">18%</div>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-2">
+                                            <div class="text-warning me-2">3 <i class="fas fa-star"></i></div>
+                                            <div class="progress flex-grow-1" style="height: 8px;">
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: 5%"></div>
+                                            </div>
+                                            <div class="ms-2">5%</div>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-2">
+                                            <div class="text-warning me-2">2 <i class="fas fa-star"></i></div>
+                                            <div class="progress flex-grow-1" style="height: 8px;">
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: 2%"></div>
+                                            </div>
+                                            <div class="ms-2">2%</div>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <div class="text-warning me-2">1 <i class="fas fa-star"></i></div>
+                                            <div class="progress flex-grow-1" style="height: 8px;">
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: 0%"></div>
+                                            </div>
+                                            <div class="ms-2">0%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-8">
+                                    <div class="reviews-list">
+                                        &lt;!-- Review 1 -->
+                                        <div class="review-item mb-4 pb-4 border-bottom">
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <div class="d-flex align-items-center">
+                                                    <img src="img/testimonials/user-1.jpg" alt="Reviewer" class="rounded-circle me-3" width="50" height="50">
+                                                    <div>
+                                                        <h6 class="mb-0">Budi Santoso</h6>
+                                                        <p class="small text-muted mb-0">Jakarta • 2 hari yang lalu</p>
+                                                    </div>
+                                                </div>
+                                                <div class="rating text-warning">
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <p class="mb-0">Bayam organiknya sangat segar! Saya suka sekali dengan kualitasnya. Pengiriman juga cepat, masih segar saat sampai. Sudah beberapa kali beli dan tidak pernah mengecewakan.</p>
+                                        </div>
+                                        
+                                        &lt;!-- Review 2 -->
+                                        <div class="review-item mb-4 pb-4 border-bottom">
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <div class="d-flex align-items-center">
+                                                    <img src="img/testimonials/user-2.jpg" alt="Reviewer" class="rounded-circle me-3" width="50" height="50">
+                                                    <div>
+                                                        <h6 class="mb-0">Dewi Lestari</h6>
+                                                        <p class="small text-muted mb-0">Bandung • 1 minggu yang lalu</p>
+                                                    </div>
+                                                </div>
+                                                <div class="rating text-warning">
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="far fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <p class="mb-0">Bayamnya bagus dan segar, tapi saya berharap ukuran ikatannya bisa lebih besar sedikit. Secara keseluruhan puas dengan produknya, rasanya juga lebih enak dibanding yang biasa saya beli di pasar.</p>
+                                        </div>
+                                        
+                                        <!-- Review 3 -->
+                                        <div class="review-item">
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <div class="d-flex align-items-center">
+                                                    <img src="img/testimonials/user-3.jpg" alt="Reviewer" class="rounded-circle me-3" width="50" height="50">
+                                                    <div>
+                                                        <h6 class="mb-0">Ahmad Rizki</h6>
+                                                        <p class="small text-muted mb-0">Surabaya • 2 minggu yang lalu</p>
+                                                    </div>
+                                                </div>
+                                                <div class="rating text-warning">
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star-half-alt"></i>
+                                                </div>
+                                            </div>
+                                            <p class="mb-0">Sebagai pemilik restoran, kualitas bahan adalah prioritas utama. Bayam organik dari Panénia selalu konsisten kualitasnya. Pelanggan saya juga memuji rasa hidangan yang menggunakan sayuran ini. Akan terus berlangganan!</p>
+                                        </div>
+                                        
+                                        <div class="text-center mt-4">
+                                            <a href="#" class="btn btn-outline-success">Lihat Semua Ulasan</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="shipping" role="tabpanel" aria-labelledby="shipping-tab">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body">
+                            <h4 class="mb-4">Informasi Pengiriman & Pengembalian</h4>
+                            
+                            <h5 class="mb-3">Pengiriman</h5>
+                            <p>Kami berkomitmen untuk mengirimkan produk segar ke rumah Anda dengan cepat dan aman. Berikut informasi pengiriman untuk produk Panénia:</p>
+                            
+                            <div class="table-responsive mb-4">
+                                <table class="table table-bordered">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Area</th>
+                                            <th>Estimasi Waktu</th>
+                                            <th>Biaya</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Jakarta & Sekitarnya</td>
+                                            <td>1-2 hari</td>
+                                            <td>Rp 10.000 - Rp 15.000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jawa Barat</td>
+                                            <td>1-3 hari</td>
+                                            <td>Rp 15.000 - Rp 25.000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Pulau Jawa (lainnya)</td>
+                                            <td>2-4 hari</td>
+                                            <td>Rp 20.000 - Rp 35.000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Luar Pulau Jawa</td>
+                                            <td>3-7 hari</td>
+                                            <td>Rp 30.000 - Rp 50.000</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <p>Catatan penting tentang pengiriman:</p>
+                            <ul>
+                                <li>Produk dikirim dalam kemasan khusus yang menjaga kesegaran</li>
+                                <li>Pengiriman dilakukan setiap hari (Senin-Sabtu)</li>
+                                <li>Pesanan yang masuk sebelum pukul 12.00 akan diproses di hari yang sama</li>
+                                <li>Gratis ongkir untuk pembelian minimal Rp 100.000 (area Jakarta)</li>
+                                <li>Pengiriman menggunakan kurir yang berpengalaman menangani produk segar</li>
+                            </ul>
+                            
+                            <h5 class="mt-4 mb-3">Kebijakan Pengembalian</h5>
+                            <p>Kepuasan pelanggan adalah prioritas kami. Jika Anda tidak puas dengan produk yang diterima, kami memiliki kebijakan pengembalian sebagai berikut:</p>
+                            
+                            <ul>
+                                <li>Produk yang rusak atau tidak segar saat diterima dapat dikembalikan dalam waktu 24 jam setelah penerimaan</li>
+                                <li>Dokumentasikan kondisi produk dengan foto dan kirimkan ke layanan pelanggan kami</li>
+                                <li>Kami akan mengganti produk atau memberikan pengembalian dana penuh</li>
+                                <li>Biaya pengiriman untuk pengembalian ditanggung oleh Panénia</li>
+                                <li>Pengembalian dana akan diproses dalam waktu 3-5 hari kerja</li>
+                            </ul>
+                            
+                            <p>Untuk informasi lebih lanjut atau bantuan terkait pengiriman dan pengembalian, silakan hubungi tim layanan pelanggan kami di <a href="mailto:cs@panenia.id">cs@panenia.id</a> atau telepon ke (021) 1234-5678.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Products -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="fw-bold mb-4">Produk Terkait</h2>
+            <div class="row g-4">
+                <!-- Related Product 1 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="card product-card h-100 border-0 shadow-sm">
+                        <div class="position-relative">
+                            <img src="img/products/product-5.jpg" class="card-img-top" alt="Kangkung Organik">
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <p class="small text-muted mb-0">Sayuran</p>
+                                <div class="rating text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                            <h5 class="card-title">Kangkung Organik</h5>
+                            <p class="fw-bold text-success mb-0">Rp 7.000</p>
+                            <p class="card-text small">Per ikat (± 250 gram)</p>
+                            <div class="d-flex justify-content-between mt-3">
+                                <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
+                                <button class="btn btn-sm btn-success">+ Keranjang</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Related Product 2 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="card product-card h-100 border-0 shadow-sm">
+                        <div class="position-relative">
+                            <img src="img/products/product-6.jpg" class="card-img-top" alt="Sawi Hijau">
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <p class="small text-muted mb-0">Sayuran</p>
+                                <div class="rating text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                            <h5 class="card-title">Sawi Hijau</h5>
+                            <p class="fw-bold text-success mb-0">Rp 8.500</p>
+                            <p class="card-text small">Per ikat (± 300 gram)</p>
+                            <div class="d-flex justify-content-between mt-3">
+                                <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
+                                <button class="btn btn-sm btn-success">+ Keranjang</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Related Product 3 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="card product-card h-100 border-0 shadow-sm">
+                        <div class="position-relative">
+                            <img src="img/products/product-7.jpg" class="card-img-top" alt="Selada Keriting">
+                            <div class="product-badge bg-success text-white">Baru</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <p class="small text-muted mb-0">Sayuran</p>
+                                <div class="rating text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                            <h5 class="card-title">Selada Keriting</h5>
+                            <p class="fw-bold text-success mb-0">Rp 9.500</p>
+                            <p class="card-text small">Per pack (± 200 gram)</p>
+                            <div class="d-flex justify-content-between mt-3">
+                                <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
+                                <button class="btn btn-sm btn-success">+ Keranjang</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Related Product 4 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="card product-card h-100 border-0 shadow-sm">
+                        <div class="position-relative">
+                            <img src="img/products/product-8.jpg" class="card-img-top" alt="Brokoli">
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <p class="small text-muted mb-0">Sayuran</p>
+                                <div class="rating text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <h5 class="card-title">Brokoli</h5>
+                            <p class="fw-bold text-success mb-0">Rp 15.000</p>
+                            <p class="card-text small">Per bonggol (± 350 gram)</p>
+                            <div class="d-flex justify-content-between mt-3">
+                                <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
+                                <button class="btn btn-sm btn-success">+ Keranjang</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Review Modal -->
+    <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reviewModalLabel">Tulis Ulasan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Rating</label>
+                            <div class="rating-input text-warning fs-3">
+                                <i class="far fa-star" data-rating="1"></i>
+                                <i class="far fa-star" data-rating="2"></i>
+                                <i class="far fa-star" data-rating="3"></i>
+                                <i class="far fa-star" data-rating="4"></i>
+                                <i class="far fa-star" data-rating="5"></i>
+                            </div>
+                            <input type="hidden" name="rating" id="rating-value" value="0">
+                        </div>
+                        <div class="mb-3">
+                            <label for="review-title" class="form-label">Judul Ulasan</label>
+                            <input type="text" class="form-control" id="review-title" placeholder="Berikan judul singkat untuk ulasan Anda">
+                        </div>
+                        <div class="mb-3">
+                            <label for="review-content" class="form-label">Ulasan Anda</label>
+                            <textarea class="form-control" id="review-content" rows="4" placeholder="Bagikan pengalaman Anda dengan produk ini"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="review-image" class="form-label">Tambahkan Foto (opsional)</label>
+                            <input class="form-control" type="file" id="review-image" accept="image/*">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-success">Kirim Ulasan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="mb-3">Panénia</h5>
+                    <p>Hasil Tani Terbaik, Langsung dari Alam Nusantara</p>
+                    <div class="social-icons">
+                        <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <h5 class="mb-3">Kontak</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-map-marker-alt me-2"></i> Jl. Pertanian No. 123, Jakarta</li>
+                        <li><i class="fas fa-phone me-2"></i> (021) 1234-5678</li>
+                        <li><i class="fas fa-envelope me-2"></i> info@panenia.id</li>
+                    </ul>
+                </div>
+                <!-- Tambahan: Jam Operasional -->
+                <div class="col-lg-3">
+                    <h5 class="mb-3">Jam Operasional</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-clock me-2"></i>Senin - Jumat: 08.00 - 17.00</li>
+                        <li><i class="fas fa-clock me-2"></i>Sabtu: 08.00 - 12.00</li>
+                        <li><i class="fas fa-clock me-2"></i>Minggu: Libur</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-md-0">© 2023 Panénia. Hak Cipta Dilindungi.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white text-decoration-none me-3">Syarat & Ketentuan</a>
+                    <a href="#" class="text-white text-decoration-none">Kebijakan Privasi</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS -->
+<script src="js/script.js"></script>
+<script>
+    // Product image gallery
+    document.addEventListener('DOMContentLoaded', function() {
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        const mainImage = document.getElementById('main-product-image');
+        
+        thumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener('click', function() {
+                // Remove active class from all thumbnails
+                thumbnails.forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked thumbnail
+                this.classList.add('active');
+                
+                // Update main image
+                const imgSrc = this.getAttribute('data-img');
+                mainImage.src = imgSrc;
+            });
+        });
+        
+        // Quantity buttons
+        const decreaseBtn = document.getElementById('decrease-quantity');
+        const increaseBtn = document.getElementById('increase-quantity');
+        const quantityInput = document.getElementById('product-quantity');
+        
+        decreaseBtn.addEventListener('click', function() {
+            let value = parseInt(quantityInput.value);
+            if (value > 1) {
+                quantityInput.value = value - 1;
+            }
+        });
+        
+        increaseBtn.addEventListener('click', function() {
+            let value = parseInt(quantityInput.value);
+            if (value < 50) {
+                quantityInput.value = value + 1;
+            }
+        });
+        
+        // Add to cart button
+        const addToCartBtn = document.getElementById('add-to-cart');
+        addToCartBtn.addEventListener('click', function() {
+            const quantity = parseInt(quantityInput.value);
+            const cartBadge = document.querySelector('.badge');
+            let currentCount = parseInt(cartBadge.textContent);
+            cartBadge.textContent = currentCount + quantity;
+            
+            // Show toast notification
+            showToast(`${quantity} Bayam Organik ditambahkan ke keranjang!`);
+        });
+        
+        // Rating stars in review modal
+        const ratingStars = document.querySelectorAll('.rating-input i');
+        const ratingValue = document.getElementById('rating-value');
+        
+        ratingStars.forEach(star => {
+            star.addEventListener('mouseover', function() {
+                const rating = parseInt(this.getAttribute('data-rating'));
+                highlightStars(rating);
+            });
+            
+            star.addEventListener('mouseout', function() {
+                const currentRating = parseInt(ratingValue.value);
+                highlightStars(currentRating);
+            });
+            
+            star.addEventListener('click', function() {
+                const rating = parseInt(this.getAttribute('data-rating'));
+                ratingValue.value = rating;
+                highlightStars(rating);
+            });
+        });
+        
+        function highlightStars(rating) {
+            ratingStars.forEach(star => {
+                const starRating = parseInt(star.getAttribute('data-rating'));
+                if (starRating <= rating) {
+                    star.classList.remove('far');
+                    star.classList.add('fas');
+                } else {
+                    star.classList.remove('fas');
+                    star.classList.add('far');
+                }
+            });
+        }
+        
+        // Function to show toast notification
+        function showToast(message) {
+            // Create toast element if it doesn't exist
+            if (!document.querySelector('.toast-container')) {
+                const toastContainer = document.createElement('div');
+                toastContainer.className = 'toast-container position-fixed bottom-0 end-0 p-3';
+                document.body.appendChild(toastContainer);
+                
+                const toastEl = document.createElement('div');
+                toastEl.className = 'toast';
+                toastEl.setAttribute('role', 'alert');
+                toastEl.setAttribute('aria-live', 'assertive');
+                toastEl.setAttribute('aria-atomic', 'true');
+                
+                toastEl.innerHTML = `
+                    <div class="toast-header">
+                        <strong class="me-auto">Panénia</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        ${message}
+                    </div>
+                `;
+                
+                toastContainer.appendChild(toastEl);
+                
+                const toast = new bootstrap.Toast(toastEl);
+                toast.show();
+            } else {
+                const toastEl = document.querySelector('.toast');
+                toastEl.querySelector('.toast-body').textContent = message;
+                const toast = new bootstrap.Toast(toastEl);
+                toast.show();
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

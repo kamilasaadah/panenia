@@ -11,45 +11,193 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../assets/css/style.css">
     <style>
-        
+       /* Custom Styles for Enhanced Look */
+       .navbar {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .navbar-brand img {
+            transition: transform 0.3s ease;
+        }
+        .navbar-brand img:hover {
+            transform: scale(1.1);
+        }
+        .cart-badge {
+            font-size: 0.7rem;
+            padding: 2px 6px;
+        }
+
+        .page-header .form-control {
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .page-header .form-control:focus {
+            box-shadow: 0 0 8px rgba(25, 135, 84, 0.2);
+            border-color: #198754;
+        }
+        .page-header .btn-search {
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .page-header .btn-search:hover {
+            background-color: #146c43;
+            transform: scale(1.05);
+        }
+
+        .filter-card {
+            border-radius: 10px;
+        }
+        .filter-card .form-check-label {
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .filter-card .form-check-label:hover {
+            color: #198754;
+        }
+        .filter-card .form-range::-webkit-slider-thumb {
+            background: #198754;
+        }
+        .filter-card .form-range::-moz-range-thumb {
+            background: #198754;
+        }
+        .filter-card .btn-filter {
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .filter-card .btn-filter:hover {
+            background-color: #146c43;
+            transform: scale(1.02);
+        }
+
+        .product-card {
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        .product-card img {
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .pagination .page-link {
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .pagination .page-link:hover {
+            background-color: #198754;
+            color: #fff;
+        }
+        .pagination .page-item.active .page-link {
+            background-color: #198754;
+            border-color: #198754;
+        }
+
+        footer a, footer i {
+            transition: color 0.3s ease;
+        }
+        footer a:hover, footer i:hover {
+            color: #198754 !important;
+        }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <span class="text-success fw-bold">Panénia</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="catalog.html">Katalog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="articles.html">Artikel</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Tentang Kami</a>
-                    </li>
-                </ul>
-                <div class="d-flex">
-                    <a href="cart.html" class="btn btn-outline-success me-2">
-                        <i class="fas fa-shopping-cart"></i> Keranjang
-                    </a>
-                    <a href="#" class="btn btn-success">
-                        <i class="fas fa-user"></i> Masuk
-                    </a>
+    <header>
+        <!-- Navbar Baris Pertama -->
+        <nav class="navbar navbar-light bg-white border-bottom navbar-expand-lg" style="position: fixed; top: 0; width: 100%; z-index: 1020;">
+            <div class="container">
+                <!-- Logo -->
+                <a class="navbar-brand fw-bold text-success" href="index.html">
+                    <img src="../assets/images/logo.png" alt="Panénia Logo" class="logo me-2" style="height: 40px;">
+                </a>
+
+                <!-- Tombol Toggler untuk Layar Kecil -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTop" aria-controls="navbarTop" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Konten yang akan di-collapse -->
+                <div class="collapse navbar-collapse" id="navbarTop">
+                    <!-- Search Bar -->
+                    <div class="d-flex flex-grow-1 mx-3">
+                        <div class="input-group">
+                            <select class="form-select" style="max-width: 200px;">
+                                <option selected>Semua Kategori</option>
+                                <option>Buah-buahan</option>
+                                <option>Sayur-sayuran</option>
+                                <option>Rempah-rempah</option>
+                                <option>Umbi-umbian</option>
+                                <option>Kacang-kacangan</option>
+                                <option>Bahan Pokok</option>
+                                <option>Tanaman Herbal</option>
+                                <option>Produk Olahan</option>
+                            </select>
+                            <input type="text" class="form-control" placeholder="Cari produk..." aria-label="Search">
+                            <button class="btn btn-outline-secondary" type="button">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Keranjang dan Masuk -->
+                    <div class="d-flex mt-2 mt-lg-0">
+                        <a href="cart.html" class="btn btn-outline-success me-2 position-relative">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                0
+                            </span>
+                        </a>
+                        <a href="login.html" class="btn btn-outline-success">
+                            <i class="fas fa-user"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+
+        <!-- Spacer untuk mencegah konten tertutup navbar fixed -->
+        <div style="height: 60px;"></div>
+
+        <!-- Navbar Baris Kedua -->
+        <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: var(--primary-color); z-index: 1010;">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav w-100 justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="index.html">Beranda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="catalog.html">Katalog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="articles.html">Artikel</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Tentang Kami</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Dashboard</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
 
     <!-- Hero Section -->
     <section class="hero-section">
@@ -60,7 +208,7 @@
                 <div class="hero-content container position-absolute top-50 start-50 translate-middle text-center text-white">
                     <h1 class="display-4 fw-bold mb-4">Hasil Tani Terbaik, Langsung dari Alam Nusantara</h1>
                     <p class="lead mb-4">Nikmati kesegaran hasil tani pilihan langsung dari petani lokal ke meja makanmu</p>
-                    <a href="catalog.html" class="btn btn-success btn-lg px-5 py-3">Belanja Sekarang</a>
+                    <a href="catalog.html" class="btn btn-success btn-lg px-5 py-3 fw-bold">Belanja Sekarang</a>
                 </div>
             </div>
         </div>
@@ -168,289 +316,394 @@
         </div>
     </section>
 
-    <!-- Featured Products Section -->
+    <!-- Produk Unggulan Section -->
     <section class="py-5">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2>Produk Unggulan</h2>
-                <a href="catalog.html" class="btn btn-outline-success">Lihat Semua</a>
+                <div class="d-flex align-items-center">
+                    <a href="catalog.html" class="btn btn-outline-success me-2">Lihat Semua</a>
+                    <div class="d-flex">
+                        <button class="btn btn-light rounded-circle me-1 scroll-left-featured" style="width: 32px; height: 32px;">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="btn btn-light rounded-circle scroll-right-featured" style="width: 32px; height: 32px;">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="row g-4">
-                <!-- Buah-buahan -->
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="card product-card h-100">
-                        <img src="https://images.unsplash.com/photo-1705147296208-dffaf3fe5d7c?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Apel Malang">
+            <div class="row flex-nowrap overflow-x-auto g-4 carousel-section" id="featured-products">
+                <!-- Apel Malang -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card product-card h-100 border-0 shadow-sm">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1705147296208-dffaf3fe5d7c?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Apel Malang">
+                        </div>
                         <div class="card-body">
-                            <span class="badge bg-danger mb-2">Buah</span>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <p class="small text-muted mb-0">Buah</p>
+                                <div class="rating text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
                             <h5 class="card-title">Apel Malang</h5>
-                            <p class="card-text text-success fw-bold">Rp 35.000/kg</p>
-                            <div class="d-flex justify-content-between">
+                            <p class="fw-bold text-success mb-0">Rp 35.000</p>
+                            <p class="card-text small">Per kg</p>
+                            <div class="d-flex justify-content-between mt-3">
                                 <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
                                 <button class="btn btn-sm btn-success">+ Keranjang</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="card product-card h-100">
-                        <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2024/02/801126.jpg?resize=600%2C600&ssl=1" class="card-img-top" alt="Pisang">
+                <!-- Pisang Ambon -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card product-card h-100 border-0 shadow-sm">
+                        <div class="position-relative">
+                            <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2024/02/801126.jpg?resize=600%2C600&ssl=1" class="card-img-top" alt="Pisang Ambon">
+                        </div>
                         <div class="card-body">
-                            <span class="badge bg-danger mb-2">Buah</span>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <p class="small text-muted mb-0">Buah</p>
+                                <div class="rating text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
                             <h5 class="card-title">Pisang Ambon</h5>
-                            <p class="card-text text-success fw-bold">Rp 20.000/kg</p>
-                            <div class="d-flex justify-content-between">
+                            <p class="fw-bold text-success mb-0">Rp 20.000</p>
+                            <p class="card-text small">Per kg</p>
+                            <div class="d-flex justify-content-between mt-3">
                                 <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
                                 <button class="btn btn-sm btn-success">+ Keranjang</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="card product-card h-100">
-                        <img src="https://res.cloudinary.com/dk0z4ums3/image/upload/v1599539763/attached_image/ketahui-manfaat-jeruk-bali-untuk-kesehatan.jpg" class="card-img-top" alt="Jeruk">
+                <!-- Jeruk Bali -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card product-card h-100 border-0 shadow-sm">
+                        <div class="position-relative">
+                            <img src="https://res.cloudinary.com/dk0z4ums3/image/upload/v1599539763/attached_image/ketahui-manfaat-jeruk-bali-untuk-kesehatan.jpg" class="card-img-top" alt="Jeruk Bali">
+                        </div>
                         <div class="card-body">
-                            <span class="badge bg-danger mb-2">Buah</span>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <p class="small text-muted mb-0">Buah</p>
+                                <div class="rating text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
                             <h5 class="card-title">Jeruk Bali</h5>
-                            <p class="card-text text-success fw-bold">Rp 25.000/kg</p>
-                            <div class="d-flex justify-content-between">
+                            <p class="fw-bold text-success mb-0">Rp 25.000</p>
+                            <p class="card-text small">Per kg</p>
+                            <div class="d-flex justify-content-between mt-3">
                                 <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
                                 <button class="btn btn-sm btn-success">+ Keranjang</button>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Sayur-sayuran -->
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="card product-card h-100">
-                        <img src="https://images.unsplash.com/photo-1642372849465-ad4afb304542?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Tomat Segar">
+                <!-- Tomat Segar -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card product-card h-100 border-0 shadow-sm">
+                        <div class="position-relative">
+                            <img src="https://images.unsplash.com/photo-1642372849465-ad4afb304542?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Tomat Segar">
+                        </div>
                         <div class="card-body">
-                            <span class="badge bg-success mb-2">Sayuran</span>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <p class="small text-muted mb-0">Sayuran</p>
+                                <div class="rating text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
                             <h5 class="card-title">Tomat Segar</h5>
-                            <p class="card-text text-success fw-bold">Rp 15.000/kg</p>
-                            <div class="d-flex justify-content-between">
+                            <p class="fw-bold text-success mb-0">Rp 15.000</p>
+                            <p class="card-text small">Per kg</p>
+                            <div class="d-flex justify-content-between mt-3">
                                 <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
                                 <button class="btn btn-sm btn-success">+ Keranjang</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="card product-card h-100">
-                        <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2024/02/805193.jpg?resize=600%2C600&ssl=1" class="card-img-top" alt="Bayam">
+            </div>
+        </div>
+    </section>
+
+    <!-- Produk Baru Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Produk Baru</h2>
+                <div class="d-flex align-items-center">
+                    <a href="catalog.html" class="btn btn-outline-success me-2">Lihat Semua</a>
+                    <div class="d-flex">
+                        <button class="btn btn-light rounded-circle me-1 scroll-left-new" style="width: 32px; height: 32px;">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="btn btn-light rounded-circle scroll-right-new" style="width: 32px; height: 32px;">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row flex-nowrap overflow-x-auto g-4 carousel-section" id="new-products">
+                <!-- Bayam Hijau -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card product-card h-100 border-0 shadow-sm">
+                        <div class="position-relative">
+                            <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2024/02/805193.jpg?resize=600%2C600&ssl=1" class="card-img-top" alt="Bayam Hijau">
+                            <div class="product-badge bg-success text-white">Baru</div>
+                        </div>
                         <div class="card-body">
-                            <span class="badge bg-success mb-2">Sayuran</span>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <p class="small text-muted mb-0">Sayuran</p>
+                                <div class="rating text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
                             <h5 class="card-title">Bayam Hijau</h5>
-                            <p class="card-text text-success fw-bold">Rp 10.000/ikat</p>
-                            <div class="d-flex justify-content-between">
+                            <p class="fw-bold text-success mb-0">Rp 10.000</p>
+                            <p class="card-text small">Per ikat</p>
+                            <div class="d-flex justify-content-between mt-3">
                                 <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
                                 <button class="btn btn-sm btn-success">+ Keranjang</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="card product-card h-100">
-                        <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/04/852760.jpg?w=372&ssl=1" class="card-img-top" alt="Wortel">
+                <!-- Wortel Segar -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card product-card h-100 border-0 shadow-sm">
+                        <div class="position-relative">
+                            <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/04/852760.jpg?w=372&ssl=1" class="card-img-top" alt="Wortel Segar">
+                            <div class="product-badge bg-success text-white">Baru</div>
+                        </div>
                         <div class="card-body">
-                            <span class="badge bg-success mb-2">Sayuran</span>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <p class="small text-muted mb-0">Sayuran</p>
+                                <div class="rating text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
                             <h5 class="card-title">Wortel Segar</h5>
-                            <p class="card-text text-success fw-bold">Rp 12.000/kg</p>
-                            <div class="d-flex justify-content-between">
+                            <p class="fw-bold text-success mb-0">Rp 12.000</p>
+                            <p class="card-text small">Per kg</p>
+                            <div class="d-flex justify-content-between mt-3">
                                 <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
                                 <button class="btn btn-sm btn-success">+ Keranjang</button>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Rempah-rempah & Bumbu Dapur -->
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="card product-card h-100">
-                        <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/04/807623.jpeg?w=225&ssl=1" class="card-img-top" alt="Bawang Merah">
+                <!-- Bawang Merah -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card product-card h-100 border-0 shadow-sm">
+                        <div class="position-relative">
+                            <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/04/807623.jpeg?w=225&ssl=1" class="card-img-top" alt="Bawang Merah">
+                            <div class="product-badge bg-success text-white">Baru</div>
+                        </div>
                         <div class="card-body">
-                            <span class="badge bg-warning mb-2">Bumbu</span>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <p class="small text-muted mb-0">Bumbu</p>
+                                <div class="rating text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
                             <h5 class="card-title">Bawang Merah</h5>
-                            <p class="card-text text-success fw-bold">Rp 40.000/kg</p>
-                            <div class="d-flex justify-content-between">
+                            <p class="fw-bold text-success mb-0">Rp 40.000</p>
+                            <p class="card-text small">Per kg</p>
+                            <div class="d-flex justify-content-between mt-3">
                                 <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
                                 <button class="btn btn-sm btn-success">+ Keranjang</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="card product-card h-100">
-                        <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/08/855013.png?resize=600%2C600&ssl=1" class="card-img-top" alt="Bawang Putih">
+                <!-- Bawang Putih -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card product-card h-100 border-0 shadow-sm">
+                        <div class="position-relative">
+                            <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/08/855013.png?resize=600%2C600&ssl=1" class="card-img-top" alt="Bawang Putih">
+                            <div class="product-badge bg-success text-white">Baru</div>
+                        </div>
                         <div class="card-body">
-                            <span class="badge bg-warning mb-2">Bumbu</span>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <p class="small text-muted mb-0">Bumbu</p>
+                                <div class="rating text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
                             <h5 class="card-title">Bawang Putih</h5>
-                            <p class="card-text text-success fw-bold">Rp 35.000/kg</p>
-                            <div class="d-flex justify-content-between">
+                            <p class="fw-bold text-success mb-0">Rp 35.000</p>
+                            <p class="card-text small">Per kg</p>
+                            <div class="d-flex justify-content-between mt-3">
                                 <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
                                 <button class="btn btn-sm btn-success">+ Keranjang</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="card product-card h-100">
-                        <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2024/02/805377.jpg?resize=600%2C600&ssl=1" class="card-img-top" alt="Cabai Merah">
+            </div>
+        </div>
+    </section>
+
+    <!-- Produk Promo Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Produk Promo</h2>
+                <div class="d-flex align-items-center">
+                    <a href="catalog.html" class="btn btn-outline-success me-2">Lihat Semua</a>
+                    <div class="d-flex">
+                        <button class="btn btn-light rounded-circle me-1 scroll-left-promo" style="width: 32px; height: 32px;">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="btn btn-light rounded-circle scroll-right-promo" style="width: 32px; height: 32px;">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row flex-nowrap overflow-x-auto g-4 carousel-section" id="promo-products">
+                <!-- Cabai Merah -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card product-card h-100 border-0 shadow-sm">
+                        <div class="position-relative">
+                            <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2024/02/805377.jpg?resize=600%2C600&ssl=1" class="card-img-top" alt="Cabai Merah">
+                            <div class="product-badge bg-danger text-white">Promo</div>
+                        </div>
                         <div class="card-body">
-                            <span class="badge bg-warning mb-2">Bumbu</span>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <p class="small text-muted mb-0">Bumbu</p>
+                                <div class="rating text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
                             <h5 class="card-title">Cabai Merah</h5>
-                            <p class="card-text text-success fw-bold">Rp 50.000/kg</p>
-                            <div class="d-flex justify-content-between">
+                            <p class="fw-bold text-success mb-0">Rp 35.000 <small class="text-decoration-line-through text-muted">Rp 50.000</small></p>
+                            <p class="card-text small">Per kg</p>
+                            <div class="d-flex justify-content-between mt-3">
                                 <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
                                 <button class="btn btn-sm btn-success">+ Keranjang</button>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Umbi-umbian -->
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="card product-card h-100">
-                        <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/04/811200.jpg?resize=720%2C720&ssl=1" class="card-img-top" alt="Ubi Jalar">
+                <!-- Ubi Jalar -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card product-card h-100 border-0 shadow-sm">
+                        <div class="position-relative">
+                            <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/04/811200.jpg?resize=720%2C720&ssl=1" class="card-img-top" alt="Ubi Jalar">
+                            <div class="product-badge bg-danger text-white">Promo</div>
+                        </div>
                         <div class="card-body">
-                            <span class="badge bg-warning mb-2">Umbi</span>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <p class="small text-muted mb-0">Umbi</p>
+                                <div class="rating text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
                             <h5 class="card-title">Ubi Jalar</h5>
-                            <p class="card-text text-success fw-bold">Rp 20.000/kg</p>
-                            <div class="d-flex justify-content-between">
+                            <p class="fw-bold text-success mb-0">Rp 15.000 <small class="text-decoration-line-through text-muted">Rp 20.000</small></p>
+                            <p class="card-text small">Per kg</p>
+                            <div class="d-flex justify-content-between mt-3">
                                 <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
                                 <button class="btn btn-sm btn-success">+ Keranjang</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="card product-card h-100">
-                        <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/08/822152.png?fit=1080%2C1080&ssl=1" class="card-img-top" alt="Kentang">
+                <!-- Kentang -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card product-card h-100 border-0 shadow-sm">
+                        <div class="position-relative">
+                            <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/08/822152.png?fit=1080%2C1080&ssl=1" class="card-img-top" alt="Kentang">
+                            <div class="product-badge bg-danger text-white">Promo</div>
+                        </div>
                         <div class="card-body">
-                            <span class="badge bg-warning mb-2">Umbi</span>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <p class="small text-muted mb-0">Umbi</p>
+                                <div class="rating text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
                             <h5 class="card-title">Kentang</h5>
-                            <p class="card-text text-success fw-bold">Rp 18.000/kg</p>
-                            <div class="d-flex justify-content-between">
+                            <p class="fw-bold text-success mb-0">Rp 12.000 <small class="text-decoration-line-through text-muted">Rp 18.000</small></p>
+                            <p class="card-text small">Per kg</p>
+                            <div class="d-flex justify-content-between mt-3">
                                 <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
                                 <button class="btn btn-sm btn-success">+ Keranjang</button>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Kacang-kacangan -->
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="card product-card h-100">
-                        <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/08/802512.png?fit=1080%2C1080&ssl=1" class="card-img-top" alt="Kacang Tanah">
+                <!-- Kacang Tanah -->
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card product-card h-100 border-0 shadow-sm">
+                        <div class="position-relative">
+                            <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/08/802512.png?fit=1080%2C1080&ssl=1" class="card-img-top" alt="Kacang Tanah">
+                            <div class="product-badge bg-danger text-white">Promo</div>
+                        </div>
                         <div class="card-body">
-                            <span class="badge bg-success mb-2">Kacang</span>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <p class="small text-muted mb-0">Kacang</p>
+                                <div class="rating text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
                             <h5 class="card-title">Kacang Tanah</h5>
-                            <p class="card-text text-success fw-bold">Rp 30.000/kg</p>
-                            <div class="d-flex justify-content-between">
-                                <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
-                                <button class="btn btn-sm btn-success">+ Keranjang</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="card product-card h-100">
-                        <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/08/802499.png?fit=1080%2C1080&ssl=1" class="card-img-top" alt="Kacang Hijau">
-                        <div class="card-body">
-                            <span class="badge bg-success mb-2">Kacang</span>
-                            <h5 class="card-title">Kacang Hijau</h5>
-                            <p class="card-text text-success fw-bold">Rp 25.000/kg</p>
-                            <div class="d-flex justify-content-between">
-                                <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
-                                <button class="btn btn-sm btn-success">+ Keranjang</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bahan Pokok -->
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="card product-card h-100">
-                        <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/07/8810168.png?resize=600%2C600&ssl=1" class="card-img-top" alt="Beras Organik">
-                        <div class="card-body">
-                            <span class="badge bg-primary mb-2">Pokok</span>
-                            <h5 class="card-title">Beras Organik</h5>
-                            <p class="card-text text-success fw-bold">Rp 75.000/5kg</p>
-                            <div class="d-flex justify-content-between">
-                                <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
-                                <button class="btn btn-sm btn-success">+ Keranjang</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="card product-card h-100">
-                        <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/08/850544.png?resize=600%2C600&ssl=1" class="card-img-top" alt="Jagung Pipilan">
-                        <div class="card-body">
-                            <span class="badge bg-primary mb-2">Pokok</span>
-                            <h5 class="card-title">Jagung Pipilan</h5>
-                            <p class="card-text text-success fw-bold">Rp 15.000/kg</p>
-                            <div class="d-flex justify-content-between">
-                                <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
-                                <button class="btn btn-sm btn-success">+ Keranjang</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tanaman Herbal / Obat -->
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="card product-card h-100">
-                        <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2024/02/843591.jpg?resize=600%2C600&ssl=1" class="card-img-top" alt="Jahe">
-                        <div class="card-body">
-                            <span class="badge bg-success mb-2">Herbal</span>
-                            <h5 class="card-title">Jahe</h5>
-                            <p class="card-text text-success fw-bold">Rp 30.000/kg</p>
-                            <div class="d-flex justify-content-between">
-                                <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
-                                <button class="btn btn-sm btn-success">+ Keranjang</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="card product-card h-100">
-                        <img src="https://i0.wp.com/ciputrahospital.com/wp-content/uploads/2025/01/manfaat-temulawak.jpeg?resize=1024%2C576&ssl=1" class="card-img-top" alt="Temulawak">
-                        <div class="card-body">
-                            <span class="badge bg-success mb-2">Herbal</span>
-                            <h5 class="card-title">Temulawak</h5>
-                            <p class="card-text text-success fw-bold">Rp 20.000/kg</p>
-                            <div class="d-flex justify-content-between">
-                                <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
-                                <button class="btn btn-sm btn-success">+ Keranjang</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Produk Olahan Ringan -->
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="card product-card h-100">
-                        <img src="https://images.tokopedia.net/img/cache/500-square/VqbcmM/2024/4/24/b4fb32a0-89ca-47e0-9bcf-388cfa4f6908.jpg" class="card-img-top" alt="Keripik Singkong">
-                        <div class="card-body">
-                            <span class="badge bg-warning mb-2">Olahan</span>
-                            <h5 class="card-title">Keripik Singkong</h5>
-                            <p class="card-text text-success fw-bold">Rp 25.000/pack</p>
-                            <div class="d-flex justify-content-between">
-                                <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
-                                <button class="btn btn-sm btn-success">+ Keranjang</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="card product-card h-100">
-                        <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/04/1097092.jpeg?w=500&ssl=1" class="card-img-top" alt="Gula Merah">
-                        <div class="card-body">
-                            <span class="badge bg-warning mb-2">Olahan</span>
-                            <h5 class="card-title">Gula Merah</h5>
-                            <p class="card-text text-success fw-bold">Rp 15.000/500g</p>
-                            <div class="d-flex justify-content-between">
+                            <p class="fw-bold text-success mb-0">Rp 25.000 <small class="text-decoration-line-through text-muted">Rp 30.000</small></p>
+                            <p class="card-text small">Per kg</p>
+                            <div class="d-flex justify-content-between mt-3">
                                 <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
                                 <button class="btn btn-sm btn-success">+ Keranjang</button>
                             </div>
@@ -616,30 +869,21 @@
                         <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-2">
-                    <h5 class="mb-3">Tautan</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="index.html" class="text-white text-decoration-none">Beranda</a></li>
-                        <li><a href="catalog.html" class="text-white text-decoration-none">Katalog</a></li>
-                        <li><a href="articles.html" class="text-white text-decoration-none">Artikel</a></li>
-                        <li><a href="#" class="text-white text-decoration-none">Tentang Kami</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3">
-                    <h5 class="mb-3">Kategori</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="catalog.html?category=sayuran" class="text-white text-decoration-none">Sayur-sayuran</a></li>
-                        <li><a href="catalog.html?category=buah" class="text-white text-decoration-none">Buah-buahan</a></li>
-                        <li><a href="catalog.html?category=rempah" class="text-white text-decoration-none">Rempah & Bumbu</a></li>
-                        <li><a href="catalog.html?category=pokok" class="text-white text-decoration-none">Bahan Pokok</a></li>
-                    </ul>
-                </div>
                 <div class="col-lg-3">
                     <h5 class="mb-3">Kontak</h5>
                     <ul class="list-unstyled">
                         <li><i class="fas fa-map-marker-alt me-2"></i> Jl. Pertanian No. 123, Jakarta</li>
                         <li><i class="fas fa-phone me-2"></i> (021) 1234-5678</li>
                         <li><i class="fas fa-envelope me-2"></i> info@panenia.id</li>
+                    </ul>
+                </div>
+                <!-- Tambahan: Jam Operasional -->
+                <div class="col-lg-3">
+                    <h5 class="mb-3">Jam Operasional</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-clock me-2"></i>Senin - Jumat: 08.00 - 17.00</li>
+                        <li><i class="fas fa-clock me-2"></i>Sabtu: 08.00 - 12.00</li>
+                        <li><i class="fas fa-clock me-2"></i>Minggu: Libur</li>
                     </ul>
                 </div>
             </div>
