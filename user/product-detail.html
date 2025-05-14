@@ -1,4 +1,4 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="../assets/images/logo-1x1.png" type="image/png">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../assets/css/style.css">
     <style>
@@ -19,45 +20,210 @@
             border-radius: 20px;
             font-size: 0.8rem;
         }
+        .thumbnail {
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .thumbnail:hover {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+        .thumbnail.active {
+            opacity: 1;
+            border-color: #198754;
+        }
+        .navbar {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .navbar-brand img {
+            transition: transform 0.3s ease;
+        }
+        .navbar-brand img:hover {
+            transform: scale(1.1);
+        }
+        .cart-badge {
+            font-size: 0.7rem;
+            padding: 2px 6px;
+        }
+
+        .page-header .form-control {
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .page-header .form-control:focus {
+            box-shadow: 0 0 8px rgba(25, 135, 84, 0.2);
+            border-color: #198754;
+        }
+        .page-header .btn-search {
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .page-header .btn-search:hover {
+            background-color: #146c43;
+            transform: scale(1.05);
+        }
+
+        .filter-card {
+            border-radius: 10px;
+        }
+        .filter-card .form-check-label {
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .filter-card .form-check-label:hover {
+            color: #198754;
+        }
+        .filter-card .form-range::-webkit-slider-thumb {
+            background: #198754;
+        }
+        .filter-card .form-range::-moz-range-thumb {
+            background: #198754;
+        }
+        .filter-card .btn-filter {
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .filter-card .btn-filter:hover {
+            background-color: #146c43;
+            transform: scale(1.02);
+        }
+
+        .product-card {
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        .product-card img {
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .pagination .page-item {
+            margin: 0 5px; /* Jarak antar item pagination */
+        }
+        .pagination .page-link {
+            border-radius: 5px;
+            padding: 8px 12px; /* Tambah padding biar ga terlalu kecil */
+            transition: all 0.3s ease;
+        }
+        .pagination .page-link:hover {
+            background-color: #198754;
+            color: #fff;
+        }
+        .pagination .page-item.active .page-link {
+            background-color: #198754;
+            border-color: #198754;
+        }
+
+        footer a, footer i {
+            transition: color 0.3s ease;
+        }
+        footer a:hover, footer i:hover {
+            color: #198754 !important;
+        }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold text-success" href="index.html">
-                <img src="../assets/images/logo2.png" alt="Panénia Logo" class="logo me-2">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="catalog.html">Katalog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="articles.html">Artikel</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Tentang Kami</a>
-                    </li>
-                </ul>
-                <div class="d-flex ms-lg-3">
-                    <a href="cart.html" class="btn btn-outline-success me-2 position-relative">
-                        <i class="fas fa-shopping-cart"></i> Keranjang
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            0
-                        </span>
-                    </a>
-                    <a href="login.html" class="btn btn-success">Masuk</a>
+    <header>
+        <!-- Navbar Baris Pertama -->
+        <nav class="navbar navbar-light bg-white border-bottom navbar-expand-lg" style="position: fixed; top: 0; width: 100%; z-index: 1020;">
+            <div class="container">
+                <!-- Logo -->
+                <a class="navbar-brand fw-bold text-success" href="index.html">
+                    <img src="../assets/images/logo.png" alt="Panénia Logo" class="logo me-2" style="height: 40px;">
+                </a>
+
+                <!-- Tombol Toggler untuk Layar Kecil -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTop" aria-controls="navbarTop" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Konten yang akan di-collapse -->
+                <div class="collapse navbar-collapse" id="navbarTop">
+                    <!-- Search Bar -->
+                    <div class="d-flex flex-grow-1 mx-3">
+                        <div class="input-group">
+                            <select class="form-select" style="max-width: 200px;">
+                                <option selected>Semua Kategori</option>
+                                <option>Buah-buahan</option>
+                                <option>Sayur-sayuran</option>
+                                <option>Rempah-rempah</option>
+                                <option>Umbi-umbian</option>
+                                <option>Kacang-kacangan</option>
+                                <option>Bahan Pokok</option>
+                                <option>Tanaman Herbal</option>
+                                <option>Produk Olahan</option>
+                            </select>
+                            <input type="text" class="form-control" placeholder="Cari produk..." aria-label="Search">
+                            <button class="btn btn-outline-secondary" type="button">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Keranjang dan Masuk -->
+                    <div class="d-flex mt-2 mt-lg-0">
+                        <a href="cart.html" class="btn btn-outline-success me-2 position-relative">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                0
+                            </span>
+                        </a>
+                        <a href="login.html" class="btn btn-outline-success">
+                            <i class="fas fa-user"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+
+        <!-- Spacer untuk mencegah konten tertutup navbar fixed -->
+        <div style="height: 60px;"></div>
+
+        <!-- Navbar Baris Kedua -->
+        <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: var(--primary-color); z-index: 1010;">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav w-100 justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="index.html">Beranda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="catalog.html">Katalog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="articles.html">Artikel</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="transaction-history.html">Riwayat Transaksi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Dashboard</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
 
     <!-- Breadcrumb -->
     <div class="bg-light py-2">
@@ -84,17 +250,17 @@
                             <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2024/02/805193.jpg?resize=600%2C600&ssl=1" alt="Bayam Organik" class="img-fluid rounded shadow-sm" id="main-product-image">
                         </div>
                         <div class="thumbnails d-flex">
-                            <div class="thumbnail me-2 active" data-img="img/products/product-1-large.jpg">
-                                <img src="../assets/images/bayam1.jpg" alt="Bayam Organik Thumbnail 1" class="img-fluid rounded shadow-sm">
+                            <div class="thumbnail me-2 active">
+                                <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2024/02/805193.jpg?resize=600,600&ssl=1" alt="Bayam Organik Thumbnail 1" class="img-fluid rounded shadow-sm">
                             </div>
-                            <div class="thumbnail me-2" data-img="img/products/product-1-large-2.jpg">
+                            <div class="thumbnail me-2">
                                 <img src="../assets/images/bayam2.jpg" alt="Bayam Organik Thumbnail 2" class="img-fluid rounded shadow-sm">
                             </div>
-                            <div class="thumbnail me-2" data-img="img/products/product-1-large-3.jpg">
+                            <div class="thumbnail me-2">
                                 <img src="../assets/images/bayam4.jpg" alt="Bayam Organik Thumbnail 3" class="img-fluid rounded shadow-sm">
                             </div>
-                            <div class="thumbnail" data-img="img/products/product-1-large-4.jpg">
-                                <img src="../assets/images/bayam4.jpg" alt="Bayam Organik Thumbnail 4" class="img-fluid rounded shadow-sm">
+                            <div class="thumbnail">
+                                <img src="../assets/images/bayam1.jpg" alt="Bayam Organik Thumbnail 4" class="img-fluid rounded shadow-sm">
                             </div>
                         </div>
                     </div>
@@ -209,7 +375,7 @@
     </section>
 
     <!-- Product Details Tabs -->
-    <section class="py-5 bg-light">
+    <section class="py-5">
         <div class="container">
             <ul class="nav nav-tabs mb-4" id="productTabs" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -419,7 +585,7 @@
                                 
                                 <div class="col-md-8">
                                     <div class="reviews-list">
-                                        &lt;!-- Review 1 -->
+                                        <!-- Review 1 -->
                                         <div class="review-item mb-4 pb-4 border-bottom">
                                             <div class="d-flex justify-content-between mb-2">
                                                 <div class="d-flex align-items-center">
@@ -440,7 +606,7 @@
                                             <p class="mb-0">Bayam organiknya sangat segar! Saya suka sekali dengan kualitasnya. Pengiriman juga cepat, masih segar saat sampai. Sudah beberapa kali beli dan tidak pernah mengecewakan.</p>
                                         </div>
                                         
-                                        &lt;!-- Review 2 -->
+                                        <!-- Review 2 -->
                                         <div class="review-item mb-4 pb-4 border-bottom">
                                             <div class="d-flex justify-content-between mb-2">
                                                 <div class="d-flex align-items-center">
@@ -570,7 +736,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="card product-card h-100 border-0 shadow-sm">
                         <div class="position-relative">
-                            <img src="img/products/product-5.jpg" class="card-img-top" alt="Kangkung Organik">
+                            <img src="../assets/images/kangkung.webp" class="card-img-top" alt="Kangkung Organik">
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center mb-2">
@@ -598,7 +764,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="card product-card h-100 border-0 shadow-sm">
                         <div class="position-relative">
-                            <img src="img/products/product-6.jpg" class="card-img-top" alt="Sawi Hijau">
+                            <img src="../assets/images/sawi.jpg" class="card-img-top" alt="Sawi Hijau">
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center mb-2">
@@ -626,7 +792,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="card product-card h-100 border-0 shadow-sm">
                         <div class="position-relative">
-                            <img src="img/products/product-7.jpg" class="card-img-top" alt="Selada Keriting">
+                            <img src="../assets/images/seladakeriting.jpg" class="card-img-top" alt="Selada Keriting">
                             <div class="product-badge bg-success text-white">Baru</div>
                         </div>
                         <div class="card-body">
@@ -655,7 +821,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="card product-card h-100 border-0 shadow-sm">
                         <div class="position-relative">
-                            <img src="img/products/product-8.jpg" class="card-img-top" alt="Brokoli">
+                            <img src="../assets/images/brokoli.jpg" class="card-img-top" alt="Brokoli">
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center mb-2">
@@ -771,132 +937,146 @@
     </footer>
 
     <!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Custom JS -->
-<script src="js/script.js"></script>
-<script>
-    // Product image gallery
-    document.addEventListener('DOMContentLoaded', function() {
-        const thumbnails = document.querySelectorAll('.thumbnail');
-        const mainImage = document.getElementById('main-product-image');
-        
-        thumbnails.forEach(thumbnail => {
-            thumbnail.addEventListener('click', function() {
-                // Remove active class from all thumbnails
-                thumbnails.forEach(t => t.classList.remove('active'));
-                
-                // Add active class to clicked thumbnail
-                this.classList.add('active');
-                
-                // Update main image
-                const imgSrc = this.getAttribute('data-img');
-                mainImage.src = imgSrc;
-            });
-        });
-        
-        // Quantity buttons
-        const decreaseBtn = document.getElementById('decrease-quantity');
-        const increaseBtn = document.getElementById('increase-quantity');
-        const quantityInput = document.getElementById('product-quantity');
-        
-        decreaseBtn.addEventListener('click', function() {
-            let value = parseInt(quantityInput.value);
-            if (value > 1) {
-                quantityInput.value = value - 1;
-            }
-        });
-        
-        increaseBtn.addEventListener('click', function() {
-            let value = parseInt(quantityInput.value);
-            if (value < 50) {
-                quantityInput.value = value + 1;
-            }
-        });
-        
-        // Add to cart button
-        const addToCartBtn = document.getElementById('add-to-cart');
-        addToCartBtn.addEventListener('click', function() {
-            const quantity = parseInt(quantityInput.value);
-            const cartBadge = document.querySelector('.badge');
-            let currentCount = parseInt(cartBadge.textContent);
-            cartBadge.textContent = currentCount + quantity;
-            
-            // Show toast notification
-            showToast(`${quantity} Bayam Organik ditambahkan ke keranjang!`);
-        });
-        
-        // Rating stars in review modal
-        const ratingStars = document.querySelectorAll('.rating-input i');
-        const ratingValue = document.getElementById('rating-value');
-        
-        ratingStars.forEach(star => {
-            star.addEventListener('mouseover', function() {
-                const rating = parseInt(this.getAttribute('data-rating'));
-                highlightStars(rating);
-            });
-            
-            star.addEventListener('mouseout', function() {
-                const currentRating = parseInt(ratingValue.value);
-                highlightStars(currentRating);
-            });
-            
-            star.addEventListener('click', function() {
-                const rating = parseInt(this.getAttribute('data-rating'));
-                ratingValue.value = rating;
-                highlightStars(rating);
-            });
-        });
-        
-        function highlightStars(rating) {
-            ratingStars.forEach(star => {
-                const starRating = parseInt(star.getAttribute('data-rating'));
-                if (starRating <= rating) {
-                    star.classList.remove('far');
-                    star.classList.add('fas');
-                } else {
-                    star.classList.remove('fas');
-                    star.classList.add('far');
-                }
-            });
-        }
-        
-        // Function to show toast notification
-        function showToast(message) {
-            // Create toast element if it doesn't exist
-            if (!document.querySelector('.toast-container')) {
-                const toastContainer = document.createElement('div');
-                toastContainer.className = 'toast-container position-fixed bottom-0 end-0 p-3';
-                document.body.appendChild(toastContainer);
-                
-                const toastEl = document.createElement('div');
-                toastEl.className = 'toast';
-                toastEl.setAttribute('role', 'alert');
-                toastEl.setAttribute('aria-live', 'assertive');
-                toastEl.setAttribute('aria-atomic', 'true');
-                
-                toastEl.innerHTML = `
-                    <div class="toast-header">
-                        <strong class="me-auto">Panénia</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-                    <div class="toast-body">
-                        ${message}
-                    </div>
-                `;
-                
-                toastContainer.appendChild(toastEl);
-                
-                const toast = new bootstrap.Toast(toastEl);
-                toast.show();
-            } else {
-                const toastEl = document.querySelector('.toast');
-                toastEl.querySelector('.toast-body').textContent = message;
-                const toast = new bootstrap.Toast(toastEl);
-                toast.show();
-            }
-        }
-    });
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Product image gallery
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            const mainImage = document.getElementById('main-product-image');
 
+            if (thumbnails.length > 0 && mainImage) {
+                thumbnails.forEach(thumbnail => {
+                    thumbnail.addEventListener('click', function() {
+                        // Ambil gambar dari thumbnail yang diklik
+                        const imgSrc = thumbnail.querySelector('img').src;
+                        
+                        // Update gambar utama
+                        mainImage.src = imgSrc;
+                        
+                        // Hapus kelas active dari semua thumbnail
+                        thumbnails.forEach(t => t.classList.remove('active'));
+                        
+                        // Tambahkan kelas active ke thumbnail yang diklik
+                        thumbnail.classList.add('active');
+                    });
+                });
+
+                // Set thumbnail pertama sebagai active secara default
+                thumbnails[0].classList.add('active');
+            }
+
+            // Quantity buttons
+            const decreaseBtn = document.getElementById('decrease-quantity');
+            const increaseBtn = document.getElementById('increase-quantity');
+            const quantityInput = document.getElementById('product-quantity');
+
+            if (decreaseBtn && increaseBtn && quantityInput) {
+                decreaseBtn.addEventListener('click', function() {
+                    let value = parseInt(quantityInput.value);
+                    if (value > 1) {
+                        quantityInput.value = value - 1;
+                    }
+                });
+
+                increaseBtn.addEventListener('click', function() {
+                    let value = parseInt(quantityInput.value);
+                    if (value < 50) {
+                        quantityInput.value = value + 1;
+                    }
+                });
+            }
+
+            // Add to cart button
+            const addToCartBtn = document.getElementById('add-to-cart');
+            if (addToCartBtn) {
+                addToCartBtn.addEventListener('click', function() {
+                    const quantity = parseInt(quantityInput.value);
+                    const cartBadge = document.querySelector('.badge');
+                    if (cartBadge) {
+                        let currentCount = parseInt(cartBadge.textContent);
+                        cartBadge.textContent = currentCount + quantity;
+                    }
+
+                    // Show toast notification
+                    showToast(`${quantity} Bayam Organik ditambahkan ke keranjang!`);
+                });
+            }
+
+            // Rating stars in review modal
+            const ratingStars = document.querySelectorAll('.rating-input i');
+            const ratingValue = document.getElementById('rating-value');
+
+            if (ratingStars.length > 0 && ratingValue) {
+                ratingStars.forEach(star => {
+                    star.addEventListener('mouseover', function() {
+                        const rating = parseInt(this.getAttribute('data-rating'));
+                        highlightStars(rating);
+                    });
+
+                    star.addEventListener('mouseout', function() {
+                        const currentRating = parseInt(ratingValue.value);
+                        highlightStars(currentRating);
+                    });
+
+                    star.addEventListener('click', function() {
+                        const rating = parseInt(this.getAttribute('data-rating'));
+                        ratingValue.value = rating;
+                        highlightStars(rating);
+                    });
+                });
+
+                function highlightStars(rating) {
+                    ratingStars.forEach(star => {
+                        const starRating = parseInt(star.getAttribute('data-rating'));
+                        if (starRating <= rating) {
+                            star.classList.remove('far');
+                            star.classList.add('fas');
+                        } else {
+                            star.classList.remove('fas');
+                            star.classList.add('far');
+                        }
+                    });
+                }
+            }
+
+            // Function to show toast notification
+            function showToast(message) {
+                // Create toast element if it doesn't exist
+                if (!document.querySelector('.toast-container')) {
+                    const toastContainer = document.createElement('div');
+                    toastContainer.className = 'toast-container position-fixed bottom-0 end-0 p-3';
+                    document.body.appendChild(toastContainer);
+
+                    const toastEl = document.createElement('div');
+                    toastEl.className = 'toast';
+                    toastEl.setAttribute('role', 'alert');
+                    toastEl.setAttribute('aria-live', 'assertive');
+                    toastEl.setAttribute('aria-atomic', 'true');
+
+                    toastEl.innerHTML = `
+                        <div class="toast-header">
+                            <strong class="me-auto">Panénia</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">
+                            ${message}
+                        </div>
+                    `;
+
+                    toastContainer.appendChild(toastEl);
+
+                    const toast = new bootstrap.Toast(toastEl);
+                    toast.show();
+                } else {
+                    const toastEl = document.querySelector('.toast');
+                    toastEl.querySelector('.toast-body').textContent = message;
+                    const toast = new bootstrap.Toast(toastEl);
+                    toast.show();
+                }
+            }
+        });
+    </script>
 </body>
 </html>

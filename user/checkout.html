@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Panénia</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="../assets/images/logo-1x1.png" type="image/png">
+    <style>
+        /* Custom Styles for Enhanced Look */
+        :root {
+            --primary-color: #198754;
+            --primary-dark: #146c43;
+            --secondary-color: #6c757d;
+        }
+        
+        .navbar {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .navbar-brand img {
+            transition: transform 0.3s ease;
+        }
+        .navbar-brand img:hover {
+            transform: scale(1.1);
+        }
+        .cart-badge {
+            font-size: 0.7rem;
+            padding: 2px 6px;
+        }
+
+        .page-header .form-control {
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .page-header .form-control:focus {
+            box-shadow: 0 0 8px rgba(25, 135, 84, 0.2);
+            border-color: #198754;
+        }
+        .page-header .btn-search {
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .page-header .btn-search:hover {
+            background-color: #146c43;
+            transform: scale(1.05);
+        }
+        
+        .btn-success {
+            background-color: #198754;
+            border-color: #198754;
+        }
+        .btn-success:hover {
+            background-color: #146c43;
+            border-color: #146c43;
+        }
+        .btn-outline-success {
+            color: #198754;
+            border-color: #198754;
+        }
+        .btn-outline-success:hover {
+            background-color: #198754;
+            color: white;
+        }
+        
+        footer a, footer i {
+            transition: color 0.3s ease;
+        }
+        footer a:hover, footer i:hover {
+            color: #198754 !important;
+        }
+        
+        /* Checkout specific styles */
+        .card-header.bg-success {
+            background-color: #198754 !important;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: #198754;
+            box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25);
+        }
+        
+        .form-check-input:checked {
+            background-color: #198754;
+            border-color: #198754;
+        }
+        
+        /* Order summary styles */
+        .order-summary-card {
+            position: sticky;
+            top: 100px; /* Adjusted to prevent overlap with header */
+            z-index: 100;
+        }
+        
+        .order-item {
+            transition: all 0.2s ease;
+        }
+        
+        .order-item:hover {
+            background-color: #f8f9fa;
+        }
+        
+        /* Shipping method styles */
+        .shipping-options .form-check {
+            padding: 10px 15px 10px 45px; /* Increased left padding for better alignment */
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        
+        .shipping-options .form-check-input {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .shipping-options .form-check:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .shipping-options .form-check-input:checked ~ .form-check-label {
+            color: #198754;
+        }
+        
+        /* Payment method styles */
+        .payment-options .form-check {
+            padding: 15px 15px 15px 45px; /* Increased left padding for better alignment */
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            position: relative;
+            margin-bottom: 15px;
+        }
+        
+        .payment-options .form-check-input {
+            position: absolute;
+            left: 15px;
+            top: 25px;
+        }
+        
+        .payment-options .form-check:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .payment-options .form-check-input:checked ~ .form-check-label {
+            color: #198754;
+        }
+        
+        /* Bank options */
+        .bank-options {
+            margin-top: 10px;
+            padding-left: 60px;
+            display: none;
+        }
+        
+        .bank-options.show {
+            display: block;
+        }
+        
+        /* E-wallet options */
+        .ewallet-options {
+            margin-top: 10px;
+            padding-left: 60px;
+            display: none;
+        }
+        
+        .ewallet-options.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <!-- Navbar Baris Pertama -->
+        <nav class="navbar navbar-light bg-white border-bottom navbar-expand-lg" style="position: fixed; top: 0; width: 100%; z-index: 1020;">
+            <div class="container">
+                <!-- Logo -->
+                <a class="navbar-brand fw-bold text-success" href="index.html">
+                    <img src="../assets/images/logo.png" alt="Panénia Logo" class="logo me-2" style="height: 40px;">
+                </a>
+
+                <!-- Tombol Toggler untuk Layar Kecil -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTop" aria-controls="navbarTop" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Konten yang akan di-collapse -->
+                <div class="collapse navbar-collapse" id="navbarTop">
+                    <!-- Search Bar -->
+                    <div class="d-flex flex-grow-1 mx-3">
+                        <div class="input-group">
+                            <select class="form-select" style="max-width: 200px;">
+                                <option selected>Semua Kategori</option>
+                                <option>Buah-buahan</option>
+                                <option>Sayur-sayuran</option>
+                                <option>Rempah-rempah</option>
+                                <option>Umbi-umbian</option>
+                                <option>Kacang-kacangan</option>
+                                <option>Bahan Pokok</option>
+                                <option>Tanaman Herbal</option>
+                                <option>Produk Olahan</option>
+                            </select>
+                            <input type="text" class="form-control" placeholder="Cari produk..." aria-label="Search">
+                            <button class="btn btn-outline-secondary" type="button">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Keranjang dan Masuk -->
+                    <div class="d-flex mt-2 mt-lg-0">
+                        <a href="cart.html" class="btn btn-outline-success me-2 position-relative">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                0
+                            </span>
+                        </a>
+                        <a href="login.html" class="btn btn-outline-success">
+                            <i class="fas fa-user"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Spacer untuk mencegah konten tertutup navbar fixed -->
+        <div style="height: 60px;"></div>
+
+        <!-- Navbar Baris Kedua -->
+        <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: var(--primary-color); z-index: 1010;">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav w-100 justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="index.html">Beranda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="catalog.html">Katalog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="articles.html">Artikel</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="transaction-history.html">Riwayat Transaksi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Dashboard</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="bg-light py-2">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Beranda</a></li>
+                            <li class="breadcrumb-item"><a href="cart.html" class="text-decoration-none">Keranjang</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+                        </ol>
+                    </nav>
+                </div> 
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Checkout Form -->
+                <div class="col-lg-8 mb-4 mb-lg-0">
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-header bg-white py-3">
+                            <h5 class="mb-0">Informasi Pengiriman</h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="shippingForm">
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="firstName" class="form-label">Nama Depan</label>
+                                        <input type="text" class="form-control" id="firstName" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="lastName" class="form-label">Nama Belakang</label>
+                                        <input type="text" class="form-control" id="lastName" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="phone" class="form-label">Nomor Telepon</label>
+                                        <input type="tel" class="form-control" id="phone" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="address" class="form-label">Alamat</label>
+                                    <input type="text" class="form-control" id="address" required>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label for="province" class="form-label">Provinsi</label>
+                                        <select class="form-select" id="province" required>
+                                            <option value="" selected disabled>Pilih provinsi</option>
+                                            <option value="jawa_barat">Jawa Barat</option>
+                                            <option value="jawa_tengah">Jawa Tengah</option>
+                                            <option value="jawa_timur">Jawa Timur</option>
+                                            <option value="dki_jakarta">DKI Jakarta</option>
+                                            <option value="banten">Banten</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="city" class="form-label">Kota/Kabupaten</label>
+                                        <select class="form-select" id="city" required>
+                                            <option value="" selected disabled>Pilih kota</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="postalCode" class="form-label">Kode Pos</label>
+                                        <input type="text" class="form-control" id="postalCode" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="notes" class="form-label">Catatan Pengiriman (opsional)</label>
+                                    <textarea class="form-control" id="notes" rows="3" placeholder="Tambahkan catatan khusus untuk pengiriman Anda"></textarea>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="saveAddress" checked>
+                                    <label class="form-check-label" for="saveAddress">
+                                        Simpan alamat ini untuk pembelian berikutnya
+                                    </label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-header bg-white py-3">
+                            <h5 class="mb-0">Metode Pengiriman</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="shipping-options">
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="radio" name="shippingMethod" id="regularShipping" checked>
+                                    <label class="form-check-label d-flex justify-content-between align-items-center w-100" for="regularShipping">
+                                        <div>
+                                            <span class="fw-bold">Pengiriman Reguler (2-3 hari)</span>
+                                            <p class="text-muted mb-0 small">Estimasi tiba: 22-23 Juni 2023</p>
+                                        </div>
+                                        <span class="fw-bold">Rp 15.000</span>
+                                    </label>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="radio" name="shippingMethod" id="expressShipping">
+                                    <label class="form-check-label d-flex justify-content-between align-items-center w-100" for="expressShipping">
+                                        <div>
+                                            <span class="fw-bold">Pengiriman Express (1 hari)</span>
+                                            <p class="text-muted mb-0 small">Estimasi tiba: 21 Juni 2023</p>
+                                        </div>
+                                        <span class="fw-bold">Rp 30.000</span>
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="shippingMethod" id="sameDay">
+                                    <label class="form-check-label d-flex justify-content-between align-items-center w-100" for="sameDay">
+                                        <div>
+                                            <span class="fw-bold">Pengiriman Same Day (Hari ini)</span>
+                                            <p class="text-muted mb-0 small">Estimasi tiba: 20 Juni 2023 (sebelum jam 21:00)</p>
+                                        </div>
+                                        <span class="fw-bold">Rp 45.000</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-header bg-white py-3">
+                            <h5 class="mb-0">Metode Pembayaran</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="payment-options">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="bankTransfer" checked>
+                                    <label class="form-check-label w-100" for="bankTransfer">
+                                        <div class="d-flex align-items-center">
+                                            <img src="https://images.bisnis.com/posts/2023/08/31/1689795/logo_bca,_bank_mandiri,_bni,_bri_(1)_1689600101.jpg" alt="Bank Transfer" width="60" class="me-3">
+                                            <div>
+                                                <span class="fw-bold">Transfer Bank</span>
+                                                <p class="text-muted mb-0 small">BCA, Mandiri, BNI, BRI</p>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <div class="bank-options show">
+                                        <div class="mb-3">
+                                            <label for="bankSelect" class="form-label">Pilih Bank</label>
+                                            <select class="form-select" id="bankSelect">
+                                                <option value="bca">Bank Central Asia (BCA)</option>
+                                                <option value="mandiri">Bank Mandiri</option>
+                                                <option value="bni">Bank Negara Indonesia (BNI)</option>
+                                                <option value="bri">Bank Rakyat Indonesia (BRI)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="eWallet">
+                                    <label class="form-check-label w-100" for="eWallet">
+                                        <div class="d-flex align-items-center">
+                                            <img src="https://www.exabytes.co.id/blog/wp-content/uploads/2024/03/Contoh-E-wallet-di-Indonesia.png" alt="E-Wallet" width="60" class="me-3">
+                                            <div>
+                                                <span class="fw-bold">E-Wallet</span>
+                                                <p class="text-muted mb-0 small">GoPay, OVO, DANA, LinkAja</p>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <div class="ewallet-options">
+                                        <div class="mb-3">
+                                            <label for="ewalletSelect" class="form-label">Pilih E-Wallet</label>
+                                            <select class="form-select" id="ewalletSelect">
+                                                <option value="gopay">GoPay</option>
+                                                <option value="ovo">OVO</option>
+                                                <option value="dana">DANA</option>
+                                                <option value="linkaja">LinkAja</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard">
+                                    <label class="form-check-label w-100" for="creditCard">
+                                        <div class="d-flex align-items-center">
+                                            <img src="https://e7.pngegg.com/pngimages/1016/14/png-clipart-logo-american-express-credit-card-mastercard-visa-credit-card-text-logo.png" alt="Credit Card" width="60" class="me-3">
+                                            <div>
+                                                <span class="fw-bold">Kartu Kredit</span>
+                                                <p class="text-muted mb-0 small">Visa, Mastercard, JCB</p>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                                
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="cod">
+                                    <label class="form-check-label w-100" for="cod">
+                                        <div class="d-flex align-items-center">
+                                            <img src="../assets/images/cod.png" alt="COD" width="60" class="me-3">
+                                            <div>
+                                                <span class="fw-bold">Bayar di Tempat (COD)</span>
+                                                <p class="text-muted mb-0 small">Bayar saat pesanan tiba</p>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Order Summary -->
+                <div class="col-lg-4">
+                    <div class="card border-0 shadow-sm order-summary-card">
+                        <div class="card-header bg-success text-white py-3">
+                            <h5 class="mb-0">Ringkasan Pesanan</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="order-items mb-4" id="orderItems">
+                                <!-- Order items will be loaded here dynamically -->
+                                <h6 class="mb-3">Produk (<span id="itemCount">0</span> item)</h6>
+                                <div id="orderItemsList">
+                                    <!-- Order items will be inserted here -->
+                                </div>
+                            </div>
+                            
+                            <div class="coupon-code mb-4">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Kode Voucher" id="voucherCode">
+                                    <button class="btn btn-outline-success" type="button" id="applyVoucherBtn">Terapkan</button>
+                                </div>
+                            </div>
+                            
+                            <div class="order-summary mb-4">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Subtotal</span>
+                                    <span class="fw-bold" id="subtotal">Rp 0</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Biaya Pengiriman</span>
+                                    <span class="fw-bold" id="shippingCost">Rp 15.000</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Diskon</span>
+                                    <span class="fw-bold text-danger" id="discount">- Rp 0</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Pajak (10%)</span>
+                                    <span class="fw-bold" id="tax">Rp 0</span>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between mb-0">
+                                    <span class="fw-bold">Total</span>
+                                    <span class="fw-bold fs-5 text-success" id="total">Rp 0</span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="termsConditions" required>
+                                <label class="form-check-label small" for="termsConditions">
+                                    Saya telah membaca dan menyetujui <a href="#" class="text-decoration-none">Syarat & Ketentuan</a> dan <a href="#" class="text-decoration-none">Kebijakan Privasi</a>
+                                </label>
+                            </div>
+                            
+                            <button type="button" class="btn btn-success w-100 py-2" id="placeOrderBtn">
+                                Buat Pesanan
+                            </button>
+                            
+                            <div class="text-center mt-3">
+                                <small class="text-muted">
+                                    <i class="fas fa-lock me-1"></i> Pembayaran aman dengan enkripsi SSL
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Success Modal -->
+    <div class="modal fade" id="orderSuccessModal" tabindex="-1" aria-labelledby="orderSuccessModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center p-5">
+                    <div class="mb-4">
+                        <i class="fas fa-check-circle text-success fa-5x"></i>
+                    </div>
+                    <h3 class="mb-3">Pesanan Berhasil!</h3>
+                    <p class="mb-4">Terima kasih atas pesanan Anda. Nomor pesanan Anda adalah <strong>#ORD-20230620-8765</strong>.</p>
+                    <p class="mb-4">Kami telah mengirimkan detail pesanan ke email Anda. Anda juga dapat melacak status pesanan di halaman riwayat transaksi.</p>
+                    <div class="d-grid gap-2">
+                        <a href="transaction-history.html" class="btn btn-success">Lihat Pesanan Saya</a>
+                        <a href="index.html" class="btn btn-outline-secondary">Kembali ke Beranda</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5 mt-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="mb-3">Panénia</h5>
+                    <p>Hasil Tani Terbaik, Langsung dari Alam Nusantara</p>
+                    <div class="social-icons">
+                        <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <h5 class="mb-3">Kontak</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-map-marker-alt me-2"></i> Jl. Pertanian No. 123, Jakarta</li>
+                        <li><i class="fas fa-phone me-2"></i> (021) 1234-5678</li>
+                        <li><i class="fas fa-envelope me-2"></i> info@panenia.id</li>
+                    </ul>
+                </div>
+                <!-- Tambahan: Jam Operasional -->
+                <div class="col-lg-3">
+                    <h5 class="mb-3">Jam Operasional</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-clock me-2"></i>Senin - Jumat: 08.00 - 17.00</li>
+                        <li><i class="fas fa-clock me-2"></i>Sabtu: 08.00 - 12.00</li>
+                        <li><i class="fas fa-clock me-2"></i>Minggu: Libur</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-md-0">© 2023 Panénia. Hak Cipta Dilindungi.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white text-decoration-none me-3">Syarat & Ketentuan</a>
+                    <a href="#" class="text-white text-decoration-none">Kebijakan Privasi</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get cart from localStorage
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Function to format currency
+            function formatCurrency(amount) {
+                return 'Rp ' + amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            }
+            
+            // Function to update order summary
+            function updateOrderSummary() {
+                const subtotalElement = document.getElementById('subtotal');
+                const shippingCostElement = document.getElementById('shippingCost');
+                const discountElement = document.getElementById('discount');
+                const taxElement = document.getElementById('tax');
+                const totalElement = document.getElementById('total');
+                const itemCountElement = document.getElementById('itemCount');
+                const orderItemsListElement = document.getElementById('orderItemsList');
+                
+                // Calculate subtotal
+                let subtotal = 0;
+                let itemCount = 0;
+                
+                cart.forEach(item => {
+                    subtotal += item.price * item.quantity;
+                    itemCount += item.quantity;
+                });
+                
+                // Get shipping cost based on selected method
+                let shippingCost = 15000; // Default to regular shipping
+                if (document.getElementById('expressShipping').checked) {
+                    shippingCost = 30000;
+                } else if (document.getElementById('sameDay').checked) {
+                    shippingCost = 45000;
+                }
+                
+                // Calculate tax (10% of subtotal)
+                const tax = Math.round(subtotal * 0.1);
+                
+                // Calculate discount (if any)
+                const discount = 0; // No discount by default
+                
+                // Calculate total
+                const total = subtotal + shippingCost + tax - discount;
+                
+                // Update elements
+                subtotalElement.textContent = formatCurrency(subtotal);
+                shippingCostElement.textContent = formatCurrency(shippingCost);
+                discountElement.textContent = '- ' + formatCurrency(discount);
+                taxElement.textContent = formatCurrency(tax);
+                totalElement.textContent = formatCurrency(total);
+                itemCountElement.textContent = itemCount;
+                
+                // Clear and rebuild order items list
+                orderItemsListElement.innerHTML = '';
+                
+                if (cart.length === 0) {
+                    orderItemsListElement.innerHTML = '<p class="text-center text-muted">Keranjang belanja Anda kosong</p>';
+                } else {
+                    cart.forEach(item => {
+                        const itemElement = document.createElement('div');
+                        itemElement.className = 'order-item d-flex mb-3';
+                        itemElement.innerHTML = `
+                            <img src="${item.image}" alt="${item.name}" class="rounded me-3" width="60" height="60" style="object-fit: cover;">
+                            <div class="flex-grow-1">
+                                <h6 class="mb-0">${item.name}</h6>
+                                <p class="text-muted mb-0 small">${item.quantity} x ${formatCurrency(item.price)}</p>
+                            </div>
+                            <div class="text-end">
+                                <span class="fw-bold">${formatCurrency(item.price * item.quantity)}</span>
+                            </div>
+                        `;
+                        orderItemsListElement.appendChild(itemElement);
+                    });
+                }
+                
+                // Update cart count in navbar
+                const cartCountElement = document.getElementById('cartCount');
+                if (cartCountElement) {
+                    cartCountElement.textContent = itemCount.toString();
+                }
+            }
+            
+            // Initialize order summary
+            updateOrderSummary();
+            
+            // Add event listeners to shipping method radios
+            document.querySelectorAll('input[name="shippingMethod"]').forEach(radio => {
+                radio.addEventListener('change', updateOrderSummary);
+            });
+            
+            // Handle payment method selection
+            document.querySelectorAll('input[name="paymentMethod"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    // Hide all payment option details
+                    document.querySelector('.bank-options').classList.remove('show');
+                    document.querySelector('.ewallet-options').classList.remove('show');
+                    
+                    // Show selected payment option details
+                    if (this.id === 'bankTransfer') {
+                        document.querySelector('.bank-options').classList.add('show');
+                    } else if (this.id === 'eWallet') {
+                        document.querySelector('.ewallet-options').classList.add('show');
+                    }
+                });
+            });
+            
+            // Handle province selection
+            const provinceSelect = document.getElementById('province');
+            const citySelect = document.getElementById('city');
+            
+            if (provinceSelect && citySelect) {
+                provinceSelect.addEventListener('change', function() {
+                    // Clear current options
+                    citySelect.innerHTML = '<option value="" selected disabled>Pilih kota</option>';
+                    
+                    // Add new options based on selected province
+                    if (provinceSelect.value === 'jawa_barat') {
+                        const cities = ['Bandung', 'Bekasi', 'Bogor', 'Depok', 'Cimahi', 'Tasikmalaya'];
+                        cities.forEach(city => {
+                            const option = document.createElement('option');
+                            option.value = city.toLowerCase().replace(' ', '_');
+                            option.textContent = city;
+                            citySelect.appendChild(option);
+                        });
+                    } else if (provinceSelect.value === 'dki_jakarta') {
+                        const cities = ['Jakarta Selatan', 'Jakarta Pusat', 'Jakarta Barat', 'Jakarta Timur', 'Jakarta Utara'];
+                        cities.forEach(city => {
+                            const option = document.createElement('option');
+                            option.value = city.toLowerCase().replace(' ', '_');
+                            option.textContent = city;
+                            citySelect.appendChild(option);
+                        });
+                    } else if (provinceSelect.value === 'jawa_tengah') {
+                        const cities = ['Semarang', 'Solo', 'Magelang', 'Salatiga', 'Pekalongan'];
+                        cities.forEach(city => {
+                            const option = document.createElement('option');
+                            option.value = city.toLowerCase().replace(' ', '_');
+                            option.textContent = city;
+                            citySelect.appendChild(option);
+                        });
+                    } else if (provinceSelect.value === 'jawa_timur') {
+                        const cities = ['Surabaya', 'Malang', 'Kediri', 'Madiun', 'Jember'];
+                        cities.forEach(city => {
+                            const option = document.createElement('option');
+                            option.value = city.toLowerCase().replace(' ', '_');
+                            option.textContent = city;
+                            citySelect.appendChild(option);
+                        });
+                    } else if (provinceSelect.value === 'banten') {
+                        const cities = ['Serang', 'Tangerang', 'Cilegon', 'Tangerang Selatan'];
+                        cities.forEach(city => {
+                            const option = document.createElement('option');
+                            option.value = city.toLowerCase().replace(' ', '_');
+                            option.textContent = city;
+                            citySelect.appendChild(option);
+                        });
+                    }
+                });
+            }
+            
+            // Handle voucher code
+            const applyVoucherBtn = document.getElementById('applyVoucherBtn');
+            if (applyVoucherBtn) {
+                applyVoucherBtn.addEventListener('click', function() {
+                    const voucherCode = document.getElementById('voucherCode').value.trim();
+                    
+                    if (voucherCode === '') {
+                        alert('Silakan masukkan kode voucher');
+                        return;
+                    }
+                    
+                    // In a real app, you would validate the voucher code with the server
+                    // For this example, we'll just show an alert
+                    alert('Kode voucher "' + voucherCode + '" berhasil diterapkan!');
+                    
+                    // Update discount in the order summary (for demo purposes)
+                    document.getElementById('discount').textContent = '- Rp 10.000';
+                    
+                    // Recalculate total
+                    updateOrderSummary();
+                });
+            }
+            
+            // Handle place order button
+            const placeOrderBtn = document.getElementById('placeOrderBtn');
+            const termsCheckbox = document.getElementById('termsConditions');
+            
+            if (placeOrderBtn && termsCheckbox) {
+                placeOrderBtn.addEventListener('click', function() {
+                    // Validate shipping form
+                    const shippingForm = document.getElementById('shippingForm');
+                    if (!shippingForm.checkValidity()) {
+                        shippingForm.reportValidity();
+                        return;
+                    }
+                    
+                    // Check terms and conditions
+                    if (!termsCheckbox.checked) {
+                        alert('Anda harus menyetujui Syarat & Ketentuan untuk melanjutkan.');
+                        return;
+                    }
+                    
+                    // Show success modal
+                    const orderSuccessModal = new bootstrap.Modal(document.getElementById('orderSuccessModal'));
+                    orderSuccessModal.show();
+                    
+                    // Clear cart after successful order
+                    localStorage.removeItem('cart');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

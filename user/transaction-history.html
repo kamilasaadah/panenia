@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Transaksi - Panénia</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="../assets/images/logo-1x1.png" type="image/png">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+       /* Custom Styles for Enhanced Look */
+       .navbar {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .navbar-brand img {
+            transition: transform 0.3s ease;
+        }
+        .navbar-brand img:hover {
+            transform: scale(1.1);
+        }
+        .cart-badge {
+            font-size: 0.7rem;
+            padding: 2px 6px;
+        }
+
+        .page-header .form-control {
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .page-header .form-control:focus {
+            box-shadow: 0 0 8px rgba(25, 135, 84, 0.2);
+            border-color: #198754;
+        }
+        .page-header .btn-search {
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .page-header .btn-search:hover {
+            background-color: #146c43;
+            transform: scale(1.05);
+        }
+
+        .filter-card {
+            border-radius: 10px;
+        }
+        .filter-card .form-check-label {
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .filter-card .form-check-label:hover {
+            color: #198754;
+        }
+        .filter-card .form-range::-webkit-slider-thumb {
+            background: #198754;
+        }
+        .filter-card .form-range::-moz-range-thumb {
+            background: #198754;
+        }
+        .filter-card .btn-filter {
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .filter-card .btn-filter:hover {
+            background-color: #146c43;
+            transform: scale(1.02);
+        }
+
+        .product-card {
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        .product-card img {
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* Updated Pagination Styling */
+        .pagination .page-item {
+            margin: 0 5px; /* Jarak antar item pagination */
+        }
+        .pagination .page-link {
+            border-radius: 5px;
+            padding: 8px 12px; /* Tambah padding biar ga terlalu kecil */
+            transition: all 0.3s ease;
+        }
+        .pagination .page-link:hover {
+            background-color: #198754;
+            color: #fff;
+        }
+        .pagination .page-item.active .page-link {
+            background-color: #198754;
+            border-color: #198754;
+        }
+
+        footer a, footer i {
+            transition: color 0.3s ease;
+        }
+        footer a:hover, footer i:hover {
+            color: #198754 !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <!-- Navbar Baris Pertama -->
+        <nav class="navbar navbar-light bg-white border-bottom navbar-expand-lg" style="position: fixed; top: 0; width: 100%; z-index: 1020;">
+            <div class="container">
+                <!-- Logo -->
+                <a class="navbar-brand fw-bold text-success" href="index.html">
+                    <img src="../assets/images/logo.png" alt="Panénia Logo" class="logo me-2" style="height: 40px;">
+                </a>
+
+                <!-- Tombol Toggler untuk Layar Kecil -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTop" aria-controls="navbarTop" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Konten yang akan di-collapse -->
+                <div class="collapse navbar-collapse" id="navbarTop">
+                    <!-- Search Bar -->
+                    <div class="d-flex flex-grow-1 mx-3">
+                        <div class="input-group">
+                            <select class="form-select" style="max-width: 200px;">
+                                <option selected>Semua Kategori</option>
+                                <option>Buah-buahan</option>
+                                <option>Sayur-sayuran</option>
+                                <option>Rempah-rempah</option>
+                                <option>Umbi-umbian</option>
+                                <option>Kacang-kacangan</option>
+                                <option>Bahan Pokok</option>
+                                <option>Tanaman Herbal</option>
+                                <option>Produk Olahan</option>
+                            </select>
+                            <input type="text" class="form-control" placeholder="Cari produk..." aria-label="Search">
+                            <button class="btn btn-outline-secondary" type="button">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Keranjang dan Masuk -->
+                    <div class="d-flex mt-2 mt-lg-0">
+                        <a href="cart.html" class="btn btn-outline-success me-2 position-relative">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                0
+                            </span>
+                        </a>
+                        <a href="login.html" class="btn btn-outline-success">
+                            <i class="fas fa-user"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Spacer untuk mencegah konten tertutup navbar fixed -->
+        <div style="height: 60px;"></div>
+
+        <!-- Navbar Baris Kedua -->
+        <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: var(--primary-color); z-index: 1010;">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav w-100 justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="index.html">Beranda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="catalog.html">Katalog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="articles.html">Artikel</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="transaction-history.html">Riwayat Transaksi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Dashboard</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="bg-light py-2">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Beranda</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Riwayat Transaksi</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Transaction History Section -->
+    <section class="py-5">
+        <div class="container">
+            <!-- Filter and Search -->
+            <div class="row mb-4">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <div class="d-flex">
+                        <select class="form-select me-2" aria-label="Filter status">
+                            <option selected>Semua Status</option>
+                            <option value="pending">Menunggu Pembayaran</option>
+                            <option value="processing">Diproses</option>
+                            <option value="shipped">Dikirim</option>
+                            <option value="completed">Selesai</option>
+                            <option value="cancelled">Dibatalkan</option>
+                        </select>
+                        <select class="form-select" aria-label="Filter time">
+                            <option selected>Semua Waktu</option>
+                            <option value="7days">7 Hari Terakhir</option>
+                            <option value="30days">30 Hari Terakhir</option>
+                            <option value="3months">3 Bulan Terakhir</option>
+                            <option value="6months">6 Bulan Terakhir</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Cari nomor pesanan atau produk..." aria-label="Search transactions">
+                        <button class="btn btn-success" type="button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transactions List -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th class="py-3 ps-4">No. Pesanan</th>
+                                    <th class="py-3">Tanggal</th>
+                                    <th class="py-3">Total</th>
+                                    <th class="py-3">Status</th>
+                                    <th class="py-3 text-center pe-4">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Transaction 1 -->
+                                <tr>
+                                    <td class="py-3 ps-4">
+                                        <span class="fw-medium">#ORD-20230615-7829</span>
+                                    </td>
+                                    <td class="py-3">15 Juni 2023</td>
+                                    <td class="py-3">Rp 156.000</td>
+                                    <td class="py-3">
+                                        <span class="badge bg-success">Selesai</span>
+                                    </td>
+                                    <td class="py-3 text-center pe-4">
+                                        <a href="#" class="btn btn-sm btn-outline-secondary me-1" data-bs-toggle="modal" data-bs-target="#transactionDetailModal">
+                                            <i class="fas fa-eye"></i> Detail
+                                        </a>
+                                        <a href="#" class="btn btn-sm btn-outline-success">
+                                            <i class="fas fa-sync-alt"></i> Beli Lagi
+                                        </a>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Transaction 2 -->
+                                <tr>
+                                    <td class="py-3 ps-4">
+                                        <span class="fw-medium">#ORD-20230602-6541</span>
+                                    </td>
+                                    <td class="py-3">2 Juni 2023</td>
+                                    <td class="py-3">Rp 98.500</td>
+                                    <td class="py-3">
+                                        <span class="badge bg-success">Selesai</span>
+                                    </td>
+                                    <td class="py-3 text-center pe-4">
+                                        <a href="#" class="btn btn-sm btn-outline-secondary me-1" data-bs-toggle="modal" data-bs-target="#transactionDetailModal">
+                                            <i class="fas fa-eye"></i> Detail
+                                        </a>
+                                        <a href="#" class="btn btn-sm btn-outline-success">
+                                            <i class="fas fa-sync-alt"></i> Beli Lagi
+                                        </a>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Transaction 3 -->
+                                <tr>
+                                    <td class="py-3 ps-4">
+                                        <span class="fw-medium">#ORD-20230520-5432</span>
+                                    </td>
+                                    <td class="py-3">20 Mei 2023</td>
+                                    <td class="py-3">Rp 215.000</td>
+                                    <td class="py-3">
+                                        <span class="badge bg-info text-dark">Dikirim</span>
+                                    </td>
+                                    <td class="py-3 text-center pe-4">
+                                        <a href="#" class="btn btn-sm btn-outline-secondary me-1" data-bs-toggle="modal" data-bs-target="#transactionDetailModal">
+                                            <i class="fas fa-eye"></i> Detail
+                                        </a>
+                                        <a href="#" class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-truck"></i> Lacak
+                                        </a>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Transaction 4 -->
+                                <tr>
+                                    <td class="py-3 ps-4">
+                                        <span class="fw-medium">#ORD-20230510-4321</span>
+                                    </td>
+                                    <td class="py-3">10 Mei 2023</td>
+                                    <td class="py-3">Rp 78.000</td>
+                                    <td class="py-3">
+                                        <span class="badge bg-warning text-dark">Diproses</span>
+                                    </td>
+                                    <td class="py-3 text-center pe-4">
+                                        <a href="#" class="btn btn-sm btn-outline-secondary me-1" data-bs-toggle="modal" data-bs-target="#transactionDetailModal">
+                                            <i class="fas fa-eye"></i> Detail
+                                        </a>
+                                        <a href="#" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#cancelOrderModal">
+                                            <i class="fas fa-times"></i> Batalkan
+                                        </a>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Transaction 5 -->
+                                <tr>
+                                    <td class="py-3 ps-4">
+                                        <span class="fw-medium">#ORD-20230501-3210</span>
+                                    </td>
+                                    <td class="py-3">1 Mei 2023</td>
+                                    <td class="py-3">Rp 125.000</td>
+                                    <td class="py-3">
+                                        <span class="badge bg-danger">Dibatalkan</span>
+                                    </td>
+                                    <td class="py-3 text-center pe-4">
+                                        <a href="#" class="btn btn-sm btn-outline-secondary me-1" data-bs-toggle="modal" data-bs-target="#transactionDetailModal">
+                                            <i class="fas fa-eye"></i> Detail
+                                        </a>
+                                        <a href="#" class="btn btn-sm btn-outline-success">
+                                            <i class="fas fa-sync-alt"></i> Beli Lagi
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pagination - Updated to match catalog style -->
+            <nav aria-label="Page navigation" class="mt-5">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Transaction Detail Modal -->
+    <div class="modal fade" id="transactionDetailModal" tabindex="-1" aria-labelledby="transactionDetailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="transactionDetailModalLabel">Detail Pesanan #ORD-20230615-7829</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h6 class="fw-bold">Informasi Pesanan</h6>
+                            <p class="mb-1"><strong>Tanggal Pesanan:</strong> 15 Juni 2023</p>
+                            <p class="mb-1"><strong>Status:</strong> <span class="badge bg-success">Selesai</span></p>
+                            <p class="mb-1"><strong>Metode Pembayaran:</strong> Transfer Bank BCA</p>
+                            <p class="mb-0"><strong>Tanggal Pengiriman:</strong> 16 Juni 2023</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="fw-bold">Alamat Pengiriman</h6>
+                            <p class="mb-1"><strong>Penerima:</strong> Budi Santoso</p>
+                            <p class="mb-1"><strong>Telepon:</strong> 081234567890</p>
+                            <p class="mb-0"><strong>Alamat:</strong> Jl. Merdeka No. 123, RT 05/RW 02, Kelurahan Sukamaju, Kecamatan Cilodong, Kota Depok, Jawa Barat, 16415</p>
+                        </div>
+                    </div>
+                    
+                    <h6 class="fw-bold mb-3">Produk yang Dibeli</h6>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Produk</th>
+                                    <th class="text-center">Harga</th>
+                                    <th class="text-center">Jumlah</th>
+                                    <th class="text-center">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img src="../assets/images/bayam1.jpg" class="rounded me-3" width="50" height="50" style="object-fit: cover;">
+                                            <div>
+                                                <h6 class="mb-0">Bayam Organik</h6>
+                                                <small class="text-muted">Per ikat (± 250 gram)</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">Rp 8.000</td>
+                                    <td class="text-center">3</td>
+                                    <td class="text-center">Rp 24.000</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img src="../assets/images/jeruk.avif" alt="Jeruk Mandarin" class="rounded me-3" width="50" height="50" style="object-fit: cover;">
+                                            <div>
+                                                <h6 class="mb-0">Jeruk Mandarin</h6>
+                                                <small class="text-muted">Per kg (± 8-10 buah)</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">Rp 25.000</td>
+                                    <td class="text-center">2</td>
+                                    <td class="text-center">Rp 50.000</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/07/8810151.png?resize=600%2C600&ssl=1" alt="Beras Organik" class="rounded me-3" width="50" height="50" style="object-fit: cover;">
+                                            <div>
+                                                <h6 class="mb-0">Beras Organik</h6>
+                                                <small class="text-muted">5 kg</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">Rp 75.000</td>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">Rp 75.000</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3" class="text-end"><strong>Subtotal</strong></td>
+                                    <td class="text-center">Rp 149.000</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="text-end"><strong>Biaya Pengiriman</strong></td>
+                                    <td class="text-center">Rp 15.000</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="text-end"><strong>Diskon</strong></td>
+                                    <td class="text-center">- Rp 8.000</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="text-end"><strong>Total</strong></td>
+                                    <td class="text-center fw-bold">Rp 156.000</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <a href="#" class="btn btn-success">Beli Lagi</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cancel Order Modal -->
+    <div class="modal fade" id="cancelOrderModal" tabindex="-1" aria-labelledby="cancelOrderModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cancelOrderModalLabel">Batalkan Pesanan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Apakah Anda yakin ingin membatalkan pesanan #ORD-20230510-4321?</p>
+                    <div class="mb-3">
+                        <label for="cancelReason" class="form-label">Alasan Pembatalan</label>
+                        <select class="form-select" id="cancelReason" required>
+                            <option value="" selected disabled>Pilih alasan pembatalan</option>
+                            <option value="changed_mind">Berubah pikiran</option>
+                            <option value="found_better_price">Menemukan harga lebih baik</option>
+                            <option value="ordered_wrong_item">Salah pesan produk</option>
+                            <option value="delivery_too_long">Waktu pengiriman terlalu lama</option>
+                            <option value="other">Lainnya</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cancelNotes" class="form-label">Catatan Tambahan (opsional)</label>
+                        <textarea class="form-control" id="cancelNotes" rows="3" placeholder="Berikan detail tambahan tentang alasan pembatalan Anda"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-danger">Konfirmasi Pembatalan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-4">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="fw-bold mb-3">Panénia</h5>
+                    <p>Hasil Tani Terbaik, Langsung dari Alam Nusantara</p>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="fw-bold mb-3">Tautan</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html" class="text-white text-decoration-none">Beranda</a></li>
+                        <li class="mb-2"><a href="catalog.html" class="text-white text-decoration-none">Katalog</a></li>
+                        <li class="mb-2"><a href="articles.html" class="text-white text-decoration-none">Artikel</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-white text-decoration-none">Tentang Kami</a></li>
+                        <li class="mb-2"><a href="contact.html" class="text-white text-decoration-none">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="fw-bold mb-3">Kategori</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="catalog.html?category=sayuran" class="text-white text-decoration-none">Sayuran</a></li>
+                        <li class="mb-2"><a href="catalog.html?category=buah" class="text-white text-decoration-none">Buah-buahan</a></li>
+                        <li class="mb-2"><a href="catalog.html?category=rempah" class="text-white text-decoration-none">Rempah-rempah</a></li>
+                        <li class="mb-2"><a href="catalog.html?category=umbi" class="text-white text-decoration-none">Umbi-umbian</a></li>
+                        <li class="mb-2"><a href="catalog.html?category=pokok" class="text-white text-decoration-none">Bahan Pokok</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="fw-bold mb-3">Kontak</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Jl. Pertanian No. 123, Jakarta</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> (021) 1234-5678</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@panenia.id</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <p class="mb-0">&copy; 2023 Panénia. Hak Cipta Dilindungi.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white text-decoration-none me-3">Syarat & Ketentuan</a>
+                    <a href="#" class="text-white text-decoration-none">Kebijakan Privasi</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+</body>
+</html>

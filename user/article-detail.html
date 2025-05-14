@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tips Memilih Sayuran Segar di Pasar Tradisional - Panénia</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="../assets/images/logo-1x1.png" type="image/png">
+    <!-- Custom CSS -->
+    <style>
+        /* Custom Styles for Enhanced Look */
+        .navbar {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .navbar-brand img {
+            transition: transform 0.3s ease;
+        }
+        .navbar-brand img:hover {
+            transform: scale(1.1);
+        }
+        .cart-badge {
+            font-size: 0.7rem;
+            padding: 2px 6px;
+        }
+
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .article-content h2 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #198754;
+        }
+
+        .article-content h3 {
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .article-content p {
+            margin-bottom: 1.25rem;
+            line-height: 1.7;
+        }
+
+        .article-content ul, .article-content ol {
+            margin-bottom: 1.25rem;
+            padding-left: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .article-content blockquote {
+            border-left: 4px solid #198754;
+            padding-left: 1rem;
+            margin-left: 0;
+            color: #555;
+            font-style: italic;
+        }
+
+        .pagination .page-item {
+            margin: 0 5px; /* Jarak antar item pagination */
+        }
+        .pagination .page-link {
+            border-radius: 5px;
+            padding: 8px 12px; /* Tambah padding biar ga terlalu kecil */
+            transition: all 0.3s ease;
+        }
+        .pagination .page-link:hover {
+            background-color: #198754;
+            color: #fff;
+        }
+        .pagination .page-item.active .page-link {
+            background-color: #198754;
+            border-color: #198754;
+        }
+
+        footer a, footer i {
+            transition: color 0.3s ease;
+        }
+        footer a:hover, footer i:hover {
+            color: #198754 !important;
+        }
+
+        /* Improved Profile Image Styles */
+        /* Base profile image style for all circular images */
+        .profile-image-container {
+            overflow: hidden;
+            border-radius: 50%;
+            display: inline-block;
+            border: 2px solid #f8f9fa;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Specific sizes for different contexts */
+        .author-image-sm {
+            width: 40px;
+            height: 40px;
+            min-width: 40px; /* Prevents shrinking */
+        }
+
+        .author-image-md {
+            width: 60px;
+            height: 60px;
+            min-width: 60px; /* Prevents shrinking */
+        }
+
+        .author-image-lg {
+            width: 80px;
+            height: 80px;
+            min-width: 80px; /* Prevents shrinking */
+        }
+
+        .commenter-image {
+            width: 50px;
+            height: 50px;
+            min-width: 50px; /* Prevents shrinking */
+        }
+
+        /* Hover effect for profile images */
+        .profile-image-container:hover {
+            border-color: #198754;
+            transform: scale(1.05);
+            transition: all 0.2s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <!-- Navbar Baris Pertama -->
+        <nav class="navbar navbar-light bg-white border-bottom navbar-expand-lg" style="position: fixed; top: 0; width: 100%; z-index: 1020;">
+            <div class="container">
+                <!-- Logo -->
+                <a class="navbar-brand fw-bold text-success" href="index.html">
+                    <img src="../assets/images/logo.png" alt="Panénia Logo" class="logo me-2" style="height: 40px;">
+                </a>
+
+                <!-- Tombol Toggler untuk Layar Kecil -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTop" aria-controls="navbarTop" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Konten yang akan di-collapse -->
+                <div class="collapse navbar-collapse" id="navbarTop">
+                    <!-- Search Bar -->
+                    <div class="d-flex flex-grow-1 mx-3">
+                        <div class="input-group">
+                            <select class="form-select" style="max-width: 200px;">
+                                <option selected>Semua Kategori</option>
+                                <option>Buah-buahan</option>
+                                <option>Sayur-sayuran</option>
+                                <option>Rempah-rempah</option>
+                                <option>Umbi-umbian</option>
+                                <option>Kacang-kacangan</option>
+                                <option>Bahan Pokok</option>
+                                <option>Tanaman Herbal</option>
+                                <option>Produk Olahan</option>
+                            </select>
+                            <input type="text" class="form-control" placeholder="Cari produk..." aria-label="Search">
+                            <button class="btn btn-outline-secondary" type="button">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Keranjang dan Masuk -->
+                    <div class="d-flex mt-2 mt-lg-0">
+                        <a href="cart.html" class="btn btn-outline-success me-2 position-relative">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                0
+                            </span>
+                        </a>
+                        <a href="login.html" class="btn btn-outline-success">
+                            <i class="fas fa-user"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Spacer untuk mencegah konten tertutup navbar fixed -->
+        <div style="height: 60px;"></div>
+
+        <!-- Navbar Baris Kedua -->
+        <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: #198754; z-index: 1010;">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav w-100 justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="index.html">Beranda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="catalog.html">Katalog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="articles.html">Artikel</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="transaction-history.html">Riwayat Transaksi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Dashboard</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="bg-light py-2">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Beranda</a></li>
+                    <li class="breadcrumb-item"><a href="articles.html" class="text-decoration-none">Artikel</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Tips Memilih Sayuran Segar di Pasar Tradisional</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Article Content -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Main Content --> 
+                <div class="col-lg-8">
+                    <article class="article-content">
+                        <!-- Article Header -->
+                        <header class="mb-4">
+                            <h1 class="fw-bold mb-3">Tips Memilih Sayuran Segar di Pasar Tradisional</h1>
+                            <div class="d-flex flex-wrap align-items-center mb-3">
+                                <div class="me-4 mb-2">
+                                    <i class="far fa-calendar-alt text-success me-1"></i>
+                                    <span>12 Juni 2023</span>
+                                </div>
+                                <div class="me-4 mb-2">
+                                    <i class="far fa-user text-success me-1"></i>
+                                    <span>Oleh: <a href="#" class="text-decoration-none">Budi Santoso</a></span>
+                                </div>
+                                <div class="me-4 mb-2">
+                                    <i class="far fa-folder text-success me-1"></i>
+                                    <span>Kategori: <a href="#" class="text-decoration-none">Pertanian</a></span>
+                                </div>
+                                <div class="mb-2">
+                                    <i class="far fa-eye text-success me-1"></i>
+                                    <span>1.2K views</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="me-auto">
+                                    <div class="d-flex align-items-center">
+                                        <!-- Updated author image -->
+                                        <div class="profile-image-container author-image-sm me-2">
+                                            <img src="../assets/images/profil-pria.jpg" alt="Author" class="profile-image">
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0">Budi Santoso</h6>
+                                            <p class="small text-muted mb-0">Ahli Pertanian</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="social-share">
+                                    <span class="me-2">Bagikan:</span>
+                                    <a href="#" class="btn btn-sm btn-outline-secondary me-1">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-sm btn-outline-secondary me-1">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-sm btn-outline-secondary me-1">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-sm btn-outline-secondary">
+                                        <i class="fab fa-telegram"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </header>
+
+                        <!-- Featured Image -->
+                        <figure class="mb-4">
+                            <img src="../assets/images/artikel2.avif" alt="Pasar Tradisional" class="img-fluid rounded shadow-sm">
+                            <figcaption class="text-center small text-muted mt-2">Pasar tradisional menawarkan beragam sayuran segar dari petani lokal</figcaption>
+                        </figure>
+
+                        <!-- Article Body -->
+                        <div class="article-body">
+                            <p class="lead">Berbelanja sayuran di pasar tradisional bisa menjadi pengalaman yang menyenangkan sekaligus menantang. Di satu sisi, Anda bisa menemukan beragam sayuran segar langsung dari petani dengan harga yang lebih terjangkau. Di sisi lain, tanpa pengetahuan yang cukup, Anda mungkin kesulitan memilih sayuran dengan kualitas terbaik.</p>
+
+                            <p>Artikel ini akan membahas tips praktis untuk memilih sayuran segar saat berbelanja di pasar tradisional, sehingga Anda bisa mendapatkan bahan makanan berkualitas untuk keluarga.</p>
+
+                            <h2 class="mt-5 mb-3">Mengapa Memilih Pasar Tradisional?</h2>
+
+                            <p>Sebelum membahas tips memilih sayuran, ada baiknya kita mengetahui beberapa keunggulan berbelanja di pasar tradisional:</p>
+
+                            <ul>
+                                <li><strong>Kesegaran</strong> - Sayuran di pasar tradisional umumnya baru dipanen dan langsung didistribusikan, sehingga lebih segar.</li>
+                                <li><strong>Harga lebih terjangkau</strong> - Tanpa perantara yang terlalu banyak, harga sayuran di pasar tradisional biasanya lebih murah.</li>
+                                <li><strong>Mendukung petani lokal</strong> - Berbelanja di pasar tradisional berarti Anda turut mendukung ekonomi petani lokal.</li>
+                                <li><strong>Variasi lebih beragam</strong> - Anda bisa menemukan jenis sayuran lokal yang mungkin tidak tersedia di supermarket.</li>
+                                <li><strong>Interaksi langsung</strong> - Anda bisa bertanya langsung kepada penjual tentang asal dan kualitas sayuran.</li>
+                            </ul>
+
+                            <div class="bg-light p-4 rounded my-4">
+                                <h5 class="mb-3">Tahukah Anda?</h5>
+                                <p class="mb-0">Menurut penelitian, sayuran yang dijual di pasar tradisional memiliki jejak karbon yang lebih rendah karena umumnya berasal dari petani lokal dengan jarak distribusi yang lebih pendek.</p>
+                            </div>
+
+                            <h2 class="mt-5 mb-3">Tips Umum Memilih Sayuran Segar</h2>
+
+                            <p>Berikut adalah beberapa tips umum yang bisa diterapkan saat memilih berbagai jenis sayuran:</p>
+
+                            <h3 class="mt-4 mb-3">1. Perhatikan Warna</h3>
+
+                            <p>Warna sayuran adalah indikator pertama kesegaran. Sayuran segar umumnya memiliki warna yang cerah dan merata. Hindari sayuran dengan warna yang pucat, kekuningan (kecuali memang berwarna kuning), atau memiliki bercak-bercak yang tidak wajar.</p>
+
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <img src="../assets/images/sayuran-segar.avif" alt="Sayuran Segar" class="img-fluid rounded mb-2">
+                                    <p class="small text-center text-success">✓ Warna cerah dan merata</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <img src="../assets/images/sayuran-tidak-segar.jpg" alt="Sayuran Tidak Segar" class="img-fluid rounded mb-2">
+                                    <p class="small text-center text-danger">✗ Warna pucat dan tidak merata</p>
+                                </div>
+                            </div>
+
+                            <h3 class="mt-4 mb-3">2. Cek Tekstur dan Kekenyalan</h3>
+
+                            <p>Sayuran segar biasanya memiliki tekstur yang kenyal dan tidak lembek. Cobalah tekan sedikit sayuran dengan jari Anda. Jika terasa keras dan kembali ke bentuk semula setelah ditekan, itu pertanda sayuran masih segar. Hindari sayuran yang terasa lembek, berair, atau kering.</p>
+
+                            <h3 class="mt-4 mb-3">3. Perhatikan Daun dan Batang</h3>
+
+                            <p>Untuk sayuran berdaun, perhatikan kondisi daun dan batangnya. Daun yang segar biasanya terlihat renyah, tidak layu, dan tidak menguning. Batang sayuran juga sebaiknya terlihat segar dan tidak kering atau berwarna coklat.</p>
+
+                            <h3 class="mt-4 mb-3">4. Cium Aromanya</h3>
+
+                            <p>Sayuran segar biasanya memiliki aroma yang segar dan khas. Hindari sayuran dengan bau yang tidak sedap atau terlalu menyengat, karena bisa jadi sudah mulai membusuk.</p>
+
+                            <h2 class="mt-5 mb-3">Tips Khusus untuk Jenis Sayuran Tertentu</h2>
+
+                            <p>Selain tips umum di atas, berikut adalah beberapa tips khusus untuk memilih jenis sayuran tertentu:</p>
+
+                            <h3 class="mt-4 mb-3">Sayuran Berdaun Hijau (Bayam, Kangkung, Sawi)</h3>
+
+                            <ul>
+                                <li>Pilih yang daunnya masih segar, tidak layu atau menguning</li>
+                                <li>Batang sebaiknya masih keras dan tidak lembek</li>
+                                <li>Hindari yang memiliki bercak-bercak hitam atau lubang bekas dimakan serangga</li>
+                                <li>Periksa bagian bawah daun untuk memastikan tidak ada hama</li>
+                            </ul>
+
+                            <h3 class="mt-4 mb-3">Tomat</h3>
+
+                            <ul>
+                                <li>Pilih yang kulitnya masih kencang dan tidak keriput</li>
+                                <li>Warna sebaiknya merata dan cerah</li>
+                                <li>Hindari tomat yang terlalu lembek atau memiliki bagian yang membusuk</li>
+                                <li>Tomat yang masih sedikit hijau bisa dipilih jika ingin disimpan beberapa hari</li>
+                            </ul>
+
+                            <h3 class="mt-4 mb-3">Wortel</h3>
+
+                            <ul>
+                                <li>Pilih yang keras dan tidak lentur saat ditekuk</li>
+                                <li>Warna oranye sebaiknya cerah dan merata</li>
+                                <li>Hindari wortel yang memiliki banyak akar kecil di permukaannya</li>
+                                <li>Jika masih ada daunnya, pastikan daun masih segar dan hijau</li>
+                            </ul>
+
+                            <h3 class="mt-4 mb-3">Kentang</h3>
+
+                            <ul>
+                                <li>Pilih yang kulitnya mulus tanpa bintik hijau</li>
+                                <li>Hindari kentang yang sudah bertunas</li>
+                                <li>Kentang sebaiknya keras dan tidak lembek saat ditekan</li>
+                                <li>Hindari kentang yang berbau tidak sedap</li>
+                            </ul>
+
+                            <h2 class="mt-5 mb-3">Waktu Terbaik untuk Berbelanja</h2>
+
+                            <p>Waktu berbelanja juga mempengaruhi kesegaran sayuran yang Anda dapatkan. Berikut beberapa tips waktu berbelanja:</p>
+
+                            <ul>
+                                <li><strong>Pagi hari</strong> - Sebagian besar pedagang mendapatkan stok baru di pagi hari, sehingga sayuran masih sangat segar</li>
+                                <li><strong>Hindari sore menjelang tutup</strong> - Sayuran mungkin sudah tidak terlalu segar karena terkena panas sepanjang hari</li>
+                                <li><strong>Hari pasar</strong> - Di beberapa daerah, ada hari tertentu dimana pasar lebih ramai dan stok lebih banyak</li>
+                            </ul>
+
+                            <h2 class="mt-5 mb-3">Cara Menyimpan Sayuran Setelah Dibeli</h2>
+
+                            <p>Setelah berhasil memilih sayuran segar, penting juga untuk menyimpannya dengan benar agar tetap segar lebih lama:</p>
+
+                            <ul>
+                                <li>Cuci sayuran hanya saat akan digunakan, bukan saat akan disimpan</li>
+                                <li>Simpan sayuran berdaun dalam wadah tertutup di lemari pendingin</li>
+                                <li>Beberapa sayuran seperti tomat lebih baik disimpan di suhu ruangan</li>
+                                <li>Pisahkan buah-buahan dari sayuran saat menyimpan di lemari pendingin</li>
+                                <li>Gunakan kertas untuk menyerap kelembaban berlebih pada sayuran berdaun</li>
+                            </ul>
+
+                            <div class="bg-light p-4 rounded my-5">
+                                <h4 class="mb-3">Kesimpulan</h4>
+                                <p>Memilih sayuran segar di pasar tradisional membutuhkan sedikit pengetahuan dan ketelitian. Dengan memperhatikan warna, tekstur, aroma, dan kondisi fisik sayuran, Anda bisa mendapatkan bahan makanan berkualitas terbaik untuk keluarga. Selain itu, berbelanja di pasar tradisional juga turut mendukung ekonomi petani lokal dan mengurangi jejak karbon dari distribusi makanan.</p>
+                                <p class="mb-0">Jadi, jangan ragu untuk mengunjungi pasar tradisional terdekat dan praktikkan tips-tips di atas untuk mendapatkan sayuran segar dan berkualitas!</p>
+                            </div>
+
+                            <div class="author-bio bg-light p-4 rounded">
+                                <div class="d-flex">
+                                    <!-- Updated author bio image -->
+                                    <div class="profile-image-container author-image-lg me-3">
+                                        <img src="../assets/images/profil-pria.jpg" alt="Author" class="profile-image">
+                                    </div>
+                                    <div>
+                                        <h5>Tentang Penulis</h5>
+                                        <p class="mb-2"><strong>Budi Santoso</strong> adalah seorang ahli pertanian dengan pengalaman lebih dari 15 tahun di bidang pertanian organik dan konvensional. Beliau aktif memberikan penyuluhan kepada petani dan konsumen tentang praktik pertanian berkelanjutan dan pola konsumsi yang sehat.</p>
+                                        <div class="social-links">
+                                            <a href="#" class="text-secondary me-2"><i class="fab fa-twitter"></i></a>
+                                            <a href="#" class="text-secondary me-2"><i class="fab fa-linkedin-in"></i></a>
+                                            <a href="#" class="text-secondary"><i class="fas fa-globe"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Article Tags -->
+                        <div class="article-tags mt-5">
+                            <h5 class="mb-3">Tags:</h5>
+                            <div class="d-flex flex-wrap gap-2">
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">#SayuranSegar</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">#PasarTradisional</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">#TipsBelanja</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">#PanganLokal</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">#GayaHidupSehat</a>
+                            </div>
+                        </div>
+
+                        <!-- Related Articles -->
+                        <div class="related-articles mt-5">
+                            <h3 class="mb-4">Artikel Terkait</h3>
+                            <div class="row g-4">
+                                <div class="col-md-4">
+                                    <div class="card h-100 border-0 shadow-sm">
+                                        <img src="../assets/images/artikel3.jpg" class="card-img-top" alt="Related Article">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Manfaat Konsumsi Buah dan Sayur Organik untuk Kesehatan</h6>
+                                            <p class="small text-muted mb-0">5 Juni 2023</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100 border-0 shadow-sm">
+                                        <img src="../assets/images/artikel4.jpg" class="card-img-top" alt="Related Article">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Kisah Sukses Petani Milenial di Era Digital</h6>
+                                            <p class="small text-muted mb-0">28 Mei 2023</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card h-100 border-0 shadow-sm">
+                                        <img src="../assets/images/artikel5.jpg" class="card-img-top" alt="Related Article">
+                                        <div class="card-body">
+                                            <h6 class="card-title">5 Resep Salad Segar untuk Menu Sehat Harian</h6>
+                                            <p class="small text-muted mb-0">20 Mei 2023</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Comments Section -->
+                        <div class="comments-section mt-5">
+                            <h3 class="mb-4">Komentar (5)</h3>
+                            
+                            <!-- Comment Form -->
+                            <div class="card border-0 shadow-sm mb-4">
+                                <div class="card-body">
+                                    <h5 class="mb-3">Tinggalkan Komentar</h5>
+                                    <form>
+                                        <div class="row g-3 mb-3">
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" placeholder="Nama" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="email" class="form-control" placeholder="Email" required>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <textarea class="form-control" rows="4" placeholder="Komentar Anda" required></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-success">Kirim Komentar</button>
+                                    </form>
+                                </div>
+                            </div>
+                            
+                            <!-- Comments List -->
+                            <div class="comments-list">
+                                <!-- Comment 1 -->
+                                <div class="comment mb-4 pb-4 border-bottom">
+                                    <div class="d-flex">
+                                        <!-- Updated commenter image -->
+                                        <div class="profile-image-container commenter-image me-3">
+                                            <img src="../assets/images/commenter.jpg" alt="Commenter" class="profile-image">
+                                        </div>
+                                        <div>
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <h6 class="mb-0">Siti Rahayu</h6>
+                                                <small class="text-muted">2 hari yang lalu</small>
+                                            </div>
+                                            <p class="mb-0">Terima kasih atas tipsnya! Saya selalu bingung memilih sayuran yang segar di pasar. Artikel ini sangat membantu, terutama bagian tentang memilih sayuran berdaun hijau.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Comment 2 -->
+                                <div class="comment mb-4 pb-4 border-bottom">
+                                    <div class="d-flex">
+                                        <!-- Updated commenter image -->
+                                        <div class="profile-image-container commenter-image me-3">
+                                            <img src="../assets/images/commenter2.jpg" alt="Commenter" class="profile-image">
+                                        </div>
+                                        <div>
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <h6 class="mb-0">Ahmad Rizki</h6>
+                                                <small class="text-muted">1 minggu yang lalu</small>
+                                            </div>
+                                            <p class="mb-0">Sebagai pemilik restoran, saya sangat memperhatikan kualitas bahan. Tips memilih tomat dan wortel sangat berguna untuk saya. Akan saya terapkan saat belanja besok!</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Comment 3 -->
+                                <div class="comment mb-4 pb-4 border-bottom">
+                                    <div class="d-flex">
+                                        <!-- Updated commenter image -->
+                                        <div class="profile-image-container commenter-image me-3">
+                                            <img src="../assets/images/commenter3.avif" alt="Commenter" class="profile-image">
+                                        </div>
+                                        <div>
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <h6 class="mb-0">Dewi Lestari</h6>
+                                                <small class="text-muted">2 minggu yang lalu</small>
+                                            </div>
+                                            <p class="mb-0">Saya baru mulai belajar memasak dan selalu kesulitan memilih sayuran yang bagus. Artikel ini sangat informatif dan mudah dipahami. Terima kasih banyak!</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Comment 4 -->
+                                <div class="comment mb-4 pb-4 border-bottom">
+                                    <div class="d-flex">
+                                        <!-- Updated commenter image -->
+                                        <div class="profile-image-container commenter-image me-3">
+                                            <img src="../assets/images/commenter4.jpg" alt="Commenter" class="profile-image">
+                                        </div>
+                                        <div>
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <h6 class="mb-0">Budi Pratama</h6>
+                                                <small class="text-muted">3 minggu yang lalu</small>
+                                            </div>
+                                            <p class="mb-0">Bagian tentang waktu terbaik untuk berbelanja sangat menarik. Saya biasanya belanja di sore hari, pantas saja kadang dapat sayuran yang kurang segar. Mulai sekarang akan coba belanja pagi.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Comment 5 -->
+                                <div class="comment">
+                                    <div class="d-flex">
+                                        <!-- Updated commenter image -->
+                                        <div class="profile-image-container commenter-image me-3">
+                                            <img src="../assets/images/commenter5.jpg" alt="Commenter" class="profile-image">
+                                        </div>
+                                        <div>
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <h6 class="mb-0">Rina Wijaya</h6>
+                                                <small class="text-muted">1 bulan yang lalu</small>
+                                            </div>
+                                            <p class="mb-0">Sebagai petani sayur, saya sangat setuju dengan tips yang diberikan. Memang benar bahwa sayuran yang baru dipanen memiliki kualitas terbaik. Saya juga selalu menyarankan pelanggan untuk memperhatikan warna dan tekstur saat memilih sayuran.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Pagination -->
+                            <nav aria-label="Page navigation" class="mt-4">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <i class="fas fa-chevron-left"></i>
+                                        </a>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <i class="fas fa-chevron-right"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </article>
+                </div>
+                
+                <!-- Sidebar -->
+                <div class="col-lg-4 mt-5 mt-lg-0">
+                    <!-- Author Info -->
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <!-- Updated sidebar author image -->
+                                <div class="profile-image-container author-image-md me-3">
+                                    <img src="../assets/images/profil-pria.jpg" alt="Author" class="profile-image">
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">Budi Santoso</h5>
+                                    <p class="small text-muted mb-0">Ahli Pertanian</p>
+                                </div>
+                            </div>
+                            <p class="mb-3">Budi Santoso adalah seorang ahli pertanian dengan pengalaman lebih dari 15 tahun di bidang pertanian organik dan konvensional.</p>
+                            <a href="#" class="btn btn-outline-success btn-sm">Lihat Semua Artikel</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Popular Articles -->
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">Artikel Populer</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item px-0 py-3 border-bottom">
+                                    <div class="d-flex">
+                                        <img src="../assets/images/popular-artikel.avif" alt="Popular Article" class="rounded me-3" width="80" height="60" style="object-fit: cover;">
+                                        <div>
+                                            <h6 class="mb-1">10 Tanaman Herbal yang Mudah Ditanam di Rumah</h6>
+                                            <p class="small text-muted mb-0">8 Juni 2023 • 1.2K views</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item px-0 py-3 border-bottom">
+                                    <div class="d-flex">
+                                        <img src="../assets/images/popular-artikel2.jpg" alt="Popular Article" class="rounded me-3" width="80" height="60" style="object-fit: cover;">
+                                        <div>
+                                            <h6 class="mb-1">Panduan Lengkap Menanam Sayuran di Lahan Sempit</h6>
+                                            <p class="small text-muted mb-0">1 Juni 2023 • 985 views</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item px-0 py-3">
+                                    <div class="d-flex">
+                                        <img src="../assets/images/popular-artikel3.jpg" alt="Popular Article" class="rounded me-3" width="80" height="60" style="object-fit: cover;">
+                                        <div>
+                                            <h6 class="mb-1">7 Cara Menyimpan Sayuran Agar Tetap Segar Lebih Lama</h6>
+                                            <p class="small text-muted mb-0">25 Mei 2023 • 876 views</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Newsletter -->
+                    <div class="card border-0 shadow-sm mb-4 bg-light">
+                        <div class="card-body p-4">
+                            <h5 class="fw-bold mb-3">Berlangganan Newsletter</h5>
+                            <p class="mb-3">Dapatkan artikel terbaru dan tips pertanian langsung ke email Anda.</p>
+                            <form>
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" placeholder="Alamat Email Anda" required>
+                                </div>
+                                <button type="submit" class="btn btn-success w-100">Berlangganan</button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <!-- Tags -->
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">Tags</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex flex-wrap gap-2">
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">#PertanianOrganik</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">#SayuranSegar</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">#BuahLokal</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">#PetaniMilenial</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">#Hidroponik</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">#GayaHidupSehat</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">#ResepSehat</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">#TanamanHerbal</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">#BerkebunDiRumah</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">#PanganLokal</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="mb-3">Panénia</h5>
+                    <p>Hasil Tani Terbaik, Langsung dari Alam Nusantara</p>
+                    <div class="social-icons">
+                        <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <h5 class="mb-3">Kontak</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-map-marker-alt me-2"></i> Jl. Pertanian No. 123, Jakarta</li>
+                        <li><i class="fas fa-phone me-2"></i> (021) 1234-5678</li>
+                        <li><i class="fas fa-envelope me-2"></i> info@panenia.id</li>
+                    </ul>
+                </div>
+                <!-- Tambahan: Jam Operasional -->
+                <div class="col-lg-3">
+                    <h5 class="mb-3">Jam Operasional</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-clock me-2"></i>Senin - Jumat: 08.00 - 17.00</li>
+                        <li><i class="fas fa-clock me-2"></i>Sabtu: 08.00 - 12.00</li>
+                        <li><i class="fas fa-clock me-2"></i>Minggu: Libur</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-md-0">© 2023 Panénia. Hak Cipta Dilindungi.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white text-decoration-none me-3">Syarat & Ketentuan</a>
+                    <a href="#" class="text-white text-decoration-none">Kebijakan Privasi</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

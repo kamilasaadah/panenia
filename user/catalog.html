@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="../assets/images/logo-1x1.png" type="image/png">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../assets/css/style.css">
     <style>
@@ -175,7 +176,7 @@
         <div style="height: 60px;"></div>
 
         <!-- Navbar Baris Kedua -->
-        <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: #198754; z-index: 1010;">
+        <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: var(--primary-color); z-index: 1010;">
             <div class="container">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -192,7 +193,7 @@
                             <a class="nav-link text-white" href="articles.html">Artikel</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Tentang Kami</a>
+                            <a class="nav-link text-white" href="transaction-history.html">Riwayat Transaksi</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="#">Dashboard</a>
@@ -203,22 +204,21 @@
         </nav>
     </header>
 
-    <!-- Page Header -->
-    <section class="page-header py-3" style="background-color: #f8f9fa; border-bottom: 1px solid #dee2e6;">
+    <!-- Breadcrumb -->
+    <div class="bg-light py-2">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-12">
-                    <h1 class="fw-bold mb-2">Katalog Produk</h1>
+                <div class="col-md-6">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Beranda</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Katalog</li>
                         </ol>
                     </nav>
-                </div>
+                </div> 
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Catalog Section -->
     <section class="py-5">
@@ -411,7 +411,7 @@
                                     <p class="card-text small">Per ikat (± 250 gram)</p>
                                     <div class="d-flex justify-content-between mt-3">
                                         <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
-                                        <button class="btn btn-sm btn-success">+ Keranjang</button>
+                                        <button class="btn btn-sm btn-success add-to-cart-btn" data-id="1" data-name="Bayam Organik" data-price="8000" data-category="Sayuran" data-image="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2024/02/805193.jpg?resize=600%2C600&ssl=1">+ Keranjang</button>
                                     </div>
                                 </div>
                             </div>
@@ -439,7 +439,7 @@
                                     <p class="card-text small">Per kg</p>
                                     <div class="d-flex justify-content-between mt-3">
                                         <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
-                                        <button class="btn btn-sm btn-success">+ Keranjang</button>
+                                        <button class="btn btn-sm btn-success add-to-cart-btn" data-id="2" data-name="Tomat Segar" data-price="12000" data-category="Sayuran" data-image="https://images.unsplash.com/photo-1642372849465-ad4afb304542?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA==">+ Keranjang</button>
                                     </div>
                                 </div>
                             </div>
@@ -468,7 +468,7 @@
                                     <p class="card-text small">Per kg (± 8-10 buah)</p>
                                     <div class="d-flex justify-content-between mt-3">
                                         <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
-                                        <button class="btn btn-sm btn-success">+ Keranjang</button>
+                                        <button class="btn btn-sm btn-success add-to-cart-btn" data-id="3" data-name="Jeruk Mandarin" data-price="25000" data-category="Buah-buahan" data-image="https://img.freepik.com/free-photo/mandarin-isolated-white-background_93675-131040.jpg?t=st=1745742150~exp=1745745750~hmac=2eb21c187806c7d6320c6da88069102b536bd5473be161b5477af0467f2e973e&w=996">+ Keranjang</button>
                                     </div>
                                 </div>
                             </div>
@@ -496,7 +496,7 @@
                                     <p class="card-text small">Per kg</p>
                                     <div class="d-flex justify-content-between mt-3">
                                         <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
-                                        <button class="btn btn-sm btn-success">+ Keranjang</button>
+                                        <button class="btn btn-sm btn-success add-to-cart-btn" data-id="4" data-name="Wortel Segar" data-price="15000" data-category="Sayuran" data-image="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/04/852760.jpg?w=372&ssl=1">+ Keranjang</button>
                                     </div>
                                 </div>
                             </div>
@@ -524,7 +524,7 @@
                                     <p class="card-text small">Per kg</p>
                                     <div class="d-flex justify-content-between mt-3">
                                         <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
-                                        <button class="btn btn-sm btn-success">+ Keranjang</button>
+                                        <button class="btn btn-sm btn-success add-to-cart-btn" data-id="5" data-name="Apel Malang" data-price="35000" data-category="Buah-buahan" data-image="https://images.unsplash.com/photo-1705147296208-dffaf3fe5d7c?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA==">+ Keranjang</button>
                                     </div>
                                 </div>
                             </div>
@@ -552,7 +552,7 @@
                                     <p class="card-text small">Per kg</p>
                                     <div class="d-flex justify-content-between mt-3">
                                         <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
-                                        <button class="btn btn-sm btn-success">+ Keranjang</button>
+                                        <button class="btn btn-sm btn-success add-to-cart-btn" data-id="6" data-name="Bawang Putih" data-price="30000" data-category="Rempah-rempah" data-image="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/08/855013.png?resize=600,600&ssl=1">+ Keranjang</button>
                                     </div>
                                 </div>
                             </div>
@@ -579,7 +579,7 @@
                                     <p class="card-text small">Per kg</p>
                                     <div class="d-flex justify-content-between mt-3">
                                         <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
-                                        <button class="btn btn-sm btn-success">+ Keranjang</button>
+                                        <button class="btn btn-sm btn-success add-to-cart-btn" data-id="7" data-name="Ubi Jalar" data-price="10000" data-category="Umbi-umbian" data-image="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/04/811200.jpg?resize=720,720&ssl=1">+ Keranjang</button>
                                     </div>
                                 </div>
                             </div>
@@ -606,7 +606,7 @@
                                     <p class="card-text small">Per kg</p>
                                     <div class="d-flex justify-content-between mt-3">
                                         <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
-                                        <button class="btn btn-sm btn-success">+ Keranjang</button>
+                                        <button class="btn btn-sm btn-success add-to-cart-btn" data-id="8" data-name="Kacang Tanah" data-price="20000" data-category="Kacang-kacangan" data-image="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/08/802512.png?fit=1080,1080&ssl=1">+ Keranjang</button>
                                     </div>
                                 </div>
                             </div>
@@ -634,7 +634,7 @@
                                     <p class="card-text small">Per 1 kg</p>
                                     <div class="d-flex justify-content-between mt-3">
                                         <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
-                                        <button class="btn btn-sm btn-success">+ Keranjang</button>
+                                        <button class="btn btn-sm btn-success add-to-cart-btn" data-id="9" data-name="Beras Merah" data-price="28000" data-category="Bahan Pokok" data-image="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/04/4610953.jpg?resize=720%2C720&ssl=1">+ Keranjang</button>
                                     </div>
                                 </div>
                             </div>
@@ -661,7 +661,7 @@
                                     <p class="card-text small">Per 500 g</p>
                                     <div class="d-flex justify-content-between mt-3">
                                         <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
-                                        <button class="btn btn-sm btn-success">+ Keranjang</button>
+                                        <button class="btn btn-sm btn-success add-to-cart-btn" data-id="10" data-name="Kembang Kol" data-price="37000" data-category="Sayuran" data-image="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/04/801621.jpeg?w=500&ssl=1">+ Keranjang</button>
                                     </div>
                                 </div>
                             </div>
@@ -689,7 +689,7 @@
                                     <p class="card-text small">Per kg</p>
                                     <div class="d-flex justify-content-between mt-3">
                                         <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
-                                        <button class="btn btn-sm btn-success">+ Keranjang</button>
+                                        <button class="btn btn-sm btn-success add-to-cart-btn" data-id="11" data-name="Mangga Harum Manis" data-price="50000" data-category="Buah-buahan" data-image="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/08/844321.png?resize=600%2C600&ssl=1">+ Keranjang</button>
                                     </div>
                                 </div>
                             </div>
@@ -698,7 +698,7 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="card product-card h-100 border-0 shadow-sm">
                                 <div class="position-relative">
-                                    <img src="https://i0.wp.com/raigandhinagar.com/wp-content/uploads/2024/02/843591.jpg?resize=600%2C600&ssl=1" class="card-img-top" alt="Jahe Segar">
+                                    <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2024/02/843591.jpg?resize=600%2C600&ssl=1" class="card-img-top" alt="Jahe Segar">
                                 </div>
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
@@ -716,7 +716,7 @@
                                     <p class="card-text small">Per kg</p>
                                     <div class="d-flex justify-content-between mt-3">
                                         <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
-                                        <button class="btn btn-sm btn-success">+ Keranjang</button>
+                                        <button class="btn btn-sm btn-success add-to-cart-btn" data-id="12" data-name="Jahe Segar" data-price="15000" data-category="Rempah-rempah" data-image="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2024/02/843591.jpg?resize=600%2C600&ssl=1">+ Keranjang</button>
                                     </div>
                                 </div>
                             </div>
@@ -726,8 +726,8 @@
                     <!-- Pagination -->
                     <nav aria-label="Page navigation" class="mt-5">
                         <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
                                     <i class="fas fa-chevron-left"></i>
                                 </a>
                             </li>
@@ -735,7 +735,7 @@
                             <li class="page-item"><a class="page-link" href="#">2</a></li>
                             <li class="page-item"><a class="page-link" href="#">3</a></li>
                             <li class="page-item">
-                                <a class="page-link" href="#">
+                                <a class="page-link" href="#" aria-label="Next">
                                     <i class="fas fa-chevron-right"></i>
                                 </a>
                             </li>
@@ -856,6 +856,528 @@
                 priceRangeMax.value = maxValue;
                 priceMaxLabel.textContent = `Rp ${maxValue.toLocaleString('id-ID')}`;
             });
+
+            // Data produk untuk halaman 1 (default di HTML)
+            const page1Products = [
+                {
+                    image: "https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2024/02/805193.jpg?resize=600%2C600&ssl=1",
+                    category: "Sayuran",
+                    name: "Bayam Organik",
+                    price: "8.000",
+                    oldPrice: "10.000",
+                    unit: "Per ikat (± 250 gram)",
+                    rating: 4.5,
+                    badge: "Baru"
+                },
+                {
+                    image: "https://images.unsplash.com/photo-1642372849465-ad4afb304542?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA==",
+                    category: "Sayuran",
+                    name: "Tomat Segar",
+                    price: "12.000",
+                    unit: "Per kg",
+                    rating: 4
+                },
+                {
+                    image: "https://img.freepik.com/free-photo/mandarin-isolated-white-background_93675-131040.jpg?t=st=1745742150~exp=1745745750~hmac=2eb21c187806c7d6320c6da88069102b536bd5473be161b5477af0467f2e973e&w=996",
+                    category: "Buah-buahan",
+                    name: "Jeruk Mandarin",
+                    price: "25.000",
+                    oldPrice: "30.000",
+                    unit: "Per kg (± 8-10 buah)",
+                    rating: 5,
+                    badge: "Promo"
+                },
+                {
+                    image: "https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/04/852760.jpg?w=372&ssl=1",
+                    category: "Sayuran",
+                    name: "Wortel Segar",
+                    price: "15.000",
+                    unit: "Per kg",
+                    rating: 4
+                },
+                {
+                    image: "https://images.unsplash.com/photo-1705147296208-dffaf3fe5d7c?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA==",
+                    category: "Buah-buahan",
+                    name: "Apel Malang",
+                    price: "35.000",
+                    oldPrice: "40.000",
+                    unit: "Per kg",
+                    rating: 4.5,
+                    badge: "Promo"
+                },
+                {
+                    image: "https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/08/855013.png?resize=600,600&ssl=1",
+                    category: "Rempah-rempah",
+                    name: "Bawang Putih",
+                    price: "30.000",
+                    unit: "Per kg",
+                    rating: 4,
+                    badge: "Baru"
+                },
+                {
+                    image: "https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/04/811200.jpg?resize=720,720&ssl=1",
+                    category: "Umbi-umbian",
+                    name: "Ubi Jalar",
+                    price: "10.000",
+                    unit: "Per kg",
+                    rating: 4.5
+                },
+                {
+                    image: "https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/08/802512.png?fit=1080,1080&ssl=1",
+                    category: "Kacang-kacangan",
+                    name: "Kacang Tanah",
+                    price: "20.000",
+                    unit: "Per kg",
+                    rating: 4
+                },
+                {
+                    image: "https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/04/4610953.jpg?resize=720%2C720&ssl=1",
+                    category: "Bahan Pokok",
+                    name: "Beras Merah",
+                    price: "28.000",
+                    unit: "Per 1 kg",
+                    rating: 5,
+                    badge: "Baru"
+                },
+                {
+                    image: "https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/04/801621.jpeg?w=500&ssl=1",
+                    category: "Sayuran",
+                    name: "Kembang Kol",
+                    price: "37.000",
+                    unit: "Per 500 g",
+                    rating: 4
+                },
+                {
+                    image: "https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/08/844321.png?resize=600%2C600&ssl=1",
+                    category: "Buah-buahan",
+                    name: "Mangga Harum Manis",
+                    price: "50.000",
+                    oldPrice: "25.000",
+                    unit: "Per kg",
+                    rating: 4.5,
+                    badge: "Promo"
+                },
+                {
+                    image: "https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2024/02/843591.jpg?resize=600%2C600&ssl=1",
+                    category: "Rempah-rempah",
+                    name: "Jahe Segar",
+                    price: "15.000",
+                    unit: "Per kg",
+                    rating: 4
+                }
+            ];
+
+            // Data produk untuk halaman 2
+            const page2Products = [
+                {
+                    image: "../assets/images/brokoli.jpg",
+                    category: "Sayuran",
+                    name: "Brokoli Segar",
+                    price: "18.000",
+                    unit: "Per 500 gram",
+                    rating: 4.5,
+                    badge: "Baru"
+                },
+                {
+                    image: "https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/04/801621.jpeg?w=500&ssl=1",
+                    category: "Sayuran",
+                    name: "Kembang Kol",
+                    price: "15.000",
+                    unit: "Per 500 gram",
+                    rating: 4
+                },
+                {
+                    image: "https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/08/844321.png?resize=600%2C600&ssl=1",
+                    category: "Buah-buahan",
+                    name: "Mangga Harum Manis",
+                    price: "25.000",
+                    oldPrice: "30.000",
+                    unit: "Per kg",
+                    rating: 5,
+                    badge: "Promo"
+                },
+                {
+                    image: "https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/04/4610953.jpg?resize=720%2C720&ssl=1",
+                    category: "Bahan Pokok",
+                    name: "Beras Merah Organik",
+                    price: "28.000",
+                    unit: "Per kg",
+                    rating: 4.5
+                },
+                {
+                    image: "https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/04/807623.jpeg?w=225&ssl=1",
+                    category: "Rempah-rempah",
+                    name: "Bawang Merah",
+                    price: "40.000",
+                    unit: "Per kg",
+                    rating: 4
+                },
+                {
+                    image: "https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2024/02/843591.jpg?resize=600%2C600&ssl=1",
+                    category: "Rempah-rempah",
+                    name: "Jahe Merah",
+                    price: "18.000",
+                    unit: "Per 250 gram",
+                    rating: 4.5,
+                    badge: "Baru"
+                },
+                {
+                    image: "https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/08/822152.png?fit=1080%2C1080&ssl=1",
+                    category: "Umbi-umbian",
+                    name: "Kentang Dieng",
+                    price: "15.000",
+                    unit: "Per kg",
+                    rating: 4
+                },
+                {
+                    image: "https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/04/811200.jpg?resize=720%2C720&ssl=1",
+                    category: "Umbi-umbian",
+                    name: "Ubi Jalar Ungu",
+                    price: "12.000",
+                    unit: "Per kg",
+                    rating: 4.5
+                },
+                {
+                    image: "https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/08/802512.png?fit=1080%2C1080&ssl=1",
+                    category: "Kacang-kacangan",
+                    name: "Kacang Tanah Premium",
+                    price: "22.000",
+                    unit: "Per 500 gram",
+                    rating: 4
+                },
+                {
+                    image: "https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2024/02/805377.jpg?resize=600%2C600&ssl=1",
+                    category: "Rempah-rempah",
+                    name: "Cabai Merah Keriting",
+                    price: "35.000",
+                    oldPrice: "45.000",
+                    unit: "Per kg",
+                    rating: 4,
+                    badge: "Promo"
+                },
+                {
+                    image: "../assets/images/kangkung.webp",
+                    category: "Sayuran",
+                    name: "Kangkung Organik",
+                    price: "7.000",
+                    unit: "Per ikat",
+                    rating: 4.5
+                },
+                {
+                    image: "https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/08/855013.png?resize=600,600&ssl=1",
+                    category: "Rempah-rempah",
+                    name: "Bawang Putih Impor",
+                    price: "32.000",
+                    unit: "Per kg",
+                    rating: 4
+                }
+            ];
+
+            // Data produk untuk halaman 3
+            const page3Products = [
+                {
+                    image: "https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/04/852760.jpg?w=372&ssl=1",
+                    category: "Sayuran",
+                    name: "Wortel Baby",
+                    price: "18.000",
+                    unit: "Per 500 gram",
+                    rating: 4.5
+                },
+                {
+                    image: "https://images.unsplash.com/photo-1705147296208-dffaf3fe5d7c?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    category: "Buah-buahan",
+                    name: "Apel Fuji",
+                    price: "38.000",
+                    unit: "Per kg",
+                    rating: 5
+                },
+                {
+                    image: "https://img.freepik.com/free-photo/mandarin-isolated-white-background_93675-131040.jpg?t=st=1745742150~exp=1745745750~hmac=2eb21c187806c7d6320c6da88069102b536bd5473be161b5477af0467f2e973e&w=996",
+                    category: "Buah-buahan",
+                    name: "Jeruk Mandarin",
+                    price: "25.000",
+                    oldPrice: "30.000",
+                    unit: "Per kg",
+                    rating: 4.5,
+                    badge: "Promo"
+                },
+                {
+                    image: "https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/07/8810151.png?resize=600%2C600&ssl=1",
+                    category: "Bahan Pokok",
+                    name: "Beras Putih Premium",
+                    price: "75.000",
+                    unit: "Per 5 kg",
+                    rating: 4
+                },
+                {
+                    image: "https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/04/807623.jpeg?w=225&ssl=1",
+                    category: "Rempah-rempah",
+                    name: "Bawang Merah Brebes",
+                    price: "38.000",
+                    unit: "Per kg",
+                    rating: 4.5
+                },
+                {
+                    image: "../assets/images/kunyit.webp",
+                    category: "Rempah-rempah",
+                    name: "Kunyit Segar",
+                    price: "12.000",
+                    unit: "Per 250 gram",
+                    rating: 4,
+                    badge: "Baru"
+                },
+                {
+                    image: "https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/08/822152.png?fit=1080%2C1080&ssl=1",
+                    category: "Umbi-umbian",
+                    name: "Kentang Rendang",
+                    price: "18.000",
+                    unit: "Per kg",
+                    rating: 4.5
+                },
+                {
+                    image: "https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/04/811200.jpg?resize=720%2C720&ssl=1",
+                    category: "Umbi-umbian",
+                    name: "Ubi Jalar Kuning",
+                    price: "10.000",
+                    unit: "Per kg",
+                    rating: 4
+                },
+                {
+                    image: "../assets/images/kacanghijau.webp",
+                    category: "Kacang-kacangan",
+                    name: "Kacang Hijau",
+                    price: "25.000",
+                    unit: "Per 500 gram",
+                    rating: 4.5
+                },
+                {
+                    image: "https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2024/02/805377.jpg?resize=600%2C600&ssl=1",
+                    category: "Rempah-rempah",
+                    name: "Cabai Rawit",
+                    price: "45.000",
+                    oldPrice: "55.000",
+                    unit: "Per kg",
+                    rating: 4,
+                    badge: "Promo"
+                },
+                {
+                    image: "../assets/images/sawi.jpg",
+                    category: "Sayuran",
+                    name: "Sawi Hijau",
+                    price: "8.000",
+                    unit: "Per ikat",
+                    rating: 4.5
+                },
+                {
+                    image: "../assets/images/lengkuas.webp",
+                    category: "Rempah-rempah",
+                    name: "Lengkuas",
+                    price: "8.000",
+                    unit: "Per 250 gram",
+                    rating: 4
+                }
+            ];
+
+            // Fungsi untuk membuat rating stars
+            function createRatingStars(rating) {
+                let stars = '';
+                const fullStars = Math.floor(rating);
+                const hasHalfStar = rating % 1 !== 0;
+                
+                for (let i = 0; i < fullStars; i++) {
+                    stars += '<i class="fas fa-star"></i>';
+                }
+                
+                if (hasHalfStar) {
+                    stars += '<i class="fas fa-star-half-alt"></i>';
+                }
+                
+                const emptyStars = 5 - Math.ceil(rating);
+                for (let i = 0; i < emptyStars; i++) {
+                    stars += '<i class="far fa-star"></i>';
+                }
+                
+                return stars;
+            }
+
+            // Fungsi untuk membuat card produk
+            function createProductCard(product) {
+                return `
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card product-card h-100 border-0 shadow-sm">
+                            <div class="position-relative">
+                                <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                                ${product.badge ? `<div class="product-badge bg-${product.badge === 'Promo' ? 'danger' : 'success'} text-white">${product.badge}</div>` : ''}
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <p class="small text-muted mb-0">${product.category}</p>
+                                    <div class="rating text-warning">
+                                        ${createRatingStars(product.rating)}
+                                    </div>
+                                </div>
+                                <h5 class="card-title">${product.name}</h5>
+                                <p class="fw-bold text-success mb-0">Rp ${product.price} ${product.oldPrice ? `<small class="text-decoration-line-through text-muted">Rp ${product.oldPrice}</small>` : ''}</p>
+                                <p class="card-text small">${product.unit}</p>
+                                <div class="d-flex justify-content-between mt-3">
+                                    <a href="product-detail.html" class="btn btn-sm btn-outline-secondary">Detail</a>
+                                    <button class="btn btn-sm btn-success">+ Keranjang</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Fungsi untuk menampilkan produk berdasarkan halaman
+            function showProductsByPage(pageNumber) {
+                const productContainer = document.querySelector('.row.g-4');
+                if (!productContainer) return;
+                
+                let productsHTML = '';
+                let products = [];
+                
+                if (pageNumber === 1) {
+                    products = page1Products;
+                } else if (pageNumber === 2) {
+                    products = page2Products;
+                } else if (pageNumber === 3) {
+                    products = page3Products;
+                }
+                
+                products.forEach(product => {
+                    productsHTML += createProductCard(product);
+                });
+                
+                productContainer.innerHTML = productsHTML;
+                
+                // Update pagination active state
+                document.querySelectorAll('.pagination .page-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                document.querySelector(`.pagination .page-item:nth-child(${pageNumber + 1})`).classList.add('active');
+                
+                // Update produk counter
+                const counterText = document.querySelector('.col-lg-9 > .d-flex > p');
+                if (counterText) {
+                    const start = (pageNumber - 1) * 12 + 1;
+                    const end = start + 11;
+                    counterText.textContent = `Menampilkan ${start}-${end} dari 36 produk`;
+                }
+
+                // Update prev/next buttons state
+                const prevButton = document.querySelector('.pagination .page-item:first-child');
+                const nextButton = document.querySelector('.pagination .page-item:last-child');
+                if (prevButton && nextButton) {
+                    prevButton.classList.toggle('disabled', pageNumber === 1);
+                    nextButton.classList.toggle('disabled', pageNumber === 3);
+                }
+                
+                // Scroll ke atas
+                window.scrollTo(0, 0);
+            }
+
+            // Tambahkan event listener ke pagination
+            document.querySelectorAll('.pagination .page-link').forEach((link, index) => {
+                if (index === 0 || index === 4) return; // Skip tombol prev dan next
+                
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageNumber = parseInt(this.textContent);
+                    showProductsByPage(pageNumber);
+                });
+            });
+
+            // Tambahkan event listener ke tombol prev dan next
+            const prevButton = document.querySelector('.pagination .page-item:first-child .page-link');
+            const nextButton = document.querySelector('.pagination .page-item:last-child .page-link');
+
+            if (prevButton) {
+                prevButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const activePage = document.querySelector('.pagination .page-item.active');
+                    if (activePage) {
+                        const pageNumber = parseInt(activePage.querySelector('.page-link').textContent);
+                        if (pageNumber > 1) {
+                            showProductsByPage(pageNumber - 1);
+                        }
+                    }
+                });
+            }
+
+            if (nextButton) {
+                nextButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const activePage = document.querySelector('.pagination .page-item.active');
+                    if (activePage) {
+                        const pageNumber = parseInt(activePage.querySelector('.page-link').textContent);
+                        if (pageNumber < 3) {
+                            showProductsByPage(pageNumber + 1);
+                        }
+                    }
+                });
+            }
+
+            // Add to Cart functionality
+            const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Get product details from data attributes
+                    const productId = parseInt(this.dataset.id);
+                    const productName = this.dataset.name;
+                    const productPrice = parseInt(this.dataset.price);
+                    const productCategory = this.dataset.category;
+                    const productImage = this.dataset.image;
+                    
+                    // Get existing cart or create new one
+                    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    
+                    // Check if product already in cart
+                    const existingProductIndex = cart.findIndex(item => item.id === productId);
+                    
+                    if (existingProductIndex !== -1) {
+                        // Update quantity if product already in cart
+                        cart[existingProductIndex].quantity += 1;
+                    } else {
+                        // Add new product to cart
+                        cart.push({
+                            id: productId,
+                            name: productName,
+                            price: productPrice,
+                            category: productCategory,
+                            image: productImage,
+                            quantity: 1
+                        });
+                    }
+                    
+                    // Save cart to localStorage
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    
+                    // Update cart count in navbar
+                    updateCartCount();
+                    
+                    // // Show success message
+                    // alert('Produk berhasil ditambahkan ke keranjang!');
+                });
+            });
+            
+            // Function to update cart count in navbar
+            function updateCartCount() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const cartCountElement = document.getElementById('cartCount');
+                
+                if (cartCountElement) {
+                    let totalItems = 0;
+                    cart.forEach(item => {
+                        totalItems += item.quantity;
+                    });
+                    
+                    cartCountElement.textContent = totalItems.toString();
+                }
+            }
+            
+            // Initialize cart count
+            updateCartCount();
         });
     </script>
 </body>

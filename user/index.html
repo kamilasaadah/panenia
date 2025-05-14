@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="icon" href="../assets/images/logo-1x1.png" type="image/png">
     <style>
        /* Custom Styles for Enhanced Look */
        .navbar {
@@ -188,7 +189,7 @@
                             <a class="nav-link text-white" href="articles.html">Artikel</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Tentang Kami</a>
+                            <a class="nav-link text-white" href="transaction-history.html">Riwayat Transaksi</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="#">Dashboard</a>
@@ -904,5 +905,138 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
     <script src="../assets/js/script.js"></script>
+    <script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // Add to Cart functionality
+        const addToCartButtons = document.querySelectorAll('.btn-success');
+        addToCartButtons.forEach(button => {
+            if (button.textContent.includes('+ Keranjang')) {
+                button.classList.add('add-to-cart-btn');
+                
+                // If button doesn't have data attributes, add them based on the product info
+                if (!button.dataset.id) {
+                    const card = button.closest('.product-card');
+                    if (card) {
+                        const productName = card.querySelector('.card-title').textContent;
+                        const productPrice = parseInt(card.querySelector('.fw-bold').textContent.replace(/[^\d]/g, ''));
+                        const productCategory = card.querySelector('.small.text-muted').textContent;
+                        const productImage = card.querySelector('img').src;
+                        
+                        // Generate a unique ID based on name (for demo purposes)
+                        const productId = Math.floor(Math.random() * 1000) + 1;
+                        
+                        button.dataset.id = productId;
+                        button.dataset.name = productName;
+                        button.dataset.price = productPrice;
+                        button.dataset.category = productCategory;
+                        button.dataset.image = productImage;
+                    }
+                }
+                
+                button.addEventListener('click', function() {
+                    // Get product details from data attributes
+                    const productId = parseInt(this.dataset.id);
+                    const productName = this.dataset.name;
+                    const productPrice = parseInt(this.dataset.price);
+                    const productCategory = this.dataset.category;
+                    const productImage = this.dataset.image;
+                    
+                    // Get existing cart or create new one
+                    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    
+                    // Check if product already in cart
+                    const existingProductIndex = cart.findIndex(item => item.id === productId);
+                    
+                    if (existingProductIndex !== -1) {
+                        // Update quantity if product already in cart
+                        cart[existingProductIndex].quantity += 1;
+                    } else {
+                        // Add new product to cart
+                        cart.push({
+                            id: productId,
+                            name: productName,
+                            price: productPrice,
+                            category: productCategory,
+                            image: productImage,
+                            quantity: 1
+                        });
+                    }
+                    
+                    // Save cart to localStorage
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    
+                    // Update cart count in navbar
+                    updateCartCount();
+                    
+                    // // Show success message with alert
+                    // alert('Produk berhasil ditambahkan ke keranjang!');
+                });
+            }
+        });
+        
+        // Function to update cart count in navbar
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartCountElement = document.getElementById('cartCount');
+            
+            if (cartCountElement) {
+                let totalItems = 0;
+                cart.forEach(item => {
+                    totalItems += item.quantity;
+                });
+                
+                cartCountElement.textContent = totalItems.toString();
+            }
+        }
+        
+        // Initialize cart count when page loads
+        updateCartCount();
+        
+        // Carousel functionality for product sections
+        const scrollLeftFeatured = document.querySelector('.scroll-left-featured');
+        const scrollRightFeatured = document.querySelector('.scroll-right-featured');
+        const featuredProducts = document.getElementById('featured-products');
+        
+        if (scrollLeftFeatured && scrollRightFeatured && featuredProducts) {
+            scrollLeftFeatured.addEventListener('click', () => {
+                featuredProducts.scrollBy({ left: -300, behavior: 'smooth' });
+            });
+            
+            scrollRightFeatured.addEventListener('click', () => {
+                featuredProducts.scrollBy({ left: 300, behavior: 'smooth' });
+            });
+        }
+        
+        const scrollLeftNew = document.querySelector('.scroll-left-new');
+        const scrollRightNew = document.querySelector('.scroll-right-new');
+        const newProducts = document.getElementById('new-products');
+        
+        if (scrollLeftNew && scrollRightNew && newProducts) {
+            scrollLeftNew.addEventListener('click', () => {
+                newProducts.scrollBy({ left: -300, behavior: 'smooth' });
+            });
+            
+            scrollRightNew.addEventListener('click', () => {
+                newProducts.scrollBy({ left: 300, behavior: 'smooth' });
+            });
+        }
+        
+        const scrollLeftPromo = document.querySelector('.scroll-left-promo');
+        const scrollRightPromo = document.querySelector('.scroll-right-promo');
+        const promoProducts = document.getElementById('promo-products');
+        
+        if (scrollLeftPromo && scrollRightPromo && promoProducts) {
+            scrollLeftPromo.addEventListener('click', () => {
+                promoProducts.scrollBy({ left: -300, behavior: 'smooth' });
+            });
+            
+            scrollRightPromo.addEventListener('click', () => {
+                promoProducts.scrollBy({ left: 300, behavior: 'smooth' });
+            });
+        }
+    });
+
+    </script>
 </body>
 </html>

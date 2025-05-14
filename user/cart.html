@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keranjang Belanja - Panénia</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="../assets/images/logo-1x1.png" type="image/png">
+    <style>
+        /* Custom Styles for Enhanced Look */
+        :root {
+            --primary-color: #198754;
+            --primary-dark: #146c43;
+            --secondary-color: #6c757d;
+        }
+        
+        .navbar {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .navbar-brand img {
+            transition: transform 0.3s ease;
+        }
+        .navbar-brand img:hover {
+            transform: scale(1.1);
+        }
+        .cart-badge {
+            font-size: 0.7rem;
+            padding: 2px 6px;
+        }
+
+        .page-header .form-control {
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .page-header .form-control:focus {
+            box-shadow: 0 0 8px rgba(25, 135, 84, 0.2);
+            border-color: #198754;
+        }
+        .page-header .btn-search {
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .page-header .btn-search:hover {
+            background-color: #146c43;
+            transform: scale(1.05);
+        }
+        
+        .product-card {
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        .product-card img {
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        
+        .pagination .page-link {
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .pagination .page-link:hover {
+            background-color: #198754;
+            color: #fff;
+        }
+        .pagination .page-item.active .page-link {
+            background-color: #198754;
+            border-color: #198754;
+        }
+
+        footer a, footer i {
+            transition: color 0.3s ease;
+        }
+        footer a:hover, footer i:hover {
+            color: #198754 !important;
+        }
+        
+        /* Cart specific styles */
+        .cart-item {
+            transition: all 0.3s ease;
+        }
+        .cart-item:hover {
+            background-color: #f8f9fa;
+        }
+        .cart-item .product-image {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+        }
+        .quantity-control {
+            max-width: 120px;
+        }
+        .remove-item {
+            color: #dc3545;
+            text-decoration: none;
+        }
+        .remove-item:hover {
+            color: #b02a37;
+        }
+        
+        /* Summary card */
+        .card-header.bg-success {
+            background-color: #198754 !important;
+        }
+        .btn-success {
+            background-color: #198754;
+            border-color: #198754;
+        }
+        .btn-success:hover {
+            background-color: #146c43;
+            border-color: #146c43;
+        }
+        .btn-outline-success {
+            color: #198754;
+            border-color: #198754;
+        }
+        .btn-outline-success:hover {
+            background-color: #198754;
+            color: white;
+        }
+        
+        /* Main content spacing */
+        .main-content {
+            min-height: 60vh;
+            padding-top: 20px;
+            padding-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <!-- Navbar Baris Pertama -->
+        <nav class="navbar navbar-light bg-white border-bottom navbar-expand-lg" style="position: fixed; top: 0; width: 100%; z-index: 1020;">
+            <div class="container">
+                <!-- Logo -->
+                <a class="navbar-brand fw-bold text-success" href="index.html">
+                    <img src="../assets/images/logo.png" alt="Panénia Logo" class="logo me-2" style="height: 40px;">
+                </a>
+
+                <!-- Tombol Toggler untuk Layar Kecil -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTop" aria-controls="navbarTop" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Konten yang akan di-collapse -->
+                <div class="collapse navbar-collapse" id="navbarTop">
+                    <!-- Search Bar -->
+                    <div class="d-flex flex-grow-1 mx-3">
+                        <div class="input-group">
+                            <select class="form-select" style="max-width: 200px;">
+                                <option selected>Semua Kategori</option>
+                                <option>Buah-buahan</option>
+                                <option>Sayur-sayuran</option>
+                                <option>Rempah-rempah</option>
+                                <option>Umbi-umbian</option>
+                                <option>Kacang-kacangan</option>
+                                <option>Bahan Pokok</option>
+                                <option>Tanaman Herbal</option>
+                                <option>Produk Olahan</option>
+                            </select>
+                            <input type="text" class="form-control" placeholder="Cari produk..." aria-label="Search">
+                            <button class="btn btn-outline-secondary" type="button">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Keranjang dan Masuk -->
+                    <div class="d-flex mt-2 mt-lg-0">
+                        <a href="cart.html" class="btn btn-outline-success me-2 position-relative">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                0
+                            </span>
+                        </a>
+                        <a href="login.html" class="btn btn-outline-success">
+                            <i class="fas fa-user"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Spacer untuk mencegah konten tertutup navbar fixed -->
+        <div style="height: 60px;"></div>
+
+        <!-- Navbar Baris Kedua -->
+        <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: var(--primary-color); z-index: 1010;">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav w-100 justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="index.html">Beranda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="catalog.html">Katalog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="articles.html">Artikel</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="transaction-history.html">Riwayat Transaksi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Dashboard</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+        <h2 class="my-4">Keranjang Belanja</h2>
+        
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <div id="cartItems">
+                            <!-- Cart items will be loaded here dynamically -->
+                            <div class="text-center py-5" id="emptyCartMessage">
+                                <i class="fas fa-shopping-cart fa-4x mb-3 text-muted"></i>
+                                <h4>Keranjang belanja Anda kosong</h4>
+                                <p>Silakan tambahkan produk ke keranjang belanja Anda.</p>
+                                <a href="catalog.html" class="btn btn-success mt-3">Lihat Katalog</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0">Ringkasan Belanja</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Subtotal</span>
+                            <span id="subtotal">Rp 0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Biaya Pengiriman</span>
+                            <span id="shippingCost">Rp 0</span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between mb-3 fw-bold">
+                            <span>Total</span>
+                            <span id="totalPrice">Rp 0</span>
+                        </div>
+                        <button class="btn btn-success w-100" id="checkoutBtn" disabled>Lanjut ke Pembayaran</button>
+                    </div>
+                </div>
+                
+                <div class="card mt-3 shadow-sm">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Kode Promo</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Masukkan kode promo" id="promoCode">
+                            <button class="btn btn-outline-success" type="button" id="applyPromoBtn">Terapkan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Item Template (Hidden) -->
+    <template id="cartItemTemplate">
+        <div class="cart-item mb-3 border-bottom pb-3">
+            <div class="row align-items-center">
+                <div class="col-md-2 col-4">
+                    <img src="/placeholder.svg" alt="Product Image" class="img-fluid rounded product-image">
+                </div>
+                <div class="col-md-4 col-8">
+                    <h5 class="product-name"></h5>
+                    <p class="text-muted small product-category"></p>
+                </div>
+                <div class="col-md-2 col-4 mt-3 mt-md-0">
+                    <span class="product-price"></span>
+                </div>
+                <div class="col-md-2 col-4 mt-3 mt-md-0">
+                    <div class="input-group quantity-control">
+                        <button class="btn btn-sm btn-outline-secondary decrease-qty" type="button">-</button>
+                        <input type="text" class="form-control form-control-sm text-center product-quantity" value="1" readonly>
+                        <button class="btn btn-sm btn-outline-secondary increase-qty" type="button">+</button>
+                    </div>
+                </div>
+                <div class="col-md-2 col-4 mt-3 mt-md-0 text-end">
+                    <span class="product-subtotal fw-bold"></span>
+                    <button class="btn btn-sm btn-link text-danger remove-item mt-2 p-0">
+                        <i class="fas fa-trash-alt"></i> Hapus
+                    </button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5 mt-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="mb-3">Panénia</h5>
+                    <p>Hasil Tani Terbaik, Langsung dari Alam Nusantara</p>
+                    <div class="social-icons">
+                        <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <h5 class="mb-3">Kontak</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-map-marker-alt me-2"></i> Jl. Pertanian No. 123, Jakarta</li>
+                        <li><i class="fas fa-phone me-2"></i> (021) 1234-5678</li>
+                        <li><i class="fas fa-envelope me-2"></i> info@panenia.id</li>
+                    </ul>
+                </div>
+                <!-- Tambahan: Jam Operasional -->
+                <div class="col-lg-3">
+                    <h5 class="mb-3">Jam Operasional</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-clock me-2"></i>Senin - Jumat: 08.00 - 17.00</li>
+                        <li><i class="fas fa-clock me-2"></i>Sabtu: 08.00 - 12.00</li>
+                        <li><i class="fas fa-clock me-2"></i>Minggu: Libur</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-md-0">© 2023 Panénia. Hak Cipta Dilindungi.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white text-decoration-none me-3">Syarat & Ketentuan</a>
+                    <a href="#" class="text-white text-decoration-none">Kebijakan Privasi</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get cart from localStorage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Function to format currency
+            function formatCurrency(amount) {
+                return 'Rp ' + amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            }
+            
+            // Function to update cart UI
+            function updateCartUI() {
+                const cartItemsContainer = document.getElementById('cartItems');
+                const emptyCartMessage = document.getElementById('emptyCartMessage');
+                const cartItemTemplate = document.getElementById('cartItemTemplate');
+                const subtotalElement = document.getElementById('subtotal');
+                const shippingCostElement = document.getElementById('shippingCost');
+                const totalPriceElement = document.getElementById('totalPrice');
+                const checkoutBtn = document.getElementById('checkoutBtn');
+                const cartCountElement = document.getElementById('cartCount');
+                
+                // Clear previous items
+                cartItemsContainer.innerHTML = '';
+                
+                if (cart.length === 0) {
+                    // Show empty cart message
+                    cartItemsContainer.appendChild(emptyCartMessage);
+                    subtotalElement.textContent = formatCurrency(0);
+                    shippingCostElement.textContent = formatCurrency(0);
+                    totalPriceElement.textContent = formatCurrency(0);
+                    checkoutBtn.disabled = true;
+                    if (cartCountElement) cartCountElement.textContent = '0';
+                    return;
+                }
+                
+                // Hide empty cart message
+                if (emptyCartMessage) {
+                    emptyCartMessage.style.display = 'none';
+                }
+                
+                // Calculate totals
+                let subtotal = 0;
+                let itemCount = 0;
+                
+                // Add each item to the cart
+                cart.forEach((item, index) => {
+                    const cartItemElement = document.importNode(cartItemTemplate.content, true);
+                    
+                    // Set item details
+                    const productImage = cartItemElement.querySelector('.product-image');
+                    const productName = cartItemElement.querySelector('.product-name');
+                    const productCategory = cartItemElement.querySelector('.product-category');
+                    const productPrice = cartItemElement.querySelector('.product-price');
+                    const productQuantity = cartItemElement.querySelector('.product-quantity');
+                    const productSubtotal = cartItemElement.querySelector('.product-subtotal');
+                    const decreaseBtn = cartItemElement.querySelector('.decrease-qty');
+                    const increaseBtn = cartItemElement.querySelector('.increase-qty');
+                    const removeBtn = cartItemElement.querySelector('.remove-item');
+                    
+                    productImage.src = item.image || 'img/product-placeholder.jpg';
+                    productImage.alt = item.name;
+                    productName.textContent = item.name;
+                    productCategory.textContent = item.category;
+                    productPrice.textContent = formatCurrency(item.price);
+                    productQuantity.value = item.quantity;
+                    
+                    const itemSubtotal = item.price * item.quantity;
+                    productSubtotal.textContent = formatCurrency(itemSubtotal);
+                    
+                    // Add event listeners
+                    decreaseBtn.addEventListener('click', () => {
+                        if (item.quantity > 1) {
+                            item.quantity--;
+                            localStorage.setItem('cart', JSON.stringify(cart));
+                            updateCartUI();
+                        }
+                    });
+                    
+                    increaseBtn.addEventListener('click', () => {
+                        item.quantity++;
+                        localStorage.setItem('cart', JSON.stringify(cart));
+                        updateCartUI();
+                    });
+                    
+                    removeBtn.addEventListener('click', () => {
+                        cart.splice(index, 1);
+                        localStorage.setItem('cart', JSON.stringify(cart));
+                        updateCartUI();
+                    });
+                    
+                    // Add to subtotal
+                    subtotal += itemSubtotal;
+                    itemCount += item.quantity;
+                    
+                    // Add to cart container
+                    cartItemsContainer.appendChild(cartItemElement);
+                });
+                
+                // Set shipping cost (fixed or based on subtotal)
+                const shippingCost = subtotal > 0 ? 10000 : 0;
+                
+                // Update summary
+                subtotalElement.textContent = formatCurrency(subtotal);
+                shippingCostElement.textContent = formatCurrency(shippingCost);
+                totalPriceElement.textContent = formatCurrency(subtotal + shippingCost);
+                
+                // Enable checkout button if cart has items
+                checkoutBtn.disabled = cart.length === 0;
+                
+                // Update cart count
+                if (cartCountElement) cartCountElement.textContent = itemCount.toString();
+            }
+            
+            // Initialize cart UI
+            updateCartUI();
+            
+            // Handle checkout button
+            const checkoutBtn = document.getElementById('checkoutBtn');
+            if (checkoutBtn) {
+                checkoutBtn.addEventListener('click', function() {
+                    window.location.href = 'checkout.html';
+                });
+            }
+            
+            // Handle promo code
+            const applyPromoBtn = document.getElementById('applyPromoBtn');
+            if (applyPromoBtn) {
+                applyPromoBtn.addEventListener('click', function() {
+                    const promoCode = document.getElementById('promoCode').value.trim();
+                    
+                    if (promoCode === '') {
+                        alert('Silakan masukkan kode promo');
+                        return;
+                    }
+                    
+                    // In a real app, you would validate the promo code with the server
+                    // For this example, we'll just show an alert
+                    alert('Kode promo "' + promoCode + '" berhasil diterapkan!');
+                    
+                    // You would then update the cart totals with the discount
+                    updateCartUI();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

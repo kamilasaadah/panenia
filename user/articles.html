@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artikel - Panénia</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="../assets/images/logo-1x1.png" type="image/png">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        /* Custom Styles for Enhanced Look */
+        .navbar {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .navbar-brand img {
+            transition: transform 0.3s ease;
+        }
+        .navbar-brand img:hover {
+            transform: scale(1.1);
+        }
+        .cart-badge {
+            font-size: 0.7rem;
+            padding: 2px 6px;
+        }
+
+        .page-header .form-control {
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .page-header .form-control:focus {
+            box-shadow: 0 0 8px rgba(25, 135, 84, 0.2);
+            border-color: #198754;
+        }
+        .page-header .btn-search {
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .page-header .btn-search:hover {
+            background-color: #146c43;
+            transform: scale(1.05);
+        }
+
+        .article-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        .article-card img {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .pagination .page-item {
+            margin: 0 5px; /* Jarak antar item pagination */
+        }
+        .pagination .page-link {
+            border-radius: 5px;
+            padding: 8px 12px; /* Tambah padding biar ga terlalu kecil */
+            transition: all 0.3s ease;
+        }
+        .pagination .page-link:hover {
+            background-color: #198754;
+            color: #fff;
+        }
+        .pagination .page-item.active .page-link {
+            background-color: #198754;
+            border-color: #198754;
+        }
+
+        footer a, footer i {
+            transition: color 0.3s ease;
+        }
+        footer a:hover, footer i:hover {
+            color: #198754 !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <!-- Navbar Baris Pertama -->
+        <nav class="navbar navbar-light bg-white border-bottom navbar-expand-lg" style="position: fixed; top: 0; width: 100%; z-index: 1020;">
+            <div class="container">
+                <!-- Logo -->
+                <a class="navbar-brand fw-bold text-success" href="index.html">
+                    <img src="../assets/images/logo.png" alt="Panénia Logo" class="logo me-2" style="height: 40px;">
+                </a>
+
+                <!-- Tombol Toggler untuk Layar Kecil -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTop" aria-controls="navbarTop" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Konten yang akan di-collapse -->
+                <div class="collapse navbar-collapse" id="navbarTop">
+                    <!-- Search Bar -->
+                    <div class="d-flex flex-grow-1 mx-3">
+                        <div class="input-group">
+                            <select class="form-select" style="max-width: 200px;">
+                                <option selected>Semua Kategori</option>
+                                <option>Buah-buahan</option>
+                                <option>Sayur-sayuran</option>
+                                <option>Rempah-rempah</option>
+                                <option>Umbi-umbian</option>
+                                <option>Kacang-kacangan</option>
+                                <option>Bahan Pokok</option>
+                                <option>Tanaman Herbal</option>
+                                <option>Produk Olahan</option>
+                            </select>
+                            <input type="text" class="form-control" placeholder="Cari produk..." aria-label="Search">
+                            <button class="btn btn-outline-secondary" type="button">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Keranjang dan Masuk -->
+                    <div class="d-flex mt-2 mt-lg-0">
+                        <a href="cart.html" class="btn btn-outline-success me-2 position-relative">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                0
+                            </span>
+                        </a>
+                        <a href="login.html" class="btn btn-outline-success">
+                            <i class="fas fa-user"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Spacer untuk mencegah konten tertutup navbar fixed -->
+        <div style="height: 60px;"></div>
+
+        <!-- Navbar Baris Kedua -->
+        <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: var(--primary-color); z-index: 1010;">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav w-100 justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="index.html">Beranda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="catalog.html">Katalog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="articles.html">Artikel</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="transaction-history.html">Riwayat Transaksi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Dashboard</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="bg-light py-2">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Beranda</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Artikel</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Articles Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Main Content -->
+                <div class="col-lg-8">
+                    <!-- Featured Article -->
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="row g-0">
+                            <div class="col-md-6">
+                                <img src="../assets/images/artikel1.avif" class="img-fluid rounded-start h-100 object-fit-cover" alt="Featured Article">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card-body d-flex flex-column h-100">
+                                    <div class="mb-2">
+                                        <span class="badge bg-success me-2">Featured</span>
+                                        <small class="text-muted">15 Juni 2023</small>
+                                    </div>
+                                    <h3 class="card-title fw-bold">Mengenal Pertanian Organik dan Manfaatnya bagi Kesehatan</h3>
+                                    <p class="card-text flex-grow-1">Pertanian organik bukan sekadar tren, tetapi gaya hidup yang mendukung kesehatan dan kelestarian lingkungan. Pelajari bagaimana metode pertanian ini memberikan manfaat jangka panjang...</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex align-items-center">
+                                            <img src="../assets/images/profil-wanita.jpg" alt="Author" class="rounded-circle me-2" width="30" height="30">
+                                            <span class="small">Rina Wijaya</span>
+                                        </div>
+                                        <a href="article-detail.html" class="btn btn-outline-success">Baca Selengkapnya</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Article Filters -->
+                    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+                        <div class="mb-3 mb-md-0">
+                            <label class="me-2">Filter Kategori:</label>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-outline-success active">Semua</button>
+                                <button type="button" class="btn btn-outline-success">Pertanian</button>
+                                <button type="button" class="btn btn-outline-success">Kesehatan</button>
+                                <button type="button" class="btn btn-outline-success">Resep</button>
+                                <button type="button" class="btn btn-outline-success">Komunitas</button>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="me-2">Urutkan:</label>
+                            <select class="form-select form-select-sm d-inline-block w-auto">
+                                <option selected>Terbaru</option>
+                                <option>Terpopuler</option>
+                                <option>A-Z</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Articles List -->
+                    <div class="row g-4">
+                        <!-- Article 1 -->
+                        <div class="col-md-6">
+                            <div class="card article-card h-100 border-0 shadow-sm">
+                                <img src="../assets/images/artikel2.avif" class="card-img-top" alt="Artikel Pertanian">
+                                <div class="card-body">
+                                    <p class="small text-muted mb-2">12 Juni 2023 • Pertanian</p>
+                                    <h5 class="card-title">Tips Memilih Sayuran Segar di Pasar Tradisional</h5>
+                                    <p class="card-text">Panduan lengkap untuk memilih sayuran berkualitas dan segar saat berbelanja di pasar tradisional...</p>
+                                    <a href="article-detail.html" class="btn btn-link text-success p-0">Baca Selengkapnya <i class="fas fa-arrow-right ms-1"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Article 2 -->
+                        <div class="col-md-6">
+                            <div class="card article-card h-100 border-0 shadow-sm">
+                                <img src="../assets/images/artikel3.jpg" class="card-img-top" alt="Artikel Kesehatan">
+                                <div class="card-body">
+                                    <p class="small text-muted mb-2">5 Juni 2023 • Kesehatan</p>
+                                    <h5 class="card-title">Manfaat Konsumsi Buah dan Sayur Organik untuk Kesehatan</h5>
+                                    <p class="card-text">Mengapa produk organik lebih baik untuk kesehatan dan lingkungan? Simak penjelasan lengkapnya...</p>
+                                    <a href="article-detail.html" class="btn btn-link text-success p-0">Baca Selengkapnya <i class="fas fa-arrow-right ms-1"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Article 3 -->
+                        <div class="col-md-6">
+                            <div class="card article-card h-100 border-0 shadow-sm">
+                                <img src="../assets/images/artikel4.jpg" class="card-img-top" alt="Artikel Petani">
+                                <div class="card-body">
+                                    <p class="small text-muted mb-2">28 Mei 2023 • Komunitas</p>
+                                    <h5 class="card-title">Kisah Sukses Petani Milenial di Era Digital</h5>
+                                    <p class="card-text">Bagaimana generasi muda mengubah wajah pertanian Indonesia dengan teknologi dan inovasi...</p>
+                                    <a href="article-detail.html" class="btn btn-link text-success p-0">Baca Selengkapnya <i class="fas fa-arrow-right ms-1"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Article 4 -->
+                        <div class="col-md-6">
+                            <div class="card article-card h-100 border-0 shadow-sm">
+                                <img src="../assets/images/artikel5.jpg" class="card-img-top" alt="Artikel Resep">
+                                <div class="card-body">
+                                    <p class="small text-muted mb-2">20 Mei 2023 • Resep</p>
+                                    <h5 class="card-title">5 Resep Salad Segar untuk Menu Sehat Harian</h5>
+                                    <p class="card-text">Kumpulan resep salad yang mudah dibuat dan kaya nutrisi untuk menu sehat keluarga Anda...</p>
+                                    <a href="article-detail.html" class="btn btn-link text-success p-0">Baca Selengkapnya <i class="fas fa-arrow-right ms-1"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Article 5 -->
+                        <div class="col-md-6">
+                            <div class="card article-card h-100 border-0 shadow-sm">
+                                <img src="../assets/images/artikel6.jpg" class="card-img-top" alt="Artikel Pertanian">
+                                <div class="card-body">
+                                    <p class="small text-muted mb-2">15 Mei 2023 • Pertanian</p>
+                                    <h5 class="card-title">Mengenal Sistem Hidroponik untuk Pertanian Rumahan</h5>
+                                    <p class="card-text">Panduan lengkap memulai sistem hidroponik sederhana di rumah dengan biaya terjangkau...</p>
+                                    <a href="article-detail.html" class="btn btn-link text-success p-0">Baca Selengkapnya <i class="fas fa-arrow-right ms-1"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Article 6 -->
+                        <div class="col-md-6">
+                            <div class="card article-card h-100 border-0 shadow-sm">
+                                <img src="../assets/images/artikel7.jpg" class="card-img-top" alt="Artikel Komunitas">
+                                <div class="card-body">
+                                    <p class="small text-muted mb-2">10 Mei 2023 • Komunitas</p>
+                                    <h5 class="card-title">Gerakan Dukung Petani Lokal: Dampak dan Manfaatnya</h5>
+                                    <p class="card-text">Bagaimana gerakan mendukung petani lokal memberikan dampak positif bagi ekonomi dan lingkungan...</p>
+                                    <a href="article-detail.html" class="btn btn-link text-success p-0">Baca Selengkapnya <i class="fas fa-arrow-right ms-1"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <nav aria-label="Page navigation" class="mt-5">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <i class="fas fa-chevron-left"></i>
+                                </a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                
+                <!-- Sidebar -->
+                <div class="col-lg-4 mt-5 mt-lg-0">
+                    <!-- Popular Articles -->
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">Artikel Populer</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item px-0 py-3 border-bottom">
+                                    <div class="d-flex">
+                                        <img src="../assets/images/popular-artikel.avif" alt="Popular Article" class="rounded me-3" width="80" height="60" style="object-fit: cover;">
+                                        <div>
+                                            <h6 class="mb-1">10 Tanaman Herbal yang Mudah Ditanam di Rumah</h6>
+                                            <p class="small text-muted mb-0">8 Juni 2023 • 1.2K views</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item px-0 py-3 border-bottom">
+                                    <div class="d-flex">
+                                        <img src="../assets/images/popular-artikel2.jpg" alt="Popular Article" class="rounded me-3" width="80" height="60" style="object-fit: cover;">
+                                        <div>
+                                            <h6 class="mb-1">Panduan Lengkap Menanam Sayuran di Lahan Sempit</h6>
+                                            <p class="small text-muted mb-0">1 Juni 2023 • 985 views</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item px-0 py-3 border-bottom">
+                                    <div class="d-flex">
+                                        <img src="../assets/images/popular-artikel3.jpg" alt="Popular Article" class="rounded me-3" width="80" height="60" style="object-fit: cover;">
+                                        <div>
+                                            <h6 class="mb-1">7 Cara Menyimpan Sayuran Agar Tetap Segar Lebih Lama</h6>
+                                            <p class="small text-muted mb-0">25 Mei 2023 • 876 views</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item px-0 py-3">
+                                    <div class="d-flex">
+                                        <img src="../assets/images/popular-artikel4.jpg" alt="Popular Article" class="rounded me-3" width="80" height="60" style="object-fit: cover;">
+                                        <div>
+                                            <h6 class="mb-1">Mengenal Berbagai Jenis Pupuk Organik untuk Tanaman</h6>
+                                            <p class="small text-muted mb-0">18 Mei 2023 • 754 views</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Categories -->
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">Kategori</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex flex-wrap gap-2">
+                                <a href="#" class="btn btn-outline-success btn-sm">Pertanian (12)</a>
+                                <a href="#" class="btn btn-outline-success btn-sm">Kesehatan (8)</a>
+                                <a href="#" class="btn btn-outline-success btn-sm">Resep (15)</a>
+                                <a href="#" class="btn btn-outline-success btn-sm">Komunitas (6)</a>
+                                <a href="#" class="btn btn-outline-success btn-sm">Tips & Trik (10)</a>
+                                <a href="#" class="btn btn-outline-success btn-sm">Gaya Hidup (7)</a>
+                                <a href="#" class="btn btn-outline-success btn-sm">Teknologi (4)</a>
+                                <a href="#" class="btn btn-outline-success btn-sm">Lingkungan (9)</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Newsletter -->
+                    <div class="card border-0 shadow-sm mb-4 bg-light">
+                        <div class="card-body p-4">
+                            <h5 class="fw-bold mb-3">Berlangganan Newsletter</h5>
+                            <p class="mb-3">Dapatkan artikel terbaru dan tips pertanian langsung ke email Anda.</p>
+                            <form>
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" placeholder="Alamat Email Anda" required>
+                                </div>
+                                <button type="submit" class="btn btn-success w-100">Berlangganan</button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <!-- Tags -->
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">Tags</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex flex-wrap gap-2">
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">#PertanianOrganik</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">#SayuranSegar</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">#BuahLokal</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">#PetaniMilenial</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">#Hidroponik</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">#GayaHidupSehat</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">#ResepSehat</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">#TanamanHerbal</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">#BerkebunDiRumah</a>
+                                <a href="#" class="badge bg-light text-dark text-decoration-none p-2">#PanganLokal</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="mb-3">Panénia</h5>
+                    <p>Hasil Tani Terbaik, Langsung dari Alam Nusantara</p>
+                    <div class="social-icons">
+                        <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <h5 class="mb-3">Kontak</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-map-marker-alt me-2"></i> Jl. Pertanian No. 123, Jakarta</li>
+                        <li><i class="fas fa-phone me-2"></i> (021) 1234-5678</li>
+                        <li><i class="fas fa-envelope me-2"></i> info@panenia.id</li>
+                    </ul>
+                </div>
+                <!-- Tambahan: Jam Operasional -->
+                <div class="col-lg-3">
+                    <h5 class="mb-3">Jam Operasional</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-clock me-2"></i>Senin - Jumat: 08.00 - 17.00</li>
+                        <li><i class="fas fa-clock me-2"></i>Sabtu: 08.00 - 12.00</li>
+                        <li><i class="fas fa-clock me-2"></i>Minggu: Libur</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-md-0">© 2023 Panénia. Hak Cipta Dilindungi.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white text-decoration-none me-3">Syarat & Ketentuan</a>
+                    <a href="#" class="text-white text-decoration-none">Kebijakan Privasi</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+</body>
+</html>
