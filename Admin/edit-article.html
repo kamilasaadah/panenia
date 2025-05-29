@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Artikel - Panénia Admin</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Quill CSS -->
+    <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body>
+    <div class="admin-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>Panénia Admin</h3>
+                <button class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="index.html" class="active">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="manage-products.html">
+                        <i class="fas fa-box"></i>
+                        <span>Kelola Produk</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="manage-orders.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Pesanan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="manage-users.html">
+                        <i class="fas fa-users"></i>
+                        <span>Pengguna</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="manage-articles.html">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Artikel</span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="../user/index.html">
+                        <i class="fas fa-store"></i>
+                        <span>Lihat Toko</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="logout.html">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Keluar</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="mobile-sidebar-toggle d-lg-none"><i class="fas fa-bars"></i></button>
+                </div>
+                <div class="header-right">
+                    <div class="dropdown notification-dropdown me-3">
+                        <button class="btn btn-light position-relative" type="button" id="notificationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-bell"></i><span class="badge bg-danger rounded-pill position-absolute top-0 end-0">3</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationDropdown">
+                            <li><h6 class="dropdown-header">Notifikasi</h6></li>
+                            <li><a class="dropdown-item" href="#"><div class="d-flex align-items-center"><div class="flex-shrink-0"><i class="fas fa-shopping-cart text-primary"></i></div><div class="flex-grow-1 ms-3"><p class="mb-0">Pesanan baru #12345</p><small class="text-muted">30 menit yang lalu</small></div></div></a></li>
+                            <li><a class="dropdown-item" href="#"><div class="d-flex align-items-center"><div class="flex-shrink-0"><i class="fas fa-user text-success"></i></div><div class="flex-grow-1 ms-3"><p class="mb-0">5 pengguna baru mendaftar</p><small class="text-muted">1 jam yang lalu</small></div></div></a></li>
+                            <li><a class="dropdown-item" href="#"><div class="d-flex align-items-center"><div class="flex-shrink-0"><i class="fas fa-exclamation-triangle text-warning"></i></div><div class="flex-grow-1 ms-3"><p class="mb-0">Stok Bayam Organik hampir habis</p><small class="text-muted">2 jam yang lalu</small></div></div></a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-center" href="#">Lihat Semua Notifikasi</a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown user-dropdown">
+                        <button class="btn btn-light dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="../assets/images/logo-1x1.png" alt="Admin" class="user-avatar">
+                            <div class="user-info d-none d-md-block"><div class="fw-bold">Admin Panénia</div><small>Administrator</small></div>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user me-2"></i> Profil</a></li>
+                            <li><a class="dropdown-item" href="settings.html"><i class="fas fa-cog me-2"></i> Pengaturan</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="logout.html"><i class="fas fa-sign-out-alt me-2"></i> Keluar</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="content">
+                <div class="page-title">
+                    <h1>Edit Artikel</h1>
+                    <div><a href="manage-articles.html" class="btn btn-secondary"><i class="fas fa-arrow-left me-1"></i> Kembali</a></div>
+                </div>
+
+                <!-- Edit Article Form -->
+                <div class="card">
+                    <div class="card-body">
+                        <form id="editArticleForm">
+                            <div class="row mb-3">
+                                <div class="col-md-8">
+                                    <div class="mb-3">
+                                        <label for="articleTitle" class="form-label">Judul Artikel <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="articleTitle" name="title" required value="Mengenal Pertanian Organik dan Manfaatnya bagi Kesehatan">
+                                        <input type="hidden" id="articleId" name="id" value="1">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="articleSlug" class="form-label">Slug</label>
+                                        <div class="input-group"><span class="input-group-text">panenia.com/artikel/</span><input type="text" class="form-control" id="articleSlug" name="slug" value="pertanian-organik-manfaat"></div>
+                                        <small class="text-muted">Dibuat otomatis dari judul jika dikosongkan</small>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="articleExcerpt" class="form-label">Ringkasan</label>
+                                        <textarea class="form-control" id="articleExcerpt" name="excerpt" rows="3">Ringkasan singkat tentang pertanian organik dan manfaatnya bagi kesehatan.</textarea>
+                                        <small class="text-muted">Ringkasan singkat artikel yang akan ditampilkan di halaman daftar artikel</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="articleFeaturedImage" class="form-label">Gambar Utama</label>
+                                        <div class="featured-image-preview mb-2"><img src="/placeholder.svg?height=200&width=300" alt="Featured Image Preview" class="img-fluid rounded border"></div>
+                                        <input type="file" class="form-control" id="articleFeaturedImage" name="featuredImage" accept="image/*">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="articleContent" class="form-label">Konten Artikel <span class="text-danger">*</span></label>
+                                <div id="articleContent" name="content"><p>Artikel tentang pertanian organik dan manfaatnya.</p></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- Category Field -->
+                                    <div class="mb-3">
+                                        <label for="articleCategory" class="form-label">Kategori <span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <select class="form-select category-select" id="articleCategory" name="category" required>
+                                                <option value="">Pilih Kategori</option>
+                                                <option value="pertanian" selected>Pertanian</option>
+                                                <option value="kesehatan">Kesehatan</option>
+                                                <option value="resep">Resep</option>
+                                                <option value="komunitas">Komunitas</option>
+                                                <option value="tips">Tips & Trik</option>
+                                                <option value="custom">Kategori Lain</option>
+                                            </select>
+                                            <input type="text" class="form-control category-custom d-none" id="articleCategoryCustom" placeholder="Masukkan kategori baru">
+                                        </div>
+                                        <small class="text-muted">Pilih kategori dari daftar atau masukkan kategori baru</small>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="articleTags" class="form-label">Tag</label>
+                                        <input type="text" class="form-control" id="articleTags" name="tags" value="organik, kesehatan" placeholder="Pisahkan dengan koma">
+                                        <small class="text-muted">Contoh: organik, sayuran, kesehatan</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- Author Field -->
+                                    <div class="mb-3">
+                                        <label for="articleAuthor" class="form-label">Penulis <span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                            <select class="form-select author-select" id="articleAuthor" name="author" required>
+                                                <option value="">Pilih Penulis</option>
+                                                <option value="1">Admin Panénia</option>
+                                                <option value="2" selected>Rina Wijaya</option>
+                                                <option value="3">Budi Santoso</option>
+                                                <option value="4">Dr. Siti Aminah</option>
+                                                <option value="5">Ahmad Rizki</option>
+                                                <option value="6">Dewi Lestari</option>
+                                                <option value="custom">Penulis Lain</option>
+                                            </select>
+                                            <input type="text" class="form-control author-custom d-none" id="articleAuthorCustom" placeholder="Masukkan nama penulis baru">
+                                        </div>
+                                        <small class="text-muted">Pilih penulis dari daftar atau masukkan penulis baru</small>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="articleStatus" class="form-label">Status <span class="text-danger">*</span></label>
+                                        <select class="form-select" id="articleStatus" name="status" required>
+                                            <option value="published" selected>Publikasikan</option>
+                                            <option value="draft">Simpan sebagai Draft</option>
+                                            <option value="scheduled">Jadwalkan Publikasi</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3 scheduled-date d-none">
+                                        <label for="articleScheduledDate" class="form-label">Tanggal Publikasi</label>
+                                        <input type="datetime-local" class="form-control" id="articleScheduledDate" name="scheduledDate">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="articleSeo" class="form-label">SEO Meta Description</label>
+                                <textarea class="form-control" id="articleSeo" name="seoDescription" rows="2">Deskripsi SEO untuk artikel pertanian organik.</textarea>
+                                <small class="text-muted">Deskripsi untuk mesin pencari (maksimal 160 karakter)</small>
+                            </div>
+
+                            <div class="d-flex justify-content-between mt-4">
+                                <button type="button" class="btn btn-secondary" onclick="window.location.href='manage-articles.html'"><i class="fas fa-times me-1"></i> Batal</button>
+                                <div>
+                                    <button type="button" class="btn btn-outline-primary me-2" id="previewArticle"><i class="fas fa-eye me-1"></i> Pratinjau</button>
+                                    <button type="submit" class="btn btn-primary"><i class="fas fa-save me-1"></i> Simpan Perubahan</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div>© 2023 Panénia. Hak Cipta Dilindungi.</div>
+                <div><a href="#">Kebijakan Privasi</a> · <a href="#">Syarat & Ketentuan</a></div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container"></div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Quill JS -->
+    <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+    <!-- Custom JS -->
+    <script src="../assets/js/admin.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Initialize Quill editor with existing content
+            var quill = new Quill('#articleContent', {
+                theme: 'snow',
+                modules: {
+                    toolbar: [
+                        ['bold', 'italic', 'underline', 'strike'],
+                        ['blockquote', 'code-block'],
+                        [{ 'header': 1 }, { 'header': 2 }],
+                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                        [{ 'script': 'sub'}, { 'script': 'super' }],
+                        [{ 'indent': '-1'}, { 'indent': '+1' }],
+                        [{ 'direction': 'rtl' }],
+                        [{ 'size': ['small', false, 'large', 'huge'] }],
+                        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                        [{ 'color': [] }, { 'background': [] }],
+                        ['link', 'image', 'video'],
+                        ['clean']
+                    ]
+                },
+                height: 300
+            });
+
+            // Toggle scheduled date field
+            $('#articleStatus').change(function() {
+                if ($(this).val() === 'scheduled') {
+                    $('.scheduled-date').removeClass('d-none');
+                } else {
+                    $('.scheduled-date').addClass('d-none');
+                }
+            });
+
+            // Auto-generate slug from title
+            $('#articleTitle').on('blur', function() {
+                if ($('#articleSlug').val() === '') {
+                    const title = $(this).val();
+                    const slug = title.toLowerCase()
+                        .replace(/[^\w\s-]/g, '')
+                        .replace(/\s+/g, '-')
+                        .replace(/-+/g, '-');
+                    $('#articleSlug').val(slug);
+                }
+            });
+
+            // Preview image when selected
+            $('#articleFeaturedImage').change(function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('.featured-image-preview img').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Form submission
+            $('#editArticleForm').submit(function(e) {
+                e.preventDefault();
+                
+                // Get Quill content
+                const content = quill.root.innerHTML;
+                $('#articleContent').html(content);
+                
+                // Get category value
+                let categoryValue = $('#articleCategory').val();
+                if (categoryValue === 'custom') {
+                    categoryValue = $('#articleCategoryCustom').val();
+                }
+                
+                // Get author value
+                let authorValue = $('#articleAuthor').val();
+                if (authorValue === 'custom') {
+                    authorValue = $('#articleAuthorCustom').val();
+                }
+
+                // Update form data with final values
+                $('#articleCategory').val(categoryValue);
+                $('#articleAuthor').val(authorValue);
+                
+                // Show loading indicator
+                const loadingToast = showToast('Menyimpan perubahan...', 'info');
+                
+                // Simulate form submission
+                setTimeout(function() {
+                    loadingToast.hide();
+                    showToast('Perubahan berhasil disimpan!', 'success');
+                    setTimeout(function() {
+                        window.location.href = 'manage-articles.html';
+                    }, 1000);
+                }, 1500);
+            });
+
+            // Preview article
+            $('#previewArticle').click(function() {
+                showToast('Fitur pratinjau sedang dalam pengembangan', 'info');
+            });
+
+            // Helper function to show toast
+            function showToast(message, type) {
+                const toast = $(`
+                    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header">
+                            <strong class="me-auto">Panénia Admin</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">${message}</div>
+                    </div>
+                `);
+                $('.toast-container').append(toast);
+                const bsToast = new bootstrap.Toast(toast);
+                bsToast.show();
+                return { hide: function() { bsToast.hide(); } };
+            }
+
+            // Handle category selection
+            $('#articleCategory').change(function() {
+                if ($(this).val() === 'custom') {
+                    $('.category-custom').removeClass('d-none').prop('required', true);
+                    $(this).prop('required', false);
+                } else {
+                    $('.category-custom').addClass('d-none').prop('required', false);
+                    $(this).prop('required', true);
+                }
+            });
+
+            // Handle author selection
+            $('#articleAuthor').change(function() {
+                if ($(this).val() === 'custom') {
+                    $('.author-custom').removeClass('d-none').prop('required', true);
+                    $(this).prop('required', false);
+                } else {
+                    $('.author-custom').addClass('d-none').prop('required', false);
+                    $(this).prop('required', true);
+                }
+            });
+
+            // Load article data based on URL parameter (simulated)
+            function loadArticleData() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const articleId = urlParams.get('id');
+                if (articleId) {
+                    // Simulated data for article ID 1 (replace with actual data fetch)
+                    if (articleId === '1') {
+                        $('#articleTitle').val('Mengenal Pertanian Organik dan Manfaatnya bagi Kesehatan');
+                        $('#articleSlug').val('pertanian-organik-manfaat');
+                        $('#articleExcerpt').val('Ringkasan singkat tentang pertanian organik dan manfaatnya bagi kesehatan.');
+                        $('#articleCategory').val('pertanian');
+                        $('#articleTags').val('organik, kesehatan');
+                        $('#articleAuthor').val('2');
+                        $('#articleStatus').val('published');
+                        quill.root.innerHTML = '<p>Artikel tentang pertanian organik dan manfaatnya.</p>';
+                        $('#articleSeo').val('Deskripsi SEO untuk artikel pertanian organik.');
+                    }
+                    // Add more conditions for other IDs if needed
+                }
+            }
+            loadArticleData();
+        });
+    </script>
+</body>
+</html>

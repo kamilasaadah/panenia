@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Produk - Panénia Admin</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body>
+    <div class="admin-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>Panénia Admin</h3>
+                <button class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="index.html" class="active">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="manage-products.html">
+                        <i class="fas fa-box"></i>
+                        <span>Kelola Produk</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="manage-orders.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Pesanan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="manage-users.html">
+                        <i class="fas fa-users"></i>
+                        <span>Pengguna</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="manage-articles.html">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Artikel</span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="../user/index.html">
+                        <i class="fas fa-store"></i>
+                        <span>Lihat Toko</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="logout.html">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Keluar</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="mobile-sidebar-toggle d-lg-none">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                <div class="header-right">
+                    <div class="dropdown notification-dropdown me-3">
+                        <button class="btn btn-light position-relative" type="button" id="notificationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge bg-danger rounded-pill position-absolute top-0 end-0">3</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationDropdown">
+                            <li><h6 class="dropdown-header">Notifikasi</h6></li>
+                            <li><a class="dropdown-item" href="#">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-shopping-cart text-primary"></i>
+                                    </div>
+                                    <div class="flex-grow-1 ms-3">
+                                        <p class="mb-0">Pesanan baru #12345</p>
+                                        <small class="text-muted">30 menit yang lalu</small>
+                                    </div>
+                                </div>
+                            </a></li>
+                            <li><a class="dropdown-item" href="#">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-user text-success"></i>
+                                    </div>
+                                    <div class="flex-grow-1 ms-3">
+                                        <p class="mb-0">5 pengguna baru mendaftar</p>
+                                        <small class="text-muted">1 jam yang lalu</small>
+                                    </div>
+                                </div>
+                            </a></li>
+                            <li><a class="dropdown-item" href="#">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-exclamation-triangle text-warning"></i>
+                                    </div>
+                                    <div class="flex-grow-1 ms-3">
+                                        <p class="mb-0">Stok Bayam Organik hampir habis</p>
+                                        <small class="text-muted">2 jam yang lalu</small>
+                                    </div>
+                                </div>
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-center" href="#">Lihat Semua Notifikasi</a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown user-dropdown">
+                        <button class="btn btn-light dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="../assets/images/logo-1x1.png" alt="Admin" class="user-avatar">
+                            <div class="user-info d-none d-md-block">
+                                <div class="fw-bold">Admin Panénia</div>
+                                <small>Administrator</small>
+                            </div>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user me-2"></i> Profil</a></li>
+                            <li><a class="dropdown-item" href="settings.html"><i class="fas fa-cog me-2"></i> Pengaturan</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="logout.html"><i class="fas fa-sign-out-alt me-2"></i> Keluar</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="content">
+                <div class="page-title">
+                    <h1>Kelola Produk</h1>
+                    <div>
+                        <button class="btn btn-outline-secondary me-2" data-bs-toggle="modal" data-bs-target="#importProductsModal">
+                            <i class="fas fa-upload me-1"></i> Impor
+                        </button>
+                        <button class="btn btn-outline-secondary me-2">
+                            <i class="fas fa-download me-1"></i> Ekspor
+                        </button>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                            <i class="fas fa-plus me-1"></i> Tambah Profduk
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <label for="categoryFilter" class="form-label">Kategori</label>
+                                <select id="categoryFilter" class="form-select">
+                                    <option value="">Semua Kategori</option>
+                                    <option value="sayuran">Sayur-sayuran</option>
+                                    <option value="buah">Buah-buahan</option>
+                                    <option value="rempah">Rempah-rempah</option>
+                                    <option value="umbi">Umbi-umbian</option>
+                                    <option value="umbi">Kacang-kacangan</option>
+                                    <option value="pokok">Bahan Pokok</option>
+                                    <option value="umbi">Tanaman Herbal</option>
+                                    <option value="umbi">Produk Olahan</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="stockFilter" class="form-label">Stok</label>
+                                <select id="stockFilter" class="form-select">
+                                    <option value="">Semua Status</option>
+                                    <option value="in_stock">Tersedia</option>
+                                    <option value="low_stock">Stok Menipis</option>
+                                    <option value="out_of_stock">Habis</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="priceFilter" class="form-label">Rentang Harga</label>
+                                <div class="input-group">
+                                    <input type="number" id="minPrice" class="form-control" placeholder="Min">
+                                    <span class="input-group-text">-</span>
+                                    <input type="number" id="maxPrice" class="form-control" placeholder="Max">
+                                </div>
+                            </div>
+                            <div class="col-md-2 d-flex align-items-end">
+                                <button class="btn btn-primary w-100">
+                                    <i class="fas fa-filter me-1"></i> Filter
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Products Table -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover datatable">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="selectAll">
+                                                <label class="form-check-label" for="selectAll"></label>
+                                            </div>
+                                        </th>
+                                        <th>ID</th>
+                                        <th>Produk</th>
+                                        <th>Kategori</th>
+                                        <th>Harga</th>
+                                        <th>Stok</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox">
+                                                <label class="form-check-label"></label>
+                                            </div>
+                                        </td>
+                                        <td>1</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="../assets/images/bayam1.jpg" alt="Product" class="rounded me-2" width="50" height="50" style="object-fit: cover;">
+                                                <div>
+                                                    <h6 class="mb-0">Bayam Organik</h6>
+                                                    <small class="text-muted">Per ikat (± 250 gram)</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Sayuran</td>
+                                        <td>Rp 8.000</td>
+                                        <td>124</td>
+                                        <td><span class="status-badge active">Tersedia</span></td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <button class="btn btn-sm btn-info me-1" data-bs-toggle="modal" data-bs-target="#viewProductModal" data-bs-toggle="tooltip" title="Lihat Detail">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editProductModal" data-bs-toggle="tooltip" title="Edit">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Hapus" data-action="delete" data-item-name="produk">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox">
+                                                <label class="form-check-label"></label>
+                                            </div>
+                                        </td>
+                                        <td>2</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="../assets/images/jeruk.avif" alt="Product" class="rounded me-2" width="50" height="50" style="object-fit: cover;">
+                                                <div>
+                                                    <h6 class="mb-0">Jeruk Mandarin</h6>
+                                                    <small class="text-muted">Per kg (± 8-10 buah)</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Buah-buahan</td>
+                                        <td>Rp 25.000</td>
+                                        <td>98</td>
+                                        <td><span class="status-badge active">Tersedia</span></td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <button class="btn btn-sm btn-info me-1" data-bs-toggle="modal" data-bs-target="#viewProductModal" data-bs-toggle="tooltip" title="Lihat Detail">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editProductModal" data-bs-toggle="tooltip" title="Edit">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Hapus" data-action="delete" data-item-name="produk">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox">
+                                                <label class="form-check-label"></label>
+                                            </div>
+                                        </td>
+                                        <td>3</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/07/8810151.png?resize=600%2C600&ssl=1" alt="Product" class="rounded me-2" width="50" height="50" style="object-fit: cover;">
+                                                <div>
+                                                    <h6 class="mb-0">Beras Organik</h6>
+                                                    <small class="text-muted">5 kg</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Bahan Pokok</td>
+                                        <td>Rp 75.000</td>
+                                        <td>87</td>
+                                        <td><span class="status-badge active">Tersedia</span></td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <button class="btn btn-sm btn-info me-1" data-bs-toggle="modal" data-bs-target="#viewProductModal" data-bs-toggle="tooltip" title="Lihat Detail">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editProductModal" data-bs-toggle="tooltip" title="Edit">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Hapus" data-action="delete" data-item-name="produk">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox">
+                                                <label class="form-check-label"></label>
+                                            </div>
+                                        </td>
+                                        <td>4</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="https://images.unsplash.com/photo-1642372849465-ad4afb304542?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA==" alt="Product" class="rounded me-2" width="50" height="50" style="object-fit: cover;">
+                                                <div>
+                                                    <h6 class="mb-0">Tomat Segar</h6>
+                                                    <small class="text-muted">Per kg (± 10-12 buah)</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Sayuran</td>
+                                        <td>Rp 12.000</td>
+                                        <td>5</td>
+                                        <td><span class="status-badge pending">Stok Menipis</span></td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <button class="btn btn-sm btn-info me-1" data-bs-toggle="modal" data-bs-target="#viewProductModal" data-bs-toggle="tooltip" title="Lihat Detail">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editProductModal" data-bs-toggle="tooltip" title="Edit">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Hapus" data-action="delete" data-item-name="produk">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox">
+                                                <label class="form-check-label"></label>
+                                            </div>
+                                        </td>
+                                        <td>5</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="https://i0.wp.com/raisa.aeonstore.id/wp-content/uploads/2023/04/852760.jpg?w=372&ssl=1" alt="Product" class="rounded me-2" width="50" height="50" style="object-fit: cover;">
+                                                <div>
+                                                    <h6 class="mb-0">Wortel Organik</h6>
+                                                    <small class="text-muted">Per kg (± 8-10 buah)</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Sayuran</td>
+                                        <td>Rp 15.000</td>
+                                        <td>0</td>
+                                        <td><span class="status-badge inactive">Habis</span></td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <button class="btn btn-sm btn-info me-1" data-bs-toggle="modal" data-bs-target="#viewProductModal" data-bs-toggle="tooltip" title="Lihat Detail">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editProductModal" data-bs-toggle="tooltip" title="Edit">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Hapus" data-action="delete" data-item-name="produk">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div>
+                    &copy; 2023 Panénia. Hak Cipta Dilindungi.
+                </div>
+                <div>
+                    <a href="#">Kebijakan Privasi</a> &middot;
+                    <a href="#">Syarat & Ketentuan</a>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Import Products Modal -->
+    <div class="modal fade" id="importProductsModal" tabindex="-1" aria-labelledby="importProductsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="importProductsModalLabel">Impor Produk</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Unggah file CSV atau Excel yang berisi data produk.</p>
+                    <div class="mb-3">
+                        <label for="importFile" class="form-label">File</label>
+                        <input class="form-control" type="file" id="importFile" accept=".csv, .xlsx">
+                        <small class="text-muted">Format yang didukung: CSV, Excel</small>
+                    </div>
+                    <div class="mb-3">
+                        <a href="#" class="text-decoration-none">
+                            <i class="fas fa-download me-1"></i> Unduh template
+                        </a>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary">Impor</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Add Product Modal -->
+            <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addProductModalLabel">Tambah Produk Baru</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="needs-validation" novalidate>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="productName" class="form-label">Nama Produk</label>
+                                        <input type="text" class="form-control" id="productName" required>
+                                        <div class="invalid-feedback">
+                                            Nama produk wajib diisi.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="productCategory" class="form-label">Kategori</label>
+                                        <select class="form-select" id="productCategory" required>
+                                            <option value="">Pilih Kategori</option>
+                                            <option value="sayuran">Sayur-sayuran</option>
+                                            <option value="buah">Buah-buahan</option>
+                                            <option value="rempah">Rempah-rempah</option>
+                                            <option value="umbi">Umbi-umbian</option>
+                                            <option value="kacang">Kacang-kacangan</option>
+                                            <option value="pokok">Bahan Pokok</option>
+                                            <option value="herbal">Tanaman Herbal</option>
+                                            <option value="olahan">Produk Olahan</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Kategori wajib dipilih.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="productPrice" class="form-label">Harga (Rp)</label>
+                                        <input type="number" class="form-control" id="productPrice" required>
+                                        <div class="invalid-feedback">
+                                            Harga wajib diisi.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="productStock" class="form-label">Stok</label>
+                                        <input type="number" class="form-control" id="productStock" required>
+                                        <div class="invalid-feedback">
+                                            Stok wajib diisi.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="productUnit" class="form-label">Satuan</label>
+                                        <input type="text" class="form-control" id="productUnit" placeholder="Contoh: kg, ikat, buah">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="productWeight" class="form-label">Berat (gram)</label>
+                                        <input type="number" class="form-control" id="productWeight">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="productDescription" class="form-label">Deskripsi</label>
+                                    <textarea class="form-control" id="productDescription" rows="3"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Foto Produk</label>
+                                    <div class="image-upload">
+                                        <input type="file" accept="image/*" multiple>
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <p>Klik atau seret gambar ke sini</p>
+                                        <small class="text-muted">Maksimal 5 gambar (JPG, PNG)</small>
+                                    </div>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="productFeatured">
+                                    <label class="form-check-label" for="productFeatured">
+                                        Tampilkan di halaman utama
+                                    </label>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            <button type="button" class="btn btn-primary">Simpan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View Product Modal -->
+            <div class="modal fade" id="viewProductModal" tabindex="-1" aria-labelledby="viewProductModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="viewProductModalLabel">Detail Produk</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div id="productImageCarousel" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img src="../assets/images/bayam1.jpg" class="d-block w-100 rounded" alt="Produk">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="../assets/images/bayam2.jpg" class="d-block w-100 rounded" alt="Produk">
+                                            </div>
+                                        </div>
+                                        <button class="carousel-control-prev" type="button" data-bs-target="#productImageCarousel" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button" data-bs-target="#productImageCarousel" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
+                                    </div>
+                                    <div class="d-flex mt-2">
+                                        <div class="me-2">
+                                            <img src="../assets/images/bayam1.jpg" class="img-thumbnail" width="60" height="60" alt="Thumbnail">
+                                        </div>
+                                        <div>
+                                            <img src="../assets/images/bayam2.jpg" class="img-thumbnail" width="60" height="60" alt="Thumbnail">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <h4 id="viewProductName">Bayam Organik</h4>
+                                    <div class="mb-2">
+                                        <span class="badge bg-primary">Sayuran</span>
+                                        <span class="status-badge active ms-2">Tersedia</span>
+                                    </div>
+                                    <h5 class="text-primary mb-3">Rp 8.000</h5>
+                                    <div class="mb-3">
+                                        <strong>Stok:</strong> <span id="viewProductStock">124</span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <strong>Satuan:</strong> <span id="viewProductUnit">Per ikat (± 250 gram)</span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <strong>Deskripsi:</strong>
+                                        <p id="viewProductDescription">Bayam organik segar yang ditanam tanpa pestisida dan bahan kimia berbahaya. Kaya akan zat besi, vitamin A, vitamin C, dan antioksidan. Cocok untuk berbagai masakan seperti sayur bening, tumis, atau salad.</p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <strong>Tanggal Ditambahkan:</strong> <span id="viewProductDate">15 Januari 2023</span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <strong>Terakhir Diperbarui:</strong> <span id="viewProductUpdated">20 Mei 2023</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-md-12">
+                                    <h5>Statistik Produk</h5>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Total Terjual</th>
+                                                    <th>Pendapatan</th>
+                                                    <th>Rating</th>
+                                                    <th>Ulasan</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>120 ikat</td>
+                                                    <td>Rp 960.000</td>
+                                                    <td>4.8/5 <i class="fas fa-star text-warning"></i></td>
+                                                    <td>24</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                            <button type="button" class="btn btn-warning" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#editProductModal">
+                                <i class="fas fa-edit me-1"></i> Edit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edit Product Modal -->
+            <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editProductModalLabel">Edit Produk</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="needs-validation" novalidate>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="editProductName" class="form-label">Nama Produk</label>
+                                        <input type="text" class="form-control" id="editProductName" value="Bayam Organik" required>
+                                        <div class="invalid-feedback">
+                                            Nama produk wajib diisi.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="editProductCategory" class="form-label">Kategori</label>
+                                        <select class="form-select" id="editProductCategory" required>
+                                            <option value="">Pilih Kategori</option>
+                                            <option value="sayuran" selected>Sayur-sayuran</option>
+                                            <option value="buah">Buah-buahan</option>
+                                            <option value="rempah">Rempah-rempah</option>
+                                            <option value="umbi">Umbi-umbian</option>
+                                            <option value="kacang">Kacang-kacangan</option>
+                                            <option value="pokok">Bahan Pokok</option>
+                                            <option value="herbal">Tanaman Herbal</option>
+                                            <option value="olahan">Produk Olahan</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Kategori wajib dipilih.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="editProductPrice" class="form-label">Harga (Rp)</label>
+                                        <input type="number" class="form-control" id="editProductPrice" value="8000" required>
+                                        <div class="invalid-feedback">
+                                            Harga wajib diisi.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="editProductStock" class="form-label">Stok</label>
+                                        <input type="number" class="form-control" id="editProductStock" value="124" required>
+                                        <div class="invalid-feedback">
+                                            Stok wajib diisi.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="editProductUnit" class="form-label">Satuan</label>
+                                        <input type="text" class="form-control" id="editProductUnit" value="Per ikat (± 250 gram)">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="editProductWeight" class="form-label">Berat (gram)</label>
+                                        <input type="number" class="form-control" id="editProductWeight" value="250">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editProductDescription" class="form-label">Deskripsi</label>
+                                    <textarea class="form-control" id="editProductDescription" rows="3">Bayam organik segar yang ditanam tanpa pestisida dan bahan kimia berbahaya. Kaya akan zat besi, vitamin A, vitamin C, dan antioksidan. Cocok untuk berbagai masakan seperti sayur bening, tumis, atau salad.</textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Foto Produk</label>
+                                    <div class="row mb-2">
+                                        <div class="col-md-3 mb-2">
+                                            <div class="position-relative">
+                                                <img src="../assets/images/bayam1.jpg" class="img-thumbnail w-100" alt="Product Image">
+                                                <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 mb-2">
+                                            <div class="position-relative">
+                                                <img src="../assets/images/bayam2.jpg" class="img-thumbnail w-100" alt="Product Image">
+                                                <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="image-upload">
+                                        <input type="file" accept="image/*" multiple>
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <p>Tambah foto lainnya</p>
+                                        <small class="text-muted">Maksimal 5 gambar (JPG, PNG)</small>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="editProductStatus" class="form-label">Status</label>
+                                        <select class="form-select" id="editProductStatus">
+                                            <option value="available" selected>Tersedia</option>
+                                            <option value="out_of_stock">Habis</option>
+                                            <option value="discontinued">Tidak Dijual Lagi</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="editProductFeatured" checked>
+                                    <label class="form-check-label" for="editProductFeatured">
+                                        Tampilkan di halaman utama
+                                    </label>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            <button type="button" class="btn btn-primary">Simpan Perubahan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Import Products Modal -->
+            <div class="modal fade" id="importProductModal" tabindex="-1" aria-labelledby="importProductModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="importProductModalLabel">Import Produk dari Excel</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Pilih file Excel yang berisi data produk untuk diimport.</p>
+                            <input type="file" class="form-control">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            <button type="button" class="btn btn-primary">Import</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container"></div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <!-- Custom JS -->
+    <script src="../assets/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Artikel - Panénia Admin</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body>
+    <div class="admin-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>Panénia Admin</h3>
+                <button class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="index.html" class="active">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="manage-products.html">
+                        <i class="fas fa-box"></i>
+                        <span>Kelola Produk</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="manage-orders.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Pesanan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="manage-users.html">
+                        <i class="fas fa-users"></i>
+                        <span>Pengguna</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="manage-articles.html">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Artikel</span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="../user/index.html">
+                        <i class="fas fa-store"></i>
+                        <span>Lihat Toko</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="logout.html">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Keluar</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="mobile-sidebar-toggle d-lg-none">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                <div class="header-right">
+                    <div class="dropdown notification-dropdown me-3">
+                        <button class="btn btn-light position-relative" type="button" id="notificationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge bg-danger rounded-pill position-absolute top-0 end-0">3</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationDropdown">
+                            <li><h6 class="dropdown-header">Notifikasi</h6></li>
+                            <li><a class="dropdown-item" href="#">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-shopping-cart text-primary"></i>
+                                    </div>
+                                    <div class="flex-grow-1 ms-3">
+                                        <p class="mb-0">Pesanan baru #12345</p>
+                                        <small class="text-muted">30 menit yang lalu</small>
+                                    </div>
+                                </div>
+                            </a></li>
+                            <li><a class="dropdown-item" href="#">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-user text-success"></i>
+                                    </div>
+                                    <div class="flex-grow-1 ms-3">
+                                        <p class="mb-0">5 pengguna baru mendaftar</p>
+                                        <small class="text-muted">1 jam yang lalu</small>
+                                    </div>
+                                </div>
+                            </a></li>
+                            <li><a class="dropdown-item" href="#">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-exclamation-triangle text-warning"></i>
+                                    </div>
+                                    <div class="flex-grow-1 ms-3">
+                                        <p class="mb-0">Stok Bayam Organik hampir habis</p>
+                                        <small class="text-muted">2 jam yang lalu</small>
+                                    </div>
+                                </div>
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-center" href="#">Lihat Semua Notifikasi</a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown user-dropdown">
+                        <button class="btn btn-light dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="../assets/images/logo-1x1.png" alt="Admin" class="user-avatar">
+                            <div class="user-info d-none d-md-block">
+                                <div class="fw-bold">Admin Panénia</div>
+                                <small>Administrator</small>
+                            </div>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user me-2"></i> Profil</a></li>
+                            <li><a class="dropdown-item" href="settings.html"><i class="fas fa-cog me-2"></i> Pengaturan</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="logout.html"><i class="fas fa-sign-out-alt me-2"></i> Keluar</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="content">
+                <div class="page-title">
+                    <h1>Kelola Artikel</h1>
+                    <div>
+                        <a href="add-article.html" class="btn btn-primary">
+                            <i class="fas fa-plus me-1"></i> Tambah Artikel
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <label for="categoryFilter" class="form-label">Kategori</label>
+                                <select id="categoryFilter" class="form-select">
+                                    <option value="">Semua Kategori</option>
+                                    <option value="pertanian">Pertanian</option>
+                                    <option value="kesehatan">Kesehatan</option>
+                                    <option value="resep">Resep</option>
+                                    <option value="komunitas">Komunitas</option>
+                                    <option value="tips">Tips & Trik</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="statusFilter" class="form-label">Status</label>
+                                <select id="statusFilter" class="form-select">
+                                    <option value="">Semua Status</option>
+                                    <option value="published">Dipublikasikan</option>
+                                    <option value="draft">Draft</option>
+                                    <option value="archived">Diarsipkan</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="dateFilter" class="form-label">Tanggal Publikasi</label>
+                                <input type="text" id="dateFilter" class="form-control daterange" placeholder="Pilih rentang tanggal">
+                            </div>
+                            <div class="col-md-2 d-flex align-items-end">
+                                <button class="btn btn-primary w-100">
+                                    <i class="fas fa-filter me-1"></i> Filter
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Articles Table -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover datatable">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="selectAll">
+                                                <label class="form-check-label" for="selectAll"></label>
+                                            </div>
+                                        </th>
+                                        <th>ID</th>
+                                        <th>Judul</th>
+                                        <th>Kategori</th>
+                                        <th>Penulis</th>
+                                        <th>Tanggal Publikasi</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox">
+                                                <label class="form-check-label"></label>
+                                            </div>
+                                        </td>
+                                        <td>1</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div>
+                                                    <h6 class="mb-0">Mengenal Pertanian Organik dan Manfaatnya bagi Kesehatan</h6>
+                                                    <small class="text-muted">Slug: pertanian-organik-manfaat</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Pertanian</td>
+                                        <td>Rina Wijaya</td>
+                                        <td>15 Juni 2023</td>
+                                        <td><span class="status-badge active">Dipublikasikan</span></td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <a href="#" class="btn btn-sm btn-info me-1 view-article" data-bs-toggle="modal" data-bs-target="#articleDetailModal" data-id="1" data-title="Mengenal Pertanian Organik dan Manfaatnya bagi Kesehatan" data-slug="pertanian-organik-manfaat" data-category="Pertanian" data-author="Rina Wijaya" data-date="15 Juni 2023" data-status="Dipublikasikan" data-content="<p>Artikel tentang pertanian organik dan manfaatnya bagi kesehatan, termasuk metode budidaya yang ramah lingkungan dan dampak positif pada tubuh.</p>">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a href="edit-article.html?id=1" class="btn btn-sm btn-warning me-1" data-bs-toggle="tooltip" title="Edit">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Hapus" data-action="delete" data-item-name="artikel">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox">
+                                                <label class="form-check-label"></label>
+                                            </div>
+                                        </td>
+                                        <td>2</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div>
+                                                    <h6 class="mb-0">Tips Memilih Sayuran Segar di Pasar Tradisional</h6>
+                                                    <small class="text-muted">Slug: tips-memilih-sayuran-segar</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Tips & Trik</td>
+                                        <td>Budi Santoso</td>
+                                        <td>12 Juni 2023</td>
+                                        <td><span class="status-badge active">Dipublikasikan</span></td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <a href="#" class="btn btn-sm btn-info me-1 view-article" data-bs-toggle="modal" data-bs-target="#articleDetailModal" data-id="2" data-title="Tips Memilih Sayuran Segar di Pasar Tradisional" data-slug="tips-memilih-sayuran-segar" data-category="Tips & Trik" data-author="Budi Santoso" data-date="12 Juni 2023" data-status="Dipublikasikan" data-content="<p>Artikel berisi tips memilih sayuran segar berdasarkan warna, tekstur, dan aroma.</p>">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a href="edit-article.html?id=2" class="btn btn-sm btn-warning me-1" data-bs-toggle="tooltip" title="Edit">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Hapus" data-action="delete" data-item-name="artikel">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox">
+                                                <label class="form-check-label"></label>
+                                            </div>
+                                        </td>
+                                        <td>3</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div>
+                                                    <h6 class="mb-0">Manfaat Konsumsi Buah dan Sayur Organik untuk Kesehatan</h6>
+                                                    <small class="text-muted">Slug: manfaat-buah-sayur-organik</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Kesehatan</td>
+                                        <td>Dr. Siti Aminah</td>
+                                        <td>5 Juni 2023</td>
+                                        <td><span class="status-badge active">Dipublikasikan</span></td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <a href="#" class="btn btn-sm btn-info me-1 view-article" data-bs-toggle="modal" data-bs-target="#articleDetailModal" data-id="3" data-title="Manfaat Konsumsi Buah dan Sayur Organik untuk Kesehatan" data-slug="manfaat-buah-sayur-organik" data-category="Kesehatan" data-author="Dr. Siti Aminah" data-date="5 Juni 2023" data-status="Dipublikasikan" data-content="<p>Artikel membahas nutrisi dari buah dan sayur organik serta efeknya pada kesehatan jantung.</p>">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a href="edit-article.html?id=3" class="btn btn-sm btn-warning me-1" data-bs-toggle="tooltip" title="Edit">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Hapus" data-action="delete" data-item-name="artikel">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox">
+                                                <label class="form-check-label"></label>
+                                            </div>
+                                        </td>
+                                        <td>4</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div>
+                                                    <h6 class="mb-0">Kisah Sukses Petani Milenial di Era Digital</h6>
+                                                    <small class="text-muted">Slug: petani-milenial-era-digital</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Komunitas</td>
+                                        <td>Ahmad Rizki</td>
+                                        <td>28 Mei 2023</td>
+                                        <td><span class="status-badge active">Dipublikasikan</span></td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <a href="#" class="btn btn-sm btn-info me-1 view-article" data-bs-toggle="modal" data-bs-target="#articleDetailModal" data-id="4" data-title="Kisah Sukses Petani Milenial di Era Digital" data-slug="petani-milenial-era-digital" data-category="Komunitas" data-author="Ahmad Rizki" data-date="28 Mei 2023" data-status="Dipublikasikan" data-content="<p>Artikel tentang perjalanan petani muda menggunakan teknologi modern.</p>">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a href="edit-article.html?id=4" class="btn btn-sm btn-warning me-1" data-bs-toggle="tooltip" title="Edit">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Hapus" data-action="delete" data-item-name="artikel">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox">
+                                                <label class="form-check-label"></label>
+                                            </div>
+                                        </td>
+                                        <td>5</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div>
+                                                    <h6 class="mb-0">5 Resep Salad Segar untuk Menu Sehat Harian</h6>
+                                                    <small class="text-muted">Slug: resep-salad-segar-menu-sehat</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Resep</td>
+                                        <td>Dewi Lestari</td>
+                                        <td>20 Mei 2023</td>
+                                        <td><span class="status-badge pending">Draft</span></td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <a href="#" class="btn btn-sm btn-info me-1 view-article" data-bs-toggle="modal" data-bs-target="#articleDetailModal" data-id="5" data-title="5 Resep Salad Segar untuk Menu Sehat Harian" data-slug="resep-salad-segar-menu-sehat" data-category="Resep" data-author="Dewi Lestari" data-date="20 Mei 2023" data-status="Draft" data-content="<p>Artikel berisi lima resep salad segar dan cara penyajiannya.</p>">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a href="edit-article.html?id=5" class="btn btn-sm btn-warning me-1" data-bs-toggle="tooltip" title="Edit">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Hapus" data-action="delete" data-item-name="artikel">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div>
+                    © 2023 Panénia. Hak Cipta Dilindungi.
+                </div>
+                <div>
+                    <a href="#">Kebijakan Privasi</a> ·
+                    <a href="#">Syarat & Ketentuan</a>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container"></div>
+
+    <!-- Article Detail Modal -->
+    <div class="modal fade" id="articleDetailModal" tabindex="-1" aria-labelledby="articleDetailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="articleDetailModalLabel">Detail Artikel</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Judul:</label>
+                        <p id="detailTitle"></p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Slug:</label>
+                        <p id="detailSlug"></p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Kategori:</label>
+                        <p id="detailCategory"></p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Penulis:</label>
+                        <p id="detailAuthor"></p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Tanggal Publikasi:</label>
+                        <p id="detailDate"></p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Status:</label>
+                        <p id="detailStatus"></p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Konten:</label>
+                        <div id="detailContent"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <!-- Custom JS -->
+    <script src="../assets/js/admin.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Hancurkan inisialisasi sebelumnya jika ada
+            if ($.fn.DataTable.isDataTable('.datatable')) {
+                $('.datatable').DataTable().destroy();
+            }
+            
+            // Initialize DataTable
+            $('.datatable').DataTable({
+                "paging": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "pageLength": 10,
+                "lengthMenu": [5, 10, 25, 50],
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/Indonesian.json"
+                }
+            });
+
+            // Tooltip initialization
+            $('[data-bs-toggle="tooltip"]').tooltip();
+
+            // Populate modal with article details
+            $('#articleDetailModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var id = button.data('id');
+                var title = button.data('title');
+                var slug = button.data('slug');
+                var category = button.data('category');
+                var author = button.data('author');
+                var date = button.data('date');
+                var status = button.data('status');
+                var content = button.data('content');
+
+                var modal = $(this);
+                modal.find('#detailTitle').text(title);
+                modal.find('#detailSlug').text(slug);
+                modal.find('#detailCategory').text(category);
+                modal.find('#detailAuthor').text(author);
+                modal.find('#detailDate').text(date);
+                modal.find('#detailStatus').text(status);
+                modal.find('#detailContent').html(content);
+            });
+
+            // Select all checkboxes
+            $('#selectAll').click(function() {
+                $('input[type="checkbox"]').prop('checked', $(this).prop('checked'));
+            });
+
+            // Delete action (simulated)
+            $('.btn-danger[data-action="delete"]').click(function() {
+                if (confirm('Apakah Anda yakin ingin menghapus artikel ini?')) {
+                    alert('Artikel dihapus! (Simulasi)');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

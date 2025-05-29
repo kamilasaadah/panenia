@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users - Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        .status-badge {
+            display: inline-block;
+            padding: 0.25em 0.4em;
+            font-size: 0.875em;
+            font-weight: 500;
+            line-height: 1;
+            border-radius: 0.25rem;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            color: #fff;
+        }
+
+        .status-badge.active {
+            background-color: #28a745;
+        }
+
+        .status-badge.inactive {
+            background-color: #dc3545;
+        }
+
+        .status-badge.suspended {
+            background-color: #ffc107;
+            color: #000;
+        }
+
+        .image-upload {
+            border: 2px dashed #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .image-upload i {
+            font-size: 3em;
+            color: #ccc;
+        }
+
+        .image-upload p {
+            margin-top: 10px;
+            color: #777;
+        }
+
+        .tooltip-inner {
+            background-color: #000;
+            color: #fff;
+        }
+
+        .tooltip.bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before,
+        .tooltip.bs-tooltip-top .tooltip-arrow::before {
+            border-top-color: #000;
+        }
+
+        .tooltip.bs-tooltip-auto[data-popper-placement^=right] .tooltip-arrow::before,
+        .tooltip.bs-tooltip-right .tooltip-arrow::before {
+            border-right-color: #000;
+        }
+
+        .tooltip.bs-tooltip-auto[data-popper-placement^=bottom] .tooltip-arrow::before,
+        .tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+            border-bottom-color: #000;
+        }
+
+        .tooltip.bs-tooltip-auto[data-popper-placement^=left] .tooltip-arrow::before,
+        .tooltip.bs-tooltip-left .tooltip-arrow::before {
+            border-left-color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="admin-wrapper">
+        <div class="container mt-5">
+            <h2>Manage Users</h2>
+            <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addUserModal">Add User</button>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>John Doe</td>
+                            <td>john.doe@example.com</td>
+                            <td>Admin</td>
+                            <td><span class="status-badge active">Active</span></td>
+                            <td>
+                                <div class="d-flex">
+                                    <button class="btn btn-sm btn-info me-1" data-bs-toggle="modal" data-bs-target="#viewUserModal" data-bs-toggle="tooltip" title="Lihat Detail">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editUserModal" data-bs-toggle="tooltip" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Hapus" data-action="delete" data-item-name="pengguna">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Jane Smith</td>
+                            <td>jane.smith@example.com</td>
+                            <td>Customer</td>
+                            <td><span class="status-badge inactive">Inactive</span></td>
+                            <td>
+                                <div class="d-flex">
+                                    <button class="btn btn-sm btn-info me-1" data-bs-toggle="modal" data-bs-target="#viewUserModal" data-bs-toggle="tooltip" title="Lihat Detail">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editUserModal" data-bs-toggle="tooltip" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Hapus" data-action="delete" data-item-name="pengguna">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>David Johnson</td>
+                            <td>david.johnson@example.com</td>
+                            <td>Vendor</td>
+                            <td><span class="status-badge suspended">Suspended</span></td>
+                            <td>
+                                <div class="d-flex">
+                                    <button class="btn btn-sm btn-info me-1" data-bs-toggle="modal" data-bs-target="#viewUserModal" data-bs-toggle="tooltip" title="Lihat Detail">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editUserModal" data-bs-toggle="tooltip" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="Hapus" data-action="delete" data-item-name="pengguna">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- View User Modal -->
+            <div class="modal fade" id="viewUserModal" tabindex="-1" aria-labelledby="viewUserModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="viewUserModalLabel">Detail Pengguna</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-4 text-center mb-4 mb-md-0">
+                                    <img src="../assets/images/profil-pria.jpg" alt="User" class="rounded-circle img-thumbnail mb-3" width="150" height="150">
+                                    <h5 id="viewUserName">Budi Santoso</h5>
+                                    <p class="text-muted mb-2">@budisantoso</p>
+                                    <span class="badge bg-primary mb-3">Admin</span>
+                                    <div class="d-grid gap-2">
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-envelope me-1"></i> Kirim Email
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-success">
+                                            <i class="fas fa-phone me-1"></i> Hubungi
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card mb-3">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">Informasi Pribadi</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row mb-2">
+                                                <div class="col-md-4 text-muted">Nama Lengkap</div>
+                                                <div class="col-md-8">Budi Santoso</div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-md-4 text-muted">Email</div>
+                                                <div class="col-md-8">budi.santoso@email.com</div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-md-4 text-muted">Telepon</div>
+                                                <div class="col-md-8">+62 812-3456-7890</div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-md-4 text-muted">Tanggal Lahir</div>
+                                                <div class="col-md-8">15 Mei 1985</div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-md-4 text-muted">Jenis Kelamin</div>
+                                                <div class="col-md-8">Laki-laki</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 text-muted">Alamat</div>
+                                                <div class="col-md-8">
+                                                    Jl. Merdeka No. 123, RT 05/RW 02<br>
+                                                    Kelurahan Sukamaju, Kecamatan Cilodong<br>
+                                                    Depok, Jawa Barat 16413
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mb-3">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">Informasi Akun</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row mb-2">
+                                                <div class="col-md-4 text-muted">ID Pengguna</div>
+                                                <div class="col-md-8">#USR-001</div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-md-4 text-muted">Username</div>
+                                                <div class="col-md-8">@budisantoso</div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-md-4 text-muted">Peran</div>
+                                                <div class="col-md-8">Admin</div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-md-4 text-muted">Status</div>
+                                                <div class="col-md-8"><span class="status-badge active">Aktif</span></div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-md-4 text-muted">Tanggal Registrasi</div>
+                                                <div class="col-md-8">15 Januari 2023</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 text-muted">Login Terakhir</div>
+                                                <div class="col-md-8">20 Juni 2023, 09:45 WIB</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h6 class="mb-0">Aktivitas Terbaru</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item px-0">
+                                                    <div class="d-flex justify-content-between">
+                                                        <div>
+                                                            <strong>Login</strong>
+                                                            <p class="mb-0 text-muted">Login dari Jakarta, Indonesia</p>
+                                                        </div>
+                                                        <div class="text-muted">20 Juni 2023, 09:45 WIB</div>
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item px-0">
+                                                    <div class="d-flex justify-content-between">
+                                                        <div>
+                                                            <strong>Pesanan Baru</strong>
+                                                            <p class="mb-0 text-muted">Membuat pesanan #ORD-20230615-7829</p>
+                                                        </div>
+                                                        <div class="text-muted">15 Juni 2023, 09:15 WIB</div>
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item px-0">
+                                                    <div class="d-flex justify-content-between">
+                                                        <div>
+                                                            <strong>Profil Diperbarui</strong>
+                                                            <p class="mb-0 text-muted">Memperbarui informasi profil</p>
+                                                        </div>
+                                                        <div class="text-muted">10 Juni 2023, 14:30 WIB</div>
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item px-0">
+                                                    <div class="d-flex justify-content-between">
+                                                        <div>
+                                                            <strong>Login</strong>
+                                                            <p class="mb-0 text-muted">Login dari Bandung, Indonesia</p>
+                                                        </div>
+                                                        <div class="text-muted">5 Juni 2023, 11:20 WIB</div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                            <button type="button" class="btn btn-warning" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#editUserModal">
+                                <i class="fas fa-edit me-1"></i> Edit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edit User Modal -->
+            <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editUserModalLabel">Edit Pengguna</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="needs-validation" novalidate>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="editFirstName" class="form-label">Nama Depan</label>
+                                        <input type="text" class="form-control" id="editFirstName" value="Budi" required>
+                                        <div class="invalid-feedback">
+                                            Nama depan wajib diisi.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="editLastName" class="form-label">Nama Belakang</label>
+                                        <input type="text" class="form-control" id="editLastName" value="Santoso" required>
+                                        <div class="invalid-feedback">
+                                            Nama belakang wajib diisi.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="editEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="editEmail" value="budi.santoso@email.com" required>
+                                        <div class="invalid-feedback">
+                                            Email wajib diisi dengan format yang benar.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="editPhone" class="form-label">Nomor Telepon</label>
+                                        <input type="tel" class="form-control" id="editPhone" value="+62 812-3456-7890">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="editUsername" class="form-label">Username</label>
+                                        <input type="text" class="form-control" id="editUsername" value="budisantoso" required>
+                                        <div class="invalid-feedback">
+                                            Username wajib diisi.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="editPassword" class="form-label">Password Baru (Kosongkan jika tidak diubah)</label>
+                                        <input type="password" class="form-control" id="editPassword">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="editRole" class="form-label">Peran</label>
+                                        <select class="form-select" id="editRole" required>
+                                            <option value="">Pilih Peran</option>
+                                            <option value="admin" selected>Admin</option>
+                                            <option value="customer">Pelanggan</option>
+                                            <option value="vendor">Vendor</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Peran wajib dipilih.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="editStatus" class="form-label">Status</label>
+                                        <select class="form-select" id="editStatus" required>
+                                            <option value="active" selected>Aktif</option>
+                                            <option value="inactive">Tidak Aktif</option>
+                                            <option value="suspended">Ditangguhkan</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="editBirthdate" class="form-label">Tanggal Lahir</label>
+                                        <input type="date" class="form-control" id="editBirthdate" value="1985-05-15">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="editGender" class="form-label">Jenis Kelamin</label>
+                                        <select class="form-select" id="editGender">
+                                            <option value="">Pilih Jenis Kelamin</option>
+                                            <option value="male" selected>Laki-laki</option>
+                                            <option value="female">Perempuan</option>
+                                            <option value="other">Lainnya</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="editAddress" class="form-label">Alamat</label>
+                                    <textarea class="form-control" id="editAddress" rows="3">Jl. Merdeka No. 123, RT 05/RW 02
+Kelurahan Sukamaju, Kecamatan Cilodong
+Depok, Jawa Barat 16413</textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Foto Profil</label>
+                                    <div class="d-flex align-items-center mb-3">
+                                        <img src="../assets/images/profil-pria.jpg" alt="Current Profile" class="rounded-circle me-3" width="60" height="60">
+                                        <div>
+                                            <p class="mb-0">Foto profil saat ini</p>
+                                            <button type="button" class="btn btn-sm btn-outline-danger">Hapus</button>
+                                        </div>
+                                    </div>
+                                    <div class="image-upload">
+                                        <input type="file" accept="image/*">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <p>Klik atau seret gambar ke sini</p>
+                                        <small class="text-muted">Maksimal 2MB (JPG, PNG)</small>
+                                    </div>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="editSendNotification">
+                                    <label class="form-check-label" for="editSendNotification">
+                                        Kirim notifikasi perubahan ke pengguna
+                                    </label>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            <button type="button" class="btn btn-primary">Simpan Perubahan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add User Modal -->
+            <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addUserModalLabel">Add New User</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Add User Form -->
+                            <form>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" placeholder="Enter name">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email address</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Enter email">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="role" class="form-label">Role</label>
+                                    <select class="form-select" id="role">
+                                        <option selected>Select role</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="customer">Customer</option>
+                                        <option value="vendor">Vendor</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="status" class="form-label">Status</label>
+                                    <select class="form-select" id="status">
+                                        <option selected>Select status</option>
+                                        <option value="active">Active</option>
+                                        <option value="inactive">Inactive</option>
+                                        <option value="suspended">Suspended</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
+</body>
+
+</html>
