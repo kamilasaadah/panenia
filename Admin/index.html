@@ -12,6 +12,120 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../assets/css/admin.css">
+    <style>
+        /* Enhanced responsive styles for stats cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .stats-card {
+                padding: 1rem;
+                border-radius: 8px;
+                background: white;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .stats-icon {
+                width: 50px;
+                height: 50px;
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+            }
+            
+            .stats-info h3 {
+                margin: 0;
+                font-size: 1.5rem;
+                font-weight: 600;
+            }
+            
+            .stats-info p {
+                margin: 0;
+                color: #6c757d;
+                font-size: 0.9rem;
+            }
+            
+            .page-title {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .page-title div {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .page-title .btn {
+                font-size: 0.8rem;
+                padding: 0.375rem 0.75rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+            
+            .stats-card {
+                padding: 0.75rem;
+            }
+            
+            .stats-icon {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .stats-info h3 {
+                font-size: 1.25rem;
+            }
+            
+            .stats-info p {
+                font-size: 0.8rem;
+            }
+        }
+        
+        /* Sidebar active state enhancement with green color */
+        .sidebar-menu li a.active {
+            background-color: var(--primary-color, #198754);
+            color: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(25, 135, 84, 0.2);
+        }
+        
+        .sidebar-menu li a.active i {
+            color: white;
+        }
+        
+        /* Hover effect for sidebar links */
+        .sidebar-menu li a:hover:not(.active) {
+            background-color: var(--primary-light, #d1e7dd);
+            color: var(--primary-dark, #146c43);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar-menu li a:hover:not(.active) i {
+            color: var(--primary-dark, #146c43);
+        }
+    </style>
 </head>
 <body>
     <div class="admin-wrapper">
@@ -28,44 +142,43 @@
             </div>
             <ul class="sidebar-menu">
                 <li>
-                    <a href="index.html" class="active">
+                    <a href="index.html" data-page="index">
                         <i class="fas fa-tachometer-alt"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
                 <li>
-                    <a href="manage-products.html">
+                    <a href="manage-products.html" data-page="manage-products">
                         <i class="fas fa-box"></i>
                         <span>Kelola Produk</span>
                     </a>
                 </li>
                 <li>
-                    <a href="manage-orders.html">
+                    <a href="manage-orders.html" data-page="manage-orders">
                         <i class="fas fa-shopping-cart"></i>
-                        <span>Pesanan</span>
+                        <span>Kelola Pesanan</span>
                     </a>
                 </li>
                 <li>
-                    <a href="manage-users.html">
+                    <a href="manage-users.html" data-page="manage-users">
                         <i class="fas fa-users"></i>
-                        <span>Pengguna</span>
+                        <span>Kelola Pengguna</span>
                     </a>
                 </li>
                 <li>
-                    <a href="manage-articles.html">
+                    <a href="manage-articles.html" data-page="manage-articles">
                         <i class="fas fa-newspaper"></i>
-                        <span>Artikel</span>
+                        <span>Kelola Artikel</span>
                     </a>
                 </li>
-                
                 <li>
-                    <a href="../user/index.html">
+                    <a href="../user/index.html" data-page="store">
                         <i class="fas fa-store"></i>
                         <span>Lihat Toko</span>
                     </a>
                 </li>
                 <li>
-                    <a href="logout.html">
+                    <a href="logout.html" data-page="logout">
                         <i class="fas fa-sign-out-alt"></i>
                         <span>Keluar</span>
                     </a>
@@ -434,5 +547,37 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
     <!-- Custom JS -->
     <script src="../assets/js/admin.js"></script>
+    
+    <script>
+        // Enhanced sidebar active state management
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get current page name from URL
+            const currentPage = window.location.pathname.split('/').pop().replace('.html', '') || 'index';
+            
+            // Remove all active classes
+            document.querySelectorAll('.sidebar-menu a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Add active class to current page
+            const currentLink = document.querySelector(`.sidebar-menu a[data-page="${currentPage}"]`);
+            if (currentLink) {
+                currentLink.classList.add('active');
+            }
+            
+            // Handle sidebar clicks
+            document.querySelectorAll('.sidebar-menu a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Don't prevent default for external links
+                    if (!this.href.includes('logout') && !this.href.includes('../user/')) {
+                        // Remove active from all
+                        document.querySelectorAll('.sidebar-menu a').forEach(l => l.classList.remove('active'));
+                        // Add active to clicked
+                        this.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

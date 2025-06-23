@@ -27,7 +27,13 @@ body {
   }
 }
 
-
+.navbar-second {
+  position: fixed;
+  top: 60px; 
+  width: 100%;
+  z-index: 1010;
+  background-color: var(--primary-color);
+  }
 
 /* Hero Section */
 .hero-wrapper {

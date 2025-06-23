@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const sidebar = document.querySelector(".sidebar");
   const mainContent = document.querySelector(".main-content");
   const mobileSidebarToggle = document.querySelector(".mobile-sidebar-toggle");
+  const sidebarOverlay = document.querySelector(".sidebar-overlay");
 
   if (sidebarToggle) {
     sidebarToggle.addEventListener("click", () => {
@@ -20,10 +21,24 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Enhanced Mobile Sidebar Toggle
   if (mobileSidebarToggle) {
-    mobileSidebarToggle.addEventListener("click", () => {
-      sidebar.classList.toggle("mobile-show");
+    // Multiple event listeners for better mobile support
+    mobileSidebarToggle.addEventListener("click", handleMobileSidebarToggle);
+    mobileSidebarToggle.addEventListener("touchstart", handleMobileSidebarToggle);
+    
+    // Prevent default touch behaviors that might interfere
+    mobileSidebarToggle.addEventListener("touchend", (e) => {
+      e.preventDefault();
     });
+    
+    console.log("Mobile sidebar toggle initialized");
+  }
+
+  // Handle sidebar overlay clicks
+  if (sidebarOverlay) {
+    sidebarOverlay.addEventListener("click", closeMobileSidebar);
+    sidebarOverlay.addEventListener("touchstart", closeMobileSidebar);
   }
 
   // Check sidebar state from localStorage
@@ -33,17 +48,29 @@ document.addEventListener("DOMContentLoaded", () => {
     mainContent.classList.add("expanded");
   }
 
-  // Close sidebar when clicking outside on mobile
+  // Enhanced sidebar active state management
+  initializeSidebarActiveState();
+
+  // Enhanced mobile sidebar close functionality
   document.addEventListener("click", (event) => {
     const isMobile = window.innerWidth < 992;
-    if (isMobile && sidebar.classList.contains("mobile-show")) {
-      if (!sidebar.contains(event.target) && !mobileSidebarToggle.contains(event.target)) {
-        sidebar.classList.remove("mobile-show");
+    if (isMobile && sidebar && sidebar.classList.contains("mobile-show")) {
+      if (!sidebar.contains(event.target) && 
+          !mobileSidebarToggle.contains(event.target)) {
+        closeMobileSidebar();
       }
     }
   });
 
+  // Handle escape key for mobile sidebar
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && sidebar && sidebar.classList.contains("mobile-show")) {
+      closeMobileSidebar();
+    }
+  });
+
   // Initialize tooltips if Bootstrap is available
+  const bootstrap = window.bootstrap;
   if (typeof bootstrap !== "undefined") {
     const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
     tooltipTriggerList.map((tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl));
@@ -54,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Initialize DataTables if jQuery and DataTables are available
+  const $ = window.$;
   if (typeof $ !== "undefined" && typeof $.fn.DataTable !== "undefined") {
     $(".datatable").DataTable({
       responsive: true,
@@ -122,6 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Initialize CKEditor if available
+  const ClassicEditor = window.ClassicEditor;
   if (typeof ClassicEditor !== "undefined") {
     document.querySelectorAll(".ckeditor").forEach((editor) => {
       ClassicEditor.create(editor).catch((error) => {
@@ -212,50 +241,11 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(`Status for ${itemType} #${itemId} changed to ${status}`);
 
       // Show toast notification
-      showToast(`Status ${itemType} berhasil diperbarui`, "success");
+      if (typeof window.showToast !== "undefined") {
+        window.showToast(`Status ${itemType} berhasil diperbarui`, "success");
+      }
     });
   });
-
-  // Toast Notification Function
-  window.showToast = (message, type = "info") => {
-    const toastContainer = document.querySelector(".toast-container");
-    if (!toastContainer) {
-      const newToastContainer = document.createElement("div");
-      newToastContainer.className = "toast-container";
-      document.body.appendChild(newToastContainer);
-    }
-
-    const toast = document.createElement("div");
-    toast.className = `toast align-items-center text-white bg-${type} border-0`;
-    toast.setAttribute("role", "alert");
-    toast.setAttribute("aria-live", "assertive");
-    toast.setAttribute("aria-atomic", "true");
-
-    toast.innerHTML = `
-      <div class="d-flex">
-        <div class="toast-body">
-          ${message}
-        </div>
-        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-      </div>
-    `;
-
-    document.querySelector(".toast-container").appendChild(toast);
-
-    if (typeof bootstrap !== "undefined") {
-      const bsToast = new bootstrap.Toast(toast, {
-        autohide: true,
-        delay: 3000,
-      });
-
-      bsToast.show();
-    }
-
-    // Remove toast from DOM after it's hidden
-    toast.addEventListener("hidden.bs.toast", () => {
-      toast.remove();
-    });
-  };
 
   // Initialize Dashboard Charts if on dashboard page
   if (
@@ -268,12 +258,163 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// Mobile Sidebar Functions
+function handleMobileSidebarToggle(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  
+  const sidebar = document.querySelector(".sidebar");
+  
+  if (sidebar) {
+    const isOpen = sidebar.classList.contains("mobile-show");
+    
+    if (isOpen) {
+      closeMobileSidebar();
+    } else {
+      openMobileSidebar();
+    }
+    
+    console.log("Mobile sidebar toggled:", !isOpen);
+  }
+}
+
+function openMobileSidebar() {
+  const sidebar = document.querySelector(".sidebar");
+  const sidebarOverlay = document.querySelector(".sidebar-overlay");
+  
+  if (sidebar) {
+    sidebar.classList.add("mobile-show");
+    document.body.style.overflow = "hidden"; // Prevent background scrolling
+  }
+  
+  if (sidebarOverlay) {
+    sidebarOverlay.classList.add("show");
+  }
+}
+
+function closeMobileSidebar() {
+  const sidebar = document.querySelector(".sidebar");
+  const sidebarOverlay = document.querySelector(".sidebar-overlay");
+  
+  if (sidebar) {
+    sidebar.classList.remove("mobile-show");
+    document.body.style.overflow = ""; // Restore scrolling
+  }
+  
+  if (sidebarOverlay) {
+    sidebarOverlay.classList.remove("show");
+  }
+}
+
+// Sidebar Active State Management Function
+function initializeSidebarActiveState() {
+  try {
+    // Get current page name from URL
+    const currentPage = window.location.pathname.split('/').pop().replace('.html', '') || 'index';
+    
+    // Remove all active classes
+    document.querySelectorAll('.sidebar-menu a').forEach(link => {
+      link.classList.remove('active');
+    });
+    
+    // Add active class to current page
+    const currentLink = document.querySelector(`.sidebar-menu a[data-page="${currentPage}"]`);
+    if (currentLink) {
+      currentLink.classList.add('active');
+      console.log(`Active sidebar item set for page: ${currentPage}`);
+    } else {
+      console.warn(`No sidebar link found for page: ${currentPage}`);
+    }
+    
+    // Handle sidebar clicks
+    document.querySelectorAll('.sidebar-menu a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        // Don't prevent default for external links or logout
+        if (!this.href.includes('logout') && !this.href.includes('../user/')) {
+          // Remove active from all
+          document.querySelectorAll('.sidebar-menu a').forEach(l => l.classList.remove('active'));
+          // Add active to clicked
+          this.classList.add('active');
+          
+          // Optional: Save active state to localStorage for persistence
+          const pageName = this.getAttribute('data-page');
+          if (pageName) {
+            localStorage.setItem('activeSidebarPage', pageName);
+          }
+        }
+        
+        // Close mobile sidebar when link is clicked
+        const isMobile = window.innerWidth < 992;
+        if (isMobile) {
+          closeMobileSidebar();
+        }
+      });
+    });
+
+    // Add tooltip attributes for collapsed sidebar
+    document.querySelectorAll('.sidebar-menu a').forEach(link => {
+      const spanText = link.querySelector('span');
+      if (spanText) {
+        link.setAttribute('data-tooltip', spanText.textContent.trim());
+      }
+    });
+
+  } catch (error) {
+    console.error('Error initializing sidebar active state:', error);
+  }
+}
+
+// Toast Notification Function
+window.showToast = (message, type = "info") => {
+  const toastContainer = document.querySelector(".toast-container") || createToastContainer();
+
+  const toast = document.createElement("div");
+  toast.className = `toast align-items-center text-white bg-${type} border-0`;
+  toast.setAttribute("role", "alert");
+  toast.setAttribute("aria-live", "assertive");
+  toast.setAttribute("aria-atomic", "true");
+
+  toast.innerHTML = `
+    <div class="d-flex">
+      <div class="toast-body">
+        ${message}
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  `;
+
+  toastContainer.appendChild(toast);
+
+  const bootstrap = window.bootstrap;
+  if (typeof bootstrap !== "undefined") {
+    const bsToast = new bootstrap.Toast(toast, {
+      autohide: true,
+      delay: 3000,
+    });
+    bsToast.show();
+  }
+
+  // Remove toast from DOM after it's hidden
+  toast.addEventListener("hidden.bs.toast", () => {
+    toast.remove();
+  });
+};
+
+function createToastContainer() {
+  const container = document.createElement("div");
+  container.className = "toast-container position-fixed top-0 end-0 p-3";
+  container.style.zIndex = "1055";
+  document.body.appendChild(container);
+  return container;
+}
+
 // Dashboard Charts Initialization
 function initializeDashboardCharts() {
   console.log("Dashboard charts initialization started");
 
   try {
     // Check if Chart.js is available
+    const Chart = window.Chart;
     if (typeof Chart === "undefined") {
       console.error("Chart.js is not loaded. Please include Chart.js library.");
       return;
@@ -294,7 +435,7 @@ function initializeDashboardCharts() {
               backgroundColor: "rgba(25, 135, 84, 0.2)",
               borderColor: "#198754",
               borderWidth: 2,
-              lineTension: 0.3, // Changed from tension to lineTension for Chart.js 3.x
+              tension: 0.3,
               pointBackgroundColor: "#198754",
             },
           ],
@@ -302,20 +443,26 @@ function initializeDashboardCharts() {
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: true,
-                  callback: (value) => "Rp " + value.toLocaleString("id-ID"),
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top',
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return "Penjualan: Rp " + context.parsed.y.toLocaleString("id-ID");
                 },
               },
-            ],
+            },
           },
-          tooltips: {
-            callbacks: {
-              label: (tooltipItem, data) => {
-                return "Penjualan: Rp " + tooltipItem.yLabel.toLocaleString("id-ID");
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                callback: function(value) {
+                  return "Rp " + value.toLocaleString("id-ID");
+                },
               },
             },
           },
@@ -343,8 +490,10 @@ function initializeDashboardCharts() {
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          legend: {
-            position: "bottom",
+          plugins: {
+            legend: {
+              position: "bottom",
+            },
           },
         },
       });
@@ -370,14 +519,15 @@ function initializeDashboardCharts() {
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: true,
+            },
+          },
           scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: true,
-                },
-              },
-            ],
+            y: {
+              beginAtZero: true,
+            },
           },
         },
       });

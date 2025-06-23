@@ -25,38 +25,39 @@
             font-size: 0.7rem;
             padding: 2px 6px;
         }
-
+        /* Navbar Baris Kedua */
+        .navbar-second {
+            position: fixed;
+            top: 60px;
+            width: 100%;
+            z-index: 1010;
+            background-color: #198754;
+        }
         .article-content img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
         }
-
         .article-content h2 {
             margin-top: 2rem;
             margin-bottom: 1rem;
             color: #198754;
         }
-
         .article-content h3 {
             margin-top: 1.5rem;
             margin-bottom: 0.75rem;
         }
-
         .article-content p {
             margin-bottom: 1.25rem;
             line-height: 1.7;
         }
-
         .article-content ul, .article-content ol {
             margin-bottom: 1.25rem;
             padding-left: 1.5rem;
         }
-
         .article-content li {
             margin-bottom: 0.5rem;
         }
-
         .article-content blockquote {
             border-left: 4px solid #198754;
             padding-left: 1rem;
@@ -64,13 +65,12 @@
             color: #555;
             font-style: italic;
         }
-
         .pagination .page-item {
-            margin: 0 5px; /* Jarak antar item pagination */
+            margin: 0 5px;
         }
         .pagination .page-link {
             border-radius: 5px;
-            padding: 8px 12px; /* Tambah padding biar ga terlalu kecil */
+            padding: 8px 12px;
             transition: all 0.3s ease;
         }
         .pagination .page-link:hover {
@@ -81,16 +81,13 @@
             background-color: #198754;
             border-color: #198754;
         }
-
         footer a, footer i {
             transition: color 0.3s ease;
         }
         footer a:hover, footer i:hover {
             color: #198754 !important;
         }
-
         /* Improved Profile Image Styles */
-        /* Base profile image style for all circular images */
         .profile-image-container {
             overflow: hidden;
             border-radius: 50%;
@@ -99,40 +96,32 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             background-color: #fff;
         }
-
         .profile-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
         }
-
-        /* Specific sizes for different contexts */
         .author-image-sm {
             width: 40px;
             height: 40px;
-            min-width: 40px; /* Prevents shrinking */
+            min-width: 40px;
         }
-
         .author-image-md {
             width: 60px;
             height: 60px;
-            min-width: 60px; /* Prevents shrinking */
+            min-width: 60px;
         }
-
         .author-image-lg {
             width: 80px;
             height: 80px;
-            min-width: 80px; /* Prevents shrinking */
+            min-width: 80px;
         }
-
         .commenter-image {
             width: 50px;
             height: 50px;
-            min-width: 50px; /* Prevents shrinking */
+            min-width: 50px;
         }
-
-        /* Hover effect for profile images */
         .profile-image-container:hover {
             border-color: #198754;
             transform: scale(1.05);
@@ -150,12 +139,10 @@
                 <a class="navbar-brand fw-bold text-success" href="index.html">
                     <img src="../assets/images/logo.png" alt="Panénia Logo" class="logo me-2" style="height: 40px;">
                 </a>
-
                 <!-- Tombol Toggler untuk Layar Kecil -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTop" aria-controls="navbarTop" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <!-- Konten yang akan di-collapse -->
                 <div class="collapse navbar-collapse" id="navbarTop">
                     <!-- Search Bar -->
@@ -178,7 +165,6 @@
                             </button>
                         </div>
                     </div>
-
                     <!-- Keranjang dan Masuk -->
                     <div class="d-flex mt-2 mt-lg-0">
                         <a href="cart.html" class="btn btn-outline-success me-2 position-relative">
@@ -195,11 +181,14 @@
             </div>
         </nav>
 
-        <!-- Spacer untuk mencegah konten tertutup navbar fixed -->
+        <!-- Spacer untuk navbar pertama -->
         <div style="height: 60px;"></div>
 
+        <!-- Spacer untuk navbar kedua -->
+        <div style="height: 50px;"></div>
+
         <!-- Navbar Baris Kedua -->
-        <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: #198754; z-index: 1010;">
+        <nav class="navbar navbar-expand-lg navbar-light navbar-second">
             <div class="container">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -226,19 +215,6 @@
             </div>
         </nav>
     </header>
-
-    <!-- Breadcrumb -->
-    <div class="bg-light py-2">
-        <div class="container">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Beranda</a></li>
-                    <li class="breadcrumb-item"><a href="articles.html" class="text-decoration-none">Artikel</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Tips Memilih Sayuran Segar di Pasar Tradisional</li>
-                </ol>
-            </nav>
-        </div>
-    </div>
 
     <!-- Article Content -->
     <section class="py-5">
@@ -271,7 +247,6 @@
                             <div class="d-flex align-items-center">
                                 <div class="me-auto">
                                     <div class="d-flex align-items-center">
-                                        <!-- Updated author image -->
                                         <div class="profile-image-container author-image-sm me-2">
                                             <img src="../assets/images/profil-pria.jpg" alt="Author" class="profile-image">
                                         </div>
@@ -429,7 +404,6 @@
 
                             <div class="author-bio bg-light p-4 rounded">
                                 <div class="d-flex">
-                                    <!-- Updated author bio image -->
                                     <div class="profile-image-container author-image-lg me-3">
                                         <img src="../assets/images/profil-pria.jpg" alt="Author" class="profile-image">
                                     </div>
@@ -522,7 +496,6 @@
                                 <!-- Comment 1 -->
                                 <div class="comment mb-4 pb-4 border-bottom">
                                     <div class="d-flex">
-                                        <!-- Updated commenter image -->
                                         <div class="profile-image-container commenter-image me-3">
                                             <img src="../assets/images/commenter.jpg" alt="Commenter" class="profile-image">
                                         </div>
@@ -539,7 +512,6 @@
                                 <!-- Comment 2 -->
                                 <div class="comment mb-4 pb-4 border-bottom">
                                     <div class="d-flex">
-                                        <!-- Updated commenter image -->
                                         <div class="profile-image-container commenter-image me-3">
                                             <img src="../assets/images/commenter2.jpg" alt="Commenter" class="profile-image">
                                         </div>
@@ -556,7 +528,6 @@
                                 <!-- Comment 3 -->
                                 <div class="comment mb-4 pb-4 border-bottom">
                                     <div class="d-flex">
-                                        <!-- Updated commenter image -->
                                         <div class="profile-image-container commenter-image me-3">
                                             <img src="../assets/images/commenter3.avif" alt="Commenter" class="profile-image">
                                         </div>
@@ -573,7 +544,6 @@
                                 <!-- Comment 4 -->
                                 <div class="comment mb-4 pb-4 border-bottom">
                                     <div class="d-flex">
-                                        <!-- Updated commenter image -->
                                         <div class="profile-image-container commenter-image me-3">
                                             <img src="../assets/images/commenter4.jpg" alt="Commenter" class="profile-image">
                                         </div>
@@ -590,7 +560,6 @@
                                 <!-- Comment 5 -->
                                 <div class="comment">
                                     <div class="d-flex">
-                                        <!-- Updated commenter image -->
                                         <div class="profile-image-container commenter-image me-3">
                                             <img src="../assets/images/commenter5.jpg" alt="Commenter" class="profile-image">
                                         </div>
@@ -633,7 +602,6 @@
                     <div class="card border-0 shadow-sm mb-4">
                         <div class="card-body">
                             <div class="d-flex align-items-center mb-3">
-                                <!-- Updated sidebar author image -->
                                 <div class="profile-image-container author-image-md me-3">
                                     <img src="../assets/images/profil-pria.jpg" alt="Author" class="profile-image">
                                 </div>
@@ -746,7 +714,6 @@
                         <li><i class="fas fa-envelope me-2"></i> info@panenia.id</li>
                     </ul>
                 </div>
-                <!-- Tambahan: Jam Operasional -->
                 <div class="col-lg-3">
                     <h5 class="mb-3">Jam Operasional</h5>
                     <ul class="list-unstyled">

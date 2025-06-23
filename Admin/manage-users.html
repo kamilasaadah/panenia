@@ -71,44 +71,43 @@
             </div>
             <ul class="sidebar-menu">
                 <li>
-                    <a href="index.html" class="active">
+                    <a href="index.html" data-page="index">
                         <i class="fas fa-tachometer-alt"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
                 <li>
-                    <a href="manage-products.html">
+                    <a href="manage-products.html" data-page="manage-products">
                         <i class="fas fa-box"></i>
                         <span>Kelola Produk</span>
                     </a>
                 </li>
                 <li>
-                    <a href="manage-orders.html">
+                    <a href="manage-orders.html" data-page="manage-orders">
                         <i class="fas fa-shopping-cart"></i>
-                        <span>Pesanan</span>
+                        <span>Kelola Pesanan</span>
                     </a>
                 </li>
                 <li>
-                    <a href="manage-users.html">
+                    <a href="manage-users.html" data-page="manage-users">
                         <i class="fas fa-users"></i>
-                        <span>Pengguna</span>
+                        <span>Kelola Pengguna</span>
                     </a>
                 </li>
                 <li>
-                    <a href="manage-articles.html">
+                    <a href="manage-articles.html" data-page="manage-articles">
                         <i class="fas fa-newspaper"></i>
-                        <span>Artikel</span>
+                        <span>Kelola Artikel</span>
                     </a>
                 </li>
-                
                 <li>
-                    <a href="../user/index.html">
+                    <a href="../user/index.html" data-page="store">
                         <i class="fas fa-store"></i>
                         <span>Lihat Toko</span>
                     </a>
                 </li>
                 <li>
-                    <a href="logout.html">
+                    <a href="logout.html" data-page="logout">
                         <i class="fas fa-sign-out-alt"></i>
                         <span>Keluar</span>
                     </a>
@@ -829,6 +828,36 @@ Depok, Jawa Barat 16413</textarea>
     <!-- Custom JS -->
     <script src="../assets/js/admin.js"></script>
     <script>
+        // Enhanced sidebar active state management
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get current page name from URL
+            const currentPage = window.location.pathname.split('/').pop().replace('.html', '') || 'index';
+            
+            // Remove all active classes
+            document.querySelectorAll('.sidebar-menu a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Add active class to current page
+            const currentLink = document.querySelector(`.sidebar-menu a[data-page="${currentPage}"]`);
+            if (currentLink) {
+                currentLink.classList.add('active');
+            }
+            
+            // Handle sidebar clicks
+            document.querySelectorAll('.sidebar-menu a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Don't prevent default for external links
+                    if (!this.href.includes('logout') && !this.href.includes('../user/')) {
+                        // Remove active from all
+                        document.querySelectorAll('.sidebar-menu a').forEach(l => l.classList.remove('active'));
+                        // Add active to clicked
+                        this.classList.add('active');
+                    }
+                });
+            });
+        });
+        
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
         var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl)
